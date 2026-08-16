@@ -1,8 +1,9 @@
 __pycache__/
 
-backup/*.*
+backup/
 test_save_files/*.png
 
+payload
 dist
 build
 *.ico
