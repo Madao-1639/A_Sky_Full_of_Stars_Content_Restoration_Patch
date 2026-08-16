@@ -19,6 +19,8 @@ import shutil
 from pathlib import Path
 import arcbuild
 
+CURRENT_VERSION = 'v1.0.1-beta'
+
 def parse_vdf(vdf_path):
     """
     解析 Steam libraryfolders.vdf 文件
@@ -212,7 +214,7 @@ def select_game_directory():
         Path or None: 游戏路径
     """
     print("=" * 60)
-    print("仰望夜空的星辰 内容还原补丁 v1.0.0-beta")
+    print(f"仰望夜空的星辰 内容还原补丁 {CURRENT_VERSION}")
     print("A Sky Full of Stars - Content Restoration Patch")
     print("=" * 60)
     print()

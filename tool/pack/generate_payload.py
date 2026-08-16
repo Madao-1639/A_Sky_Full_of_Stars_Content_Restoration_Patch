@@ -11,7 +11,7 @@ from pathlib import Path
 import arcbuild
 
 ASSET_DIR = Path('asset')
-BACKUP_DIR = Path('backup')
+BACKUP_DIR = Path('./backup')
 PAYLOAD_DIR = Path(__file__).parent / 'payload'
 
 def sha256(data):
