@@ -17,29 +17,7 @@ Installation:
 import sys
 import shutil
 from pathlib import Path
-
-# 检测 Python 版本
-if sys.version_info < (3, 7):
-    print("错误：需要 Python 3.7 或更高版本")
-    print("Error: Python 3.7 or higher is required")
-    input("按任意键退出...")
-    sys.exit(1)
-
-try:
-    # 动态导入 arcbuild（从脚本同目录）
-    script_dir = Path(__file__).parent
-    payload_dir = script_dir / "payload"
-
-    # 将脚本目录添加到 sys.path 以便导入 arcbuild
-    sys.path.insert(0, str(script_dir))
-    import arcbuild
-except ImportError:
-    print("错误：找不到 arcbuild 模块")
-    print("Error: arcbuild module not found")
-    print(f"请确保 arcbuild.py 在脚本同目录下")
-    input("按任意键退出...")
-    sys.exit(1)
-
+import arcbuild
 
 def parse_vdf(vdf_path):
     """
@@ -311,8 +289,7 @@ def install():
     print()
 
     # 检测 payload 目录
-    script_dir = Path(__file__).parent
-    payload_dir = script_dir / "payload"
+    payload_dir = Path(__file__).parent / "payload"
 
     if not payload_dir.exists():
         print(f"错误：找不到 payload 目录")

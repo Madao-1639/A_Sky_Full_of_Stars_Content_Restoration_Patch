@@ -1,6 +1,6 @@
 __pycache__/
 
-backup/
+backup/*.*
 test_save_files/*.png
 
 dist
