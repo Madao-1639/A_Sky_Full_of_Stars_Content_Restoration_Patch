@@ -1,0 +1,8 @@
+__pycache__/
+
+test_save_files/*.png
+
+dist
+build
+*.ico
+*.spec
