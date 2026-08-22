@@ -133,7 +133,55 @@ byte_pattern = resource_name.encode('shift_jis')
    `cleanup_and_rewrite.py` 中 `max_id_per_pna` 的 0x34/0x39 关联逻辑，不要用简单正则误读
    槛值，见下方调试技巧）
 
-## 五类资源缺陷总结
+### 8. Arc 文件 Null Padding 导致哈希不一致
+
+**问题**：`Chip3.arc` 在表结束位置（offset 1640）有 2 字节的 null padding（`\x00\x00`），位于表和数据段之间。`arcbuild.write_arc()` 不保留这个 padding，导致每次读写都产出不同的 SHA256，安装器哈希校验失败。
+
+**症状**：
+- 源文件 SHA256 ≠ 安装后文件 SHA256（相差 2 字节）
+- 重复写入产生不同哈希（非幂等）
+- 安装器验证失败
+
+**原因分析**：
+```
+Arc 文件结构：
+[Header 8] [Table 1634] [Padding 2] [Data ...]
+                      ↑ 
+                 table_size=1634
+                 
+arcbuild.write_arc() 直接写：[Header 8] [Table 1634] [Data ...]
+不保留 Padding，导致产生的文件少 2 字节
+```
+
+**解决方案**：
+1. **规范化源文件**：运行一次 `arcbuild.normalize_arc_padding()` 去除 padding，使文件与 `arcbuild` 的标准格式一致
+2. **防护机制**：`arcbuild.verify()` 现已加入检查，如果发现 padding 会抛出错误并提示运行规范化
+3. **确保幂等性**：规范化后，任何读写都产生相同哈希
+
+**代码示例**：
+```python
+import arcbuild
+from pathlib import Path
+
+arc = Path('releases/v1.1.0_fixed/Chip3.arc')
+
+# 规范化（去除 padding）
+size = arcbuild.normalize_arc_padding(arc)
+print('Normalized to {} bytes'.format(size))
+
+# 验证（现已检查 padding）
+cnt, fsize, end = arcbuild.verify(arc)
+# 若有 padding 会抛异常：
+# ValueError: spurious null padding at table end (position 1640). 
+#            Run normalize_arc_padding() to remove it
+```
+
+**教训**：
+- **Arc 文件应有唯一的标准形式**，所有读写工具必须产生相同结果
+- **哈希校验前必须保证数据稳定**，特别是在多工具操作的流程中
+- **验证函数应主动检测和拒绝非标准格式**，而不是默默接受
+
+## 资源与文件格式缺陷总结
 
 | 类型 | 表现 | 错误码 | 修复方法 |
 |------|------|--------|----------|
@@ -142,6 +190,7 @@ byte_pattern = resource_name.encode('shift_jis')
 | 3. 资源缺失（0x33） | 卡死无响应 | 无错误码 | 从 Miazora 补入缺失的 PNG 资源 |
 | 4. EVRET 偏移失效 | 回主菜单 | 无错误码 | 重算并修正偏移指针 |
 | 5. 9X 段位源/目标错配 | 背景黑屏，仅立绘正常 | 无错误码 | SHA256 核对部署源与目标一致 |
+| 6. Arc 文件非规范格式 | 哈希校验失败 | 无错误码 | 运行 `normalize_arc_padding()` 规范化 |
 
 ## 最佳实践
 
@@ -163,6 +212,8 @@ byte_pattern = resource_name.encode('shift_jis')
 - [ ] 冗余检测（无重复脚本、无未使用的 ORG_* 资源）
 - [ ] 9X 段位内容核对（部署到 9X 段位名下的资源，逐一 SHA256 比对 Miazora 源文件，
       确认「装的是它自己该装的那份」而不是同批次里另一个资源的数据）
+- [ ] Arc 文件规范化检查（运行 `arcbuild.verify()` 检测 null padding；若发现则运行 `normalize_arc_padding()`）
+- [ ] SHA256 校验稳定性（修改后重新读写一遍，验证 SHA256 保持一致）
 
 ### 调试技巧
 
@@ -193,3 +244,10 @@ byte_pattern = resource_name.encode('shift_jis')
      容易在改写映射表时张冠李戴
    - 这是"资源存在但内容错配"，PNAP 结构合法、layer_id 不越界，所以引擎不报错，
      纯粹是内容对不上脚本预期
+
+6. **安装器哈希校验失败**：
+   - 源 Arc 文件可能存在 null padding（位于表末和数据段之间）
+   - 运行 `arcbuild.verify(path)` 检测是否有 padding；若拒绝异常则必须规范化
+   - 规范化命令：`arcbuild.normalize_arc_padding(path)`
+   - 规范化后重新生成 SHA256SUMS，安装器校验应该通过
+   - **症状区分**：如果重复读写同一文件产生不同 SHA256，肯定是 padding 问题

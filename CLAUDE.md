@@ -181,9 +181,15 @@ if pattern in decoded:
 1. 运行 `final_verification.py` 全量验证
 2. 检查调用链完整性
 3. 验证资源配对正确性
-4. 测试关键场景功能
-5. 更新 SHA256SUMS
+4. 验证 Arc 文件规范化（无 null padding）
+5. 测试关键场景功能
 6. 更新文档
+
+**Arc 文件规范化检查**：
+- `arcbuild.verify()` 会检测表末尾的 null padding 并拒绝
+- 若发现 padding，运行 `arcbuild.normalize_arc_padding(path)` 清理
+- 规范化后哈希稳定，安装器校验通过
+- 详见 `doc/lessons-learned.md` 第 8 节
 
 ### 6. 备份策略
 

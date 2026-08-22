@@ -391,7 +391,6 @@ def install():
         print(f"错误：找不到 payload 目录")
         print(f"Error: payload directory not found")
         print(f"预期位置：{payload_dir}")
-        input("按任意键退出...")
         return False
 
     print("✓ 检测到补丁文件")
@@ -493,13 +492,11 @@ def install():
             if not file_info["patch_path"].exists():
                 print(f"错误：缺失补丁文件 {file_info['patch_path']}")
                 print(f"Error: Missing patch file {file_info['patch_path']}")
-                input("按任意键退出...")
                 return False
 
             if not file_info["game_path"].exists():
                 print(f"错误：游戏文件不存在 {file_info['game_path']}")
                 print(f"Error: Game file not found {file_info['game_path']}")
-                input("按任意键退出...")
                 return False
 
     print("✓ 所有文件检查通过")
@@ -617,8 +614,6 @@ def install():
                     print()
                     print("4. 重新运行本安装程序")
                     print("   Run this installer again")
-                    print()
-                    input("按任意键退出...")
                     return False
 
             except Exception as e:

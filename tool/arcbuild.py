@@ -77,4 +77,19 @@ def verify(path, expect_count=None):
         raise ValueError('entry count mismatch')
     if expect_count is not None and count != expect_count:
         raise ValueError('expected %d members, got %d' % (expect_count, count))
+
+    # Check for spurious padding after table (before first data chunk)
+    if end < len(blob) and blob[data_start:data_start + 2] == b'\0\0':
+        raise ValueError(
+            'spurious null padding at table end (position %d). '
+            'Run normalize_arc_padding() to remove it' % data_start
+        )
+
     return count, len(blob), end
+
+
+def normalize_arc_padding(path):
+    """Remove spurious null padding and re-write to canonical form."""
+    members = read_raw(path)
+    write_arc(members, path)
+    return Path(path).stat().st_size
