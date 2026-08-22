@@ -38,7 +38,7 @@
 <游戏目录>/
 ├── Rio.arc          ← asset/Rio.arc
 ├── Chip1.arc        ← asset/Chip1.arc
-├── Chip1A.arc        ← asset/Chip1A.arc
+├── Chip1A.arc       ← asset/Chip1A.arc
 ├── Chip2.arc        ← asset/Chip2.arc
 ├── Chip3.arc        ← asset/Chip3.arc
 ├── Chip3A.arc       ← asset/Chip3A.arc
