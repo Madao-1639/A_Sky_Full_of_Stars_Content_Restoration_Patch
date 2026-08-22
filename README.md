@@ -37,6 +37,9 @@
 ```
 <游戏目录>/
 ├── Rio.arc          ← asset/Rio.arc
+├── Chip1.arc        ← asset/Chip1.arc
+├── Chip1A.arc        ← asset/Chip1A.arc
+├── Chip2.arc        ← asset/Chip2.arc
 ├── Chip3.arc        ← asset/Chip3.arc
 ├── Chip3A.arc       ← asset/Chip3A.arc
 ├── Chip3B.arc       ← asset/Chip3B.arc
@@ -73,14 +76,17 @@ Steam 会检测出被修改的归档并重新下载，恢复到未安装状态�
 
 | 文件 | 处理方式 | 内容 |
 |---|---|---|
-| `Rio.arc` | 覆盖 | 剧情脚本，含 18 个还原脚本与 13 处跳转改写 |
+| `Rio.arc` | 覆盖 | 剧情脚本，含 17 个还原脚本与 14 处脚本改写 |
 | `zh-CN/Rio.arc` | 覆盖 | 中文文本，312 条（Steam 278 + 还原 34） |
-| `Chip3.arc` | 合并 | 2 个隔离命名的 CG |
-| `Chip3A.arc` | 合并 | 2 个隔离命名的 CG |
-| `Chip3B.arc` | 合并 | 16 个还原 CG |
-| `Graphic.arc` | 合并 | 4 个图层遮罩 |
-| `Voice.arc` | 合并 | 1422 条语音 |
-| `Voice1.arc` | 合并 | 1320 条语音 |
+| `Chip1.arc` | 合并 | 2 个新增资源 |
+| `Chip1A.arc` | 合并 | 1 个新增资源 |
+| `Chip2.arc` | 合并 | 4 个新增资源 |
+| `Chip3.arc` | 合并 | 11 个新增资源 |
+| `Chip3A.arc` | 合并 | 36 个新增资源 |
+| `Chip3B.arc` | 合并 | 14 个还原 CG |
+| `Graphic.arc` | 合并 | 16 个图层遮罩 |
+| `Voice.arc` | 合并 | 1185 条还原语音 |
+| `Voice1.arc` | 合并 | 1238 条还原语音 |
 
 ---
 
