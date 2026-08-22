@@ -19,7 +19,14 @@ import shutil
 from pathlib import Path
 import arcbuild
 
-CURRENT_VERSION = 'v1.0.1-beta'
+def get_version():
+    packed = Path(__file__).resolve().parent / 'VERSION'
+    if packed.exists():
+        return packed.read_text(encoding='utf-8').strip()
+    dev = Path(__file__).resolve().parent.parent.parent / 'VERSION'
+    return dev.read_text(encoding='utf-8').strip()
+
+CURRENT_VERSION = get_version()
 
 def parse_vdf(vdf_path):
     """
@@ -181,29 +188,110 @@ def find_steam_game_path():
         return None
 
 
-def merge_arc(game_arc_path, patch_arc_path, output_path):
+def merge_arc(game_arc_path, patch_arc_path, output_path, metadata_path=None, asset_name=None):
     """
-    合并游戏原有的 arc 文件和补丁 arc 文件
+    合并游戏原有的 arc 文件和补丁 arc 文件（资源级替换，按元数据指定的顺序）
 
     Args:
         game_arc_path: 游戏原有的 arc 文件路径
         patch_arc_path: 补丁 arc 文件路径
         output_path: 输出文件路径
+        metadata_path: 元数据文件路径（JSON，包含成员顺序和变化信息）
+        asset_name: asset 文件名（如 'Chip3.arc'，用于查找元数据中对应的条目）
     """
+    import json
+
     # 读取游戏原文件
     game_members = {nb.decode('utf-16le'): (nb, d)
                     for nb, d in arcbuild.read_raw(str(game_arc_path))}
 
     # 读取补丁文件
-    patch_members = list(arcbuild.read_raw(str(patch_arc_path)))
+    patch_members = {nb.decode('utf-16le'): (nb, d)
+                     for nb, d in arcbuild.read_raw(str(patch_arc_path))}
 
-    # 合并：补丁成员追加到游戏成员列表
-    merged = list(game_members.values()) + patch_members
+    # 读取元数据
+    metadata = {}
+    if metadata_path and Path(metadata_path).exists() and asset_name:
+        try:
+            with open(metadata_path, 'r', encoding='utf-8') as f:
+                all_metadata = json.load(f)
+            metadata = all_metadata.get(asset_name, {})
+        except Exception as e:
+            print(f"    警告：无法读取元数据 {metadata_path}: {e}")
+
+    # 使用元数据中的成员顺序和变化信息进行合并
+    merged = []
+    target_members = metadata.get('members', [])
+    deleted_count = len(metadata.get('deleted', []))
+
+    if target_members:
+        # 按元数据中的目标顺序重组
+        # target_members 中的每个元素是 {"name": "...", "type": "keep|added|modified"}
+        missing_members = []
+        for member_info in target_members:
+            if isinstance(member_info, dict):
+                name = member_info.get('name')
+                member_type = member_info.get('type', 'keep')
+            else:
+                # 兼容旧格式（直接是字符串）
+                name = member_info
+                member_type = 'keep'
+
+            if not name:
+                continue
+
+            # 根据类型处理
+            if member_type in ('added', 'modified'):
+                # 新增或修改：优先用补丁版本，找不到则降级用原版
+                if name in patch_members:
+                    patch_name_bytes, patch_data = patch_members[name]
+                    merged.append((patch_name_bytes, patch_data))
+                elif name in game_members:
+                    # 补丁中找不到，降级使用原版
+                    name_bytes, data = game_members[name]
+                    merged.append((name_bytes, data))
+                    missing_members.append((name, member_type, 'patch'))
+                else:
+                    # 都找不到，记录错误
+                    missing_members.append((name, member_type, 'both'))
+            else:  # 'keep'
+                # 保持原版：优先用原版，找不到则用补丁版本
+                if name in game_members:
+                    name_bytes, data = game_members[name]
+                    merged.append((name_bytes, data))
+                elif name in patch_members:
+                    # 原版中找不到，降级使用补丁版本
+                    patch_name_bytes, patch_data = patch_members[name]
+                    merged.append((patch_name_bytes, patch_data))
+                    missing_members.append((name, member_type, 'game'))
+                else:
+                    # 都找不到，记录错误
+                    missing_members.append((name, member_type, 'both'))
+
+        # 报告缺失成员
+        if missing_members:
+            print(f"    警告：{len(missing_members)} 个成员未能在预期位置找到")
+            for name, mtype, missing_from in missing_members:
+                print(f"      - {name} (type={mtype}): {missing_from} 中不存在")
+    else:
+        # 降级方案：如果没有元数据，按游戏原顺序处理
+        for name_bytes, data in arcbuild.read_raw(str(game_arc_path)):
+            name = name_bytes.decode('utf-16le')
+            if name in patch_members:
+                patch_name_bytes, patch_data = patch_members[name]
+                merged.append((patch_name_bytes, patch_data))
+            else:
+                merged.append((name_bytes, data))
+
+        # 追加新增成员
+        for name, (name_bytes, data) in patch_members.items():
+            if name not in game_members:
+                merged.append((name_bytes, data))
 
     # 写入输出文件
     arcbuild.write_arc(merged, str(output_path))
 
-    return len(game_members), len(patch_members), len(merged)
+    return len(game_members), len(patch_members), deleted_count, len(merged)
 
 
 def select_game_directory():
@@ -291,7 +379,13 @@ def install():
     print()
 
     # 检测 payload 目录
-    payload_dir = Path(__file__).parent / "payload"
+    if getattr(sys, 'frozen', False):
+        # PyInstaller 打包后
+        base_dir = Path(sys._MEIPASS)
+    else:
+        # 开发时
+        base_dir = Path(__file__).resolve().parent.parent
+    payload_dir = base_dir / "payload"
 
     if not payload_dir.exists():
         print(f"错误：找不到 payload 目录")
@@ -318,6 +412,27 @@ def install():
             "patch_path": payload_dir / "zh-CN" / "Rio.arc",
             "output_path": game_path / "zh-CN" / "Rio.arc",
             "requires_merge": False,  # 直接覆盖
+        },
+        {
+            "name": "Chip1.arc (CG 资源)",
+            "game_path": game_path / "Chip1.arc",
+            "patch_path": payload_dir / "Chip1_patch.arc",
+            "output_path": game_path / "Chip1.arc",
+            "requires_merge": True,  # 需要合并
+        },
+        {
+            "name": "Chip1A.arc (CG 资源)",
+            "game_path": game_path / "Chip1A.arc",
+            "patch_path": payload_dir / "Chip1A_patch.arc",
+            "output_path": game_path / "Chip1A.arc",
+            "requires_merge": True,  # 需要合并
+        },
+        {
+            "name": "Chip2.arc (CG 资源)",
+            "game_path": game_path / "Chip2.arc",
+            "patch_path": payload_dir / "Chip2_patch.arc",
+            "output_path": game_path / "Chip2.arc",
+            "requires_merge": True,  # 需要合并
         },
         {
             "name": "Chip3.arc (CG 资源)",
@@ -363,19 +478,29 @@ def install():
         },
     ]
 
-    # 检查所有补丁文件是否存在
+    # 检查补丁文件并标记跳过无需更新的文件
     print("检查补丁文件...")
+    files_to_process = [f for f in files_to_process if f["patch_path"].exists() or not f["requires_merge"]]
+
     for file_info in files_to_process:
-        if not file_info["patch_path"].exists():
-            print(f"错误：缺失补丁文件 {file_info['patch_path']}")
-            print(f"Error: Missing patch file {file_info['patch_path']}")
-            input("按任意键退出...")
-            return False
-        if not file_info["game_path"].exists():
-            print(f"错误：游戏文件不存在 {file_info['game_path']}")
-            print(f"Error: Game file not found {file_info['game_path']}")
-            input("按任意键退出...")
-            return False
+        # 如果需要合并但 patch 不存在，标记为跳过
+        if file_info["requires_merge"] and not file_info["patch_path"].exists():
+            file_info["skip"] = True
+            print(f"ℹ {file_info['name']}: 无增量，跳过")
+        else:
+            file_info["skip"] = False
+            # Rio.arc 等必需文件必须存在
+            if not file_info["patch_path"].exists():
+                print(f"错误：缺失补丁文件 {file_info['patch_path']}")
+                print(f"Error: Missing patch file {file_info['patch_path']}")
+                input("按任意键退出...")
+                return False
+
+            if not file_info["game_path"].exists():
+                print(f"错误：游戏文件不存在 {file_info['game_path']}")
+                print(f"Error: Game file not found {file_info['game_path']}")
+                input("按任意键退出...")
+                return False
 
     print("✓ 所有文件检查通过")
     print()
@@ -390,8 +515,8 @@ def install():
     print("Recommendation: Verify game integrity via Steam before installation to create a backup")
     print()
 
-    confirm = input("确认安装? (y/N): ").strip().lower()
-    if confirm not in ['y', 'yes']:
+    confirm = input("确认安装? (Y/n): ").strip().lower()
+    if confirm in ['n', 'no']:
         print("安装已取消")
         print("Installation cancelled")
         return False
@@ -403,17 +528,28 @@ def install():
     # 执行安装
     try:
         for file_info in files_to_process:
+            # 跳过无需更新的文件
+            if file_info.get("skip"):
+                print(f"跳过 {file_info['name']} (无需更新)")
+                print()
+                continue
+
             print(f"处理 {file_info['name']}...")
 
             if file_info["requires_merge"]:
                 # 合并 arc 文件
-                game_count, patch_count, merged_count = merge_arc(
+                metadata_path = payload_dir / "METADATA.json"
+                asset_name = file_info["game_path"].name
+                game_count, patch_count, deleted_count, merged_count = merge_arc(
                     file_info["game_path"],
                     file_info["patch_path"],
-                    file_info["output_path"]
+                    file_info["output_path"],
+                    metadata_path,
+                    asset_name
                 )
                 print(f"  原文件成员: {game_count}")
                 print(f"  补丁成员: {patch_count}")
+                print(f"  删除成员: {deleted_count}")
                 print(f"  合并后成员: {merged_count}")
             else:
                 # 直接覆盖
@@ -424,6 +560,71 @@ def install():
             print(f"✓ {file_info['name']} 完成")
             print()
 
+        # 验证安装文件
+        print("验证安装文件...")
+        import hashlib
+        import json
+
+        metadata_file = payload_dir / "METADATA.json"
+        if metadata_file.exists():
+            try:
+                with open(metadata_file, 'r', encoding='utf-8') as f:
+                    metadata = json.load(f)
+
+                all_verified = True
+                for asset_name, asset_info in metadata.items():
+                    expected_hash = asset_info.get('checksum')
+
+                    # 构建文件路径
+                    if asset_name.startswith('zh-CN/'):
+                        installed_path = game_path / asset_name
+                    else:
+                        installed_path = game_path / asset_name
+
+                    if not installed_path.exists():
+                        print(f"  ✗ {asset_name}: 文件不存在")
+                        all_verified = False
+                        continue
+
+                    # 计算哈希
+                    file_hash = hashlib.sha256(installed_path.read_bytes()).hexdigest()
+                    if file_hash == expected_hash:
+                        print(f"  ✓ {asset_name}")
+                    else:
+                        print(f"  ✗ {asset_name}: 哈希不匹配")
+                        print(f"    预期: {expected_hash}")
+                        print(f"    实际: {file_hash}")
+                        all_verified = False
+
+                if not all_verified:
+                    print()
+                    print("=" * 60)
+                    print("✗ 验证失败：部分文件不正确")
+                    print("✗ Verification failed: some files are incorrect")
+                    print("=" * 60)
+                    print()
+                    print("请按以下步骤恢复后重新安装：")
+                    print("Please follow these steps to recover and reinstall:")
+                    print()
+                    print("1. 打开 Steam，找到《仰望夜空的星辰》(A Sky Full of Stars)")
+                    print("   Open Steam and find 'A Sky Full of Stars'")
+                    print()
+                    print("2. 右键点击游戏 → 属性 → 已安装文件 → 校验游戏文件完整性")
+                    print("   Right-click game → Properties → Installed Files → Verify integrity")
+                    print()
+                    print("3. 等待 Steam 完成验证和修复")
+                    print("   Wait for Steam to complete verification")
+                    print()
+                    print("4. 重新运行本安装程序")
+                    print("   Run this installer again")
+                    print()
+                    input("按任意键退出...")
+                    return False
+
+            except Exception as e:
+                print(f"  警告：无法验证文件: {e}")
+
+        print()
         print("=" * 60)
         print("✓ 安装完成！")
         print("✓ Installation completed!")

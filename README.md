@@ -4,7 +4,7 @@
 
 本补丁仅供已购买正版游戏的用户使用，不包含任何游戏本体文件。
 
-> **当前版本：v1.0.1-beta** — 已通过部分实机验证，仍在测试中。
+> **当前版本：v1.0.2-beta** — 已通过部分实机验证，仍在测试中。
 
 ![Banner](https://shared.steamstatic.com/store_item_assets/steam/apps/745960/library_hero.jpg?t=1612501446)
 
@@ -16,7 +16,7 @@
 
 ### 方式一：安装器（推荐）
 
-从 [Releases](https://github.com/Madao-1639/A_Sky_Full_of_Stars_Content_Restoration_Patch/releases) 下载 `A_Sky_Full_of_Stars_Content_Restoration_Patch_Installer_vX.X.X.exe`，双击运行。
+从 [Releases](../../releases) 下载 `A_Sky_Full_of_Stars_Content_Restoration_Patch_Installer_vX.X.X.exe`，双击运行。
 
 安装器会依次执行以下步骤：
 
@@ -32,7 +32,7 @@
 
 适合安装器无法运行、或希望自行核对文件的情况。
 
-下载 [`asset/`](https://github.com/Madao-1639/A_Sky_Full_of_Stars_Content_Restoration_Patch/tree/main/asset) 目录下的全部文件，按原目录结构覆盖到游戏根目录：
+下载 [`asset/`](./asset) 目录下的全部文件，按原目录结构覆盖到游戏根目录：
 
 ```
 <游戏目录>/
@@ -135,7 +135,7 @@ Steam 版（App ID 745960，Build ID 6187244）移除了一部分剧情场景。
 
 ### 成就系统
 
-补丁不修改任何 Steam 脚本，成就调用与解锁标记原样保留，还原内容中的 CG 同样计入成就统计。
+补丁不修改任何 Steam 脚本，成就调用与解锁标记原样保留。
 
 ---
 
@@ -143,31 +143,49 @@ Steam 版（App ID 745960，Build ID 6187244）移除了一部分剧情场景。
 
 ```
 ├── asset/              重新封装好的游戏文件（Git LFS）
-└── test_save_files/    供测试使用的游戏存档
-└── tool/
-    └── pack/           安装器源码与增量素材
-        ├── install.py  安装逻辑
-        ├── arcbuild.py 归档读写
-        ├── pack.sh     exe 构建脚本
-        └── payload/    增量素材
+├── backup/             Steam 原版基线（用于计算增量）
+├── doc/                技术文档
+├── test_save_files/    供测试使用的游戏存档
+├── tool/               通用库和工具
+│   ├── install.py      安装器逻辑
+│   ├── arcbuild.py     Arc 格式读写库
+│   ├── ws2.py          WS2 脚本解码和成就注入
+│   ├── arcstream.py    大文件 Arc 流式处理
+│   └── lng.py          本地化文本 (.lng) 编解码
+├── script/             构建和开发脚本
+│   ├── pack.sh         exe 打包脚本
+│   ├── generate_payload.py  生成增量补丁
+│   ├── final_verification.py 最终验证工具
+│   └── icon.ico        打包用图标
+├── payload/            增量补丁产物（构建后生成）
+├── releases/           exe 最终产物（构建后生成）
+└── VERSION             版本号（唯一来源）
 ```
 
 ## 测试进度
 - [x] 共通线
-- [ ] 箒星光线
+- [x] 箒星光线
 - [x] 天之川沙夜线
-- [ ] 白鸟织姬线
-- [ ] 日下部可乐娜线
+- [x] 白鸟织姬线
+- [x] 日下部来露娜线
+- [ ] 全 CG 解锁
+- [ ] 全成就解锁
 
 ## 反馈
 
 遇到问题请提交 [Issue](../../issues)，附上：
 
 - 补丁版本与安装方式
-- 出现问题的具体场景（角色线 + 大致进度）
-- 游戏弹出的错误代码与提示原文（如有）
+- 出现问题的具体场景（角色线 + 大致进度；最好附上存档文件，位置在 `C:\Users\你的用户名\Saved Games\MoeNovel\A Sky Full of Stars`）
+- 游戏弹出的错误日志（如有）
+- 问题的具体表现
 
 ## 致谢
 
 - 内容还原素材来源于社区已有的还原方案
 - 还原部分中文翻译由 GPT-5.6-sol 完成
+
+## To-Do
+- [ ] 全量测试
+- [ ] 提取 Augest 汉化组的繁中文本（需要逆向？）
+- [ ] 蜜汁内容

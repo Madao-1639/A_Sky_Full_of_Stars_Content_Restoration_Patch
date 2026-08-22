@@ -3,8 +3,8 @@ __pycache__/
 backup/
 test_save_files/*.png
 
-payload
-dist
+payload/*
+!payload/metadata.json
+releases
 build
-*.ico
 *.spec
