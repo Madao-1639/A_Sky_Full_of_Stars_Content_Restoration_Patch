@@ -2,6 +2,7 @@ __pycache__/
 
 backup/
 test_save_files/*.png
+*.backup
 
 payload/*
 !payload/metadata.json
