@@ -184,3 +184,27 @@ PNA 的图层按**动画相位分组**，通过 `u0`（unknown_0）字段标记�
 - 引擎在 `0x34 ev01 <PNA>` 时，会根据 PNA 内部的图层结构自动生成 `ev01/ev01blink/ev01talk` 三个子图层
 
 **注意**：虽然 PNA 结构影响动画效果，但不是 ev01 注册成败的决定因素——问题在资源**名**而非结构。
+
+### 二进制布局（逆向确认，见 `tool/pna.py`）
+
+```
+header: magic(4B "PNAP") unknown(i32) canvas_w(i32) canvas_h(i32) layer_count(i32)
+layer_count 个 entry，每个 10 x i32（40 字节）：
+  [0] u0        -- 0=真实图层；1/2=分组哨兵（无图像数据）
+  [1] layer_id  -- 0x34 显示指令引用的位置量，layer_id = layer_count-1-index；哨兵为 -1
+  [2..5] box_x, box_y, box_w, box_h -- 该图层在画布上的贴图位置
+  [6] reserved  -- 观测样本中恒为 0
+  [7..8] IEEE754 double 1.0 的低/高 32 位（图层不透明度等固定标记）；哨兵为全 0
+  [9] size      -- 该图层内嵌 PNG 的字节数；哨兵为 0
+图层 PNG 数据按 entry 顺序紧跟在图层表之后，size>0 的才有数据。
+```
+
+**关键结论（实测校验，见 `doc/technical-solutions.md` 4.6）**：
+- `box_w`/`box_h` 恒等于内嵌 PNG 自身的像素宽高（Chip3.arc 全部 COM_04/05 系列 84 个
+  非空图层验证 0 处不匹配），与 `canvas_w`/`canvas_h` 无关，是"该图层的贴图位置"不是
+  "画布大小"
+- `unknown` 字段 = `44 × layer_count + 12`（元数据大小，非语义字段，见 `doc/engine-mechanics.md`）
+- 同一 PNA 内，`u0` 哨兵把图层分成若干组：一组通常是"1~2 个全画布主图" + "若干组共享
+  同一裁切框的局部动画帧（每组对应一位角色）"
+- **`u0`/哨兵不记录"哪组局部帧对应哪个全画布状态"**——这个配对关系格式里没有字段可查，
+  只能靠实机测试确认（教训详见 `doc/lessons-learned.md` 第 9 节）

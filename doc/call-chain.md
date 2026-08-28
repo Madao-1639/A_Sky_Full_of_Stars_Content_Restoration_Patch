@@ -168,3 +168,32 @@ if script.endswith('_H.ws2'):
 2. **yozora_hika_103g_H** 引用 Steam `COM_04L` → id 范围够但语义位移，画错图
 
 **根本原因**：忽略了"同名冲突"——同名 PNA 在 Steam/原版间语义不同，layer_id 是纯位置量，不能直接替换。
+
+## Phase 3：调用链断链修复（103d/110c/101j 三例）
+
+`yozora_hika_103d_H`、`yozora_hika_110c_H`、`yozora_saya_101j_H` 三个脚本在 Phase 3
+排查中发现调用链断裂，模式一致：
+
+**问题**：
+- **入口错接**：Steam 入口脚本（`103c_E`/`110b_E`/`101i_E`）跳转到 `*_H_E`（Steam 过审阉割版），
+  而不是真正的原版 `*_H`（完整 H 内容）。`*_H_E` 本身能正常运行，此前的检测脚本据此误判
+  "入口存在"，未发现它接到了阉割版而非还原目标。
+- **出口悬空**：三个 `_H` 脚本的出口跳转是从 Miazora 原版直接照搬的裸名目标
+  （`YOZORA_HIKA_103E`/`YOZORA_HIKA_110D`/`YOZORA_SAYA_102`），未适配 Steam 版脚本清单
+  ——当前 Rio.arc 中只有对应的 `_E` 版本，裸名版本不存在。
+
+**修复**（详见 `tmp/phase3_call_chain_report.md`）：
+
+| 脚本 | 修改 | 旧目标 | 新目标 |
+|---|---|---|---|
+| `yozora_hika_103c_E.ws2` | 入口改接 | `YOZORA_HIKA_103D_H_E` | `YOZORA_HIKA_103D_H` |
+| `yozora_hika_110b_E.ws2` | 入口改接 | `YOZORA_HIKA_110C_H_E` | `YOZORA_HIKA_110C_H` |
+| `yozora_saya_101i_E.ws2` | 入口改接 | `YOZORA_SAYA_101J_H_E` | `YOZORA_SAYA_101J_H` |
+| `yozora_hika_103d_H.ws2` | 出口修正 | `YOZORA_HIKA_103E`（不存在） | `YOZORA_HIKA_103E_E` |
+| `yozora_hika_110c_H.ws2` | 出口修正 | `YOZORA_HIKA_110D`（不存在） | `YOZORA_HIKA_110D_E` |
+| `yozora_saya_101j_H.ws2` | 出口修正 | `YOZORA_SAYA_102`（不存在） | `YOZORA_SAYA_102_E` |
+
+修复后 `yozora_hika_103d_H_E.ws2`、`yozora_hika_110c_H_E.ws2`、`yozora_saya_101j_H_E.ws2`
+三个脚本失去主线入口（仍被 `REPLAY_EXE.ws2` 回放菜单引用），成为孤立脚本，是否清理留待后续任务。
+
+其余 14 个 `_H` 脚本调用链核实原本即正确，本次未改动。17 个 `_H` 脚本调用链覆盖率现为 100%。

@@ -20,13 +20,15 @@ from pathlib import Path
 import arcbuild
 
 def get_version():
-    packed = Path(__file__).resolve().parent / 'VERSION'
+    packed = Path(__file__).parent / 'VERSION'
     if packed.exists():
         return packed.read_text(encoding='utf-8').strip()
-    dev = Path(__file__).resolve().parent.parent.parent / 'VERSION'
+    dev = Path(__file__).parent.parent.parent / 'VERSION'
     return dev.read_text(encoding='utf-8').strip()
 
 CURRENT_VERSION = get_version()
+TARGET_APPID = "745960"
+GAME_FOLDER_NAME = 'A Sky Full of Stars'
 
 def parse_vdf(vdf_path):
     """
@@ -169,13 +171,10 @@ def find_steam_game_path():
         # 解析 libraryfolders.vdf
         libraries = parse_vdf(libraryfolders_vdf)
 
-        # 查找 appid 745960（A Sky Full of Stars）
-        TARGET_APPID = "745960"
-
         for library_path, apps in libraries:
             if TARGET_APPID in apps:
                 # 构建完整游戏路径
-                game_path = Path(library_path) / "steamapps" / "common" / "A Sky Full of Stars"
+                game_path = Path(library_path) / "steamapps" / "common" / GAME_FOLDER_NAME
 
                 # 验证游戏可执行文件是否存在
                 if (game_path / "AdvHD.exe").exists():
@@ -384,7 +383,7 @@ def install():
         base_dir = Path(sys._MEIPASS)
     else:
         # 开发时
-        base_dir = Path(__file__).resolve().parent.parent
+        base_dir = Path(__file__).parent.parent
     payload_dir = base_dir / "payload"
 
     if not payload_dir.exists():
