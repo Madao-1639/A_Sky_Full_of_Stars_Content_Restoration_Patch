@@ -58,7 +58,7 @@
 
 ## 质量标准（已完成 ✓）
 
-- [x] 生成 SHA256SUMS 校验文件
+- [x] `payload/METADATA.json` 包含每个 asset 的 SHA256 校验值（安装器据此校验，无需单独的 SHA256SUMS 文件）
 - [x] 最终验证脚本：`final_verification.py` 全部通过
 
 ## 验收检查清单
@@ -94,7 +94,7 @@
 
 - [ ] asset/ 与 backup/ 对比正确
 - [ ] payload 包含所有新增/修改的资源
-- [ ] SHA256SUMS 更新且正确
+- [ ] `payload/METADATA.json` 的 checksum 字段与对应 asset 文件 SHA256 一致
 
 ## 测试标准
 

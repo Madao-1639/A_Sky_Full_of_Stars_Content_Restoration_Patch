@@ -268,5 +268,5 @@ cnt, fsize, end = arcbuild.verify(arc)
    - 源 Arc 文件可能存在 null padding（位于表末和数据段之间）
    - 运行 `arcbuild.verify(path)` 检测是否有 padding；若拒绝异常则必须规范化
    - 规范化命令：`arcbuild.normalize_arc_padding(path)`
-   - 规范化后重新生成 SHA256SUMS，安装器校验应该通过
+   - 规范化后重新运行 `generate_payload.py` 生成 `payload/METADATA.json`（安装器校验依据的 checksum 就来自这里），安装器校验应该通过
    - **症状区分**：如果重复读写同一文件产生不同 SHA256，肯定是 padding 问题

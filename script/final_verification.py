@@ -5,14 +5,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-import re, hashlib
+import re
 from collections import Counter
 from tool import arcbuild, ws2
 
 ASSET = Path('asset')
-
-def sha(b):
-    return hashlib.sha256(b).hexdigest()
 
 # 加载所有归档
 archives = {}
@@ -195,21 +192,3 @@ if all_ok:
     print('OK 所有检查通过，可以推送')
 else:
     print('FAIL 存在问题，需要修复')
-
-print('\n生成校验和文件...')
-checksums = []
-for arc in ['Rio.arc', 'Chip3.arc', 'Chip3A.arc', 'Chip3B.arc',
-            'Graphic.arc', 'Voice.arc', 'Voice1.arc']:
-    p = ASSET / arc
-    if p.exists():
-        h = sha(p.read_bytes())
-        checksums.append(f'{h}  {arc}')
-
-zh_rio = ASSET / 'zh-CN' / 'Rio.arc'
-if zh_rio.exists():
-    h = sha(zh_rio.read_bytes())
-    checksums.append(f'{h}  zh-CN/Rio.arc')
-
-checksum_file = ASSET / 'SHA256SUMS'
-checksum_file.write_text('\n'.join(checksums) + '\n', encoding='utf-8')
-print(f'OK 已生成 {checksum_file.name}')

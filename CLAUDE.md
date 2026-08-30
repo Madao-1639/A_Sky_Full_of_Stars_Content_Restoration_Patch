@@ -229,7 +229,7 @@ if pattern in decoded:
 - 所有 Python 脚本
 - 文档文件（README.md 和 doc/ 下所有文件）
 - 配置文件
-- SHA256SUMS
+- `payload/METADATA.json`（每个 asset 已含 SHA256 校验值，安装器据此校验，无需单独的 SHA256SUMS 文件）
 
 ### 8. 调试规范
 
