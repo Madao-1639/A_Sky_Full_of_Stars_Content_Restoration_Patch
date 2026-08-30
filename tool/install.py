@@ -221,11 +221,14 @@ def merge_arc(game_arc_path, patch_arc_path, output_path, metadata_path=None, as
     # 使用元数据中的成员顺序和变化信息进行合并
     merged = []
     target_members = metadata.get('members', [])
-    deleted_count = len(metadata.get('deleted', []))
+    # 统计合并结果中各类型成员的数量（keep=保留原版，added=新增，modified=替换为补丁版本）
+    stats = {'keep': 0, 'added': 0, 'modified': 0}
 
     if target_members:
         # 按元数据中的目标顺序重组
         # target_members 中的每个元素是 {"name": "...", "type": "keep|added|modified"}
+        # 注：本项目原则是零破坏性修改，不会主动删除 Steam 原有成员，因此 asset 的成员
+        # 集合始终是游戏原文件的超集，不存在"删除"这一类型。
         missing_members = []
         for member_info in target_members:
             if isinstance(member_info, dict):
@@ -245,10 +248,12 @@ def merge_arc(game_arc_path, patch_arc_path, output_path, metadata_path=None, as
                 if name in patch_members:
                     patch_name_bytes, patch_data = patch_members[name]
                     merged.append((patch_name_bytes, patch_data))
+                    stats[member_type] += 1
                 elif name in game_members:
                     # 补丁中找不到，降级使用原版
                     name_bytes, data = game_members[name]
                     merged.append((name_bytes, data))
+                    stats['keep'] += 1
                     missing_members.append((name, member_type, 'patch'))
                 else:
                     # 都找不到，记录错误
@@ -258,10 +263,12 @@ def merge_arc(game_arc_path, patch_arc_path, output_path, metadata_path=None, as
                 if name in game_members:
                     name_bytes, data = game_members[name]
                     merged.append((name_bytes, data))
+                    stats['keep'] += 1
                 elif name in patch_members:
                     # 原版中找不到，降级使用补丁版本
                     patch_name_bytes, patch_data = patch_members[name]
                     merged.append((patch_name_bytes, patch_data))
+                    stats['keep'] += 1
                     missing_members.append((name, member_type, 'game'))
                 else:
                     # 都找不到，记录错误
@@ -279,18 +286,21 @@ def merge_arc(game_arc_path, patch_arc_path, output_path, metadata_path=None, as
             if name in patch_members:
                 patch_name_bytes, patch_data = patch_members[name]
                 merged.append((patch_name_bytes, patch_data))
+                stats['modified'] += 1
             else:
                 merged.append((name_bytes, data))
+                stats['keep'] += 1
 
         # 追加新增成员
         for name, (name_bytes, data) in patch_members.items():
             if name not in game_members:
                 merged.append((name_bytes, data))
+                stats['added'] += 1
 
     # 写入输出文件
     arcbuild.write_arc(merged, str(output_path))
 
-    return len(game_members), len(patch_members), deleted_count, len(merged)
+    return len(game_members), len(patch_members), stats, len(merged)
 
 
 def select_game_directory():
@@ -536,7 +546,7 @@ def install():
                 # 合并 arc 文件
                 metadata_path = payload_dir / "METADATA.json"
                 asset_name = file_info["game_path"].name
-                game_count, patch_count, deleted_count, merged_count = merge_arc(
+                game_count, patch_count, stats, merged_count = merge_arc(
                     file_info["game_path"],
                     file_info["patch_path"],
                     file_info["output_path"],
@@ -545,7 +555,9 @@ def install():
                 )
                 print(f"  原文件成员: {game_count}")
                 print(f"  补丁成员: {patch_count}")
-                print(f"  删除成员: {deleted_count}")
+                print(f"  保留原版: {stats['keep']}")
+                print(f"  新增: {stats['added']}")
+                print(f"  替换: {stats['modified']}")
                 print(f"  合并后成员: {merged_count}")
             else:
                 # 直接覆盖

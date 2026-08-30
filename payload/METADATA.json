@@ -1,6 +1,6 @@
 {
   "Rio.arc": {
-    "checksum": "e99a19dd57c8371fbd3a46c105a3c0edceaabb4c3e4cc21b2097992e39f434f1",
+    "checksum": "af67533d9f963190696571f26de87a4675330188414e59427739155491fc71ab",
     "members": [
       {
         "name": "BG01_ANIME_ERASE.ws2",
@@ -680,7 +680,7 @@
       },
       {
         "name": "yozora_hika_103c_E.ws2",
-        "type": "keep"
+        "type": "modified"
       },
       {
         "name": "yozora_hika_103d_H_E.ws2",
@@ -836,7 +836,7 @@
       },
       {
         "name": "yozora_hika_110b_E.ws2",
-        "type": "keep"
+        "type": "modified"
       },
       {
         "name": "yozora_hika_110c_H_E.ws2",
@@ -1312,7 +1312,7 @@
       },
       {
         "name": "yozora_saya_101i_E.ws2",
-        "type": "keep"
+        "type": "modified"
       },
       {
         "name": "yozora_saya_101j_H_E.ws2",
@@ -1469,6 +1469,18 @@
       {
         "name": "yozora_saya_109_ep_E.ws2",
         "type": "keep"
+      },
+      {
+        "name": "yozora_hika_103d_H.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_hika_110c_H.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_saya_101j_H.ws2",
+        "type": "added"
       }
     ]
   },
@@ -4700,7 +4712,7 @@
     ]
   },
   "Chip3.arc": {
-    "checksum": "24d105790d4b0b3236f5eb62c7fde5dd8868de32090efffc979c9be5cab8f406",
+    "checksum": "f808ac787dcd13fae711bfc2eb9db7765784cda800448b6d3820b8da8841da20",
     "members": [
       {
         "name": "COM_01L.pna",
@@ -4728,19 +4740,19 @@
       },
       {
         "name": "COM_04L.pna",
-        "type": "keep"
+        "type": "modified"
       },
       {
         "name": "COM_04S.pna",
-        "type": "keep"
+        "type": "modified"
       },
       {
         "name": "COM_05L.pna",
-        "type": "keep"
+        "type": "modified"
       },
       {
         "name": "COM_05S.pna",
-        "type": "keep"
+        "type": "modified"
       },
       {
         "name": "COM_06L.pna",
@@ -4904,6 +4916,46 @@
       },
       {
         "name": "COM_90L.pna",
+        "type": "added"
+      },
+      {
+        "name": "HIK_90L.pna",
+        "type": "added"
+      },
+      {
+        "name": "HIK_90S.pna",
+        "type": "added"
+      },
+      {
+        "name": "HIK_91L.pna",
+        "type": "added"
+      },
+      {
+        "name": "HIK_91S.pna",
+        "type": "added"
+      },
+      {
+        "name": "HIK_92L.pna",
+        "type": "added"
+      },
+      {
+        "name": "HIK_92S.pna",
+        "type": "added"
+      },
+      {
+        "name": "HIK_93L.pna",
+        "type": "added"
+      },
+      {
+        "name": "HIK_93S.pna",
+        "type": "added"
+      },
+      {
+        "name": "HIK_94L.pna",
+        "type": "added"
+      },
+      {
+        "name": "HIK_94S.pna",
         "type": "added"
       }
     ]
@@ -5210,7 +5262,7 @@
     ]
   },
   "Chip3B.arc": {
-    "checksum": "9566aa8dc8e3cd411689305852d03aedb73e42e8a1074f66d3626fe05a43aad8",
+    "checksum": "13cf031d52b7fc9a38afd652a571dfaccfb3eb763d0ad745f6aa12389354f422",
     "members": [
       {
         "name": "SAY_01L.pna",
@@ -5387,11 +5439,27 @@
       {
         "name": "SAY_23S.pna",
         "type": "added"
+      },
+      {
+        "name": "SAY_90L.pna",
+        "type": "added"
+      },
+      {
+        "name": "SAY_90S.pna",
+        "type": "added"
+      },
+      {
+        "name": "SAY_91L.pna",
+        "type": "added"
+      },
+      {
+        "name": "SAY_91S.pna",
+        "type": "added"
       }
     ]
   },
   "Graphic.arc": {
-    "checksum": "2339d2631e837aee86750bd3880f4809e1fa1bd9ca4020072d0ef7c03ae3b8f4",
+    "checksum": "7b719252b71fc66abeadf44a11ea20e16d7fe0c8183c1fb3f29a695e2af5c9a4",
     "members": [
       {
         "name": "AひかりY_01L.pna",
@@ -6212,11 +6280,35 @@
       {
         "name": "ORG_Dころな_03X.pna",
         "type": "added"
+      },
+      {
+        "name": "ORG_C織姫_01L.pna",
+        "type": "added"
+      },
+      {
+        "name": "ORG_C織姫_03L.pna",
+        "type": "added"
+      },
+      {
+        "name": "ORG_C織姫_01W.pna",
+        "type": "added"
+      },
+      {
+        "name": "ORG_C織姫_02W.pna",
+        "type": "added"
+      },
+      {
+        "name": "ORG_C織姫_03W.pna",
+        "type": "added"
+      },
+      {
+        "name": "ORG_B沙夜_02L.pna",
+        "type": "added"
       }
     ]
   },
   "Voice.arc": {
-    "checksum": "52b393bec814425a94ba1fd3624a73f2221948063f194daab890d2f70b9bb911",
+    "checksum": "57654aea973baf8bdc24084395551e709f0e572f94b1776e374041b422b782ed",
     "members": [
       {
         "name": "CHAMP_0001.ogg",
@@ -54705,11 +54797,959 @@
       {
         "name": "KORO_3030.ogg",
         "type": "added"
+      },
+      {
+        "name": "HIKA_2005.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2006.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2007.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2008.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2009.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2010.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2011.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2012.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2013.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2014.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2015.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2016.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2017.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2018.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2019.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2020.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2021.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2022.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2023.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2024.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2025.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2026.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2027.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2028.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2029.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2030.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2031.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2032.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2033.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2034.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2035.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2036.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2037.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2038.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2039.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2040.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2041.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2042.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2043.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2044.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2045.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2046.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2047.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2048.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2049.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2050.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2051.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2052.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2053.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2054.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2055.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2056.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2057.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2058.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2059.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2060.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2061.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2062.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2063.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2064.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2065.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2066.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2067.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2068.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2069.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2070.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2071.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2072.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2073.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2074.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2075.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2076.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2077.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2078.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2079.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2080.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2081.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2082.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2083.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2084.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2085.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2086.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2087.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2088.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2089.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2090.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2091.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2092.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2093.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2094.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2095.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2096.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2097.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2098.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2099.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2100.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2101.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2102.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2103.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2104.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2105.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2106.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2107.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2108.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2109.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2110.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2111.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2112.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2113.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2114.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2115.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2116.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2117.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2118.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2119.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2120.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2121.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2122.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2123.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2124.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2125.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2126.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3214.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3215.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3216.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3217.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3218.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3219.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3220.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3221.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3222.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3223.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3224.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3225.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3226.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3227.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3228.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3229.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3230.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3231.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3232.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3233.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3234.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3235.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3236.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3237.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3238.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3239.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3240.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3241.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3242.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3243.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3244.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3245.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3246.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3247.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3248.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3249.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3250.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3251.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3252.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3253.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3254.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3255.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3256.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3257.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3258.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3259.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3260.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3261.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3262.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3263.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3264.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3265.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3266.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3267.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3268.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3269.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3270.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3271.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3272.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3273.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3274.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3275.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3276.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3277.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3278.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3279.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3280.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3281.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3282.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3283.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3284.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3285.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3286.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3287.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3288.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3289.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3290.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3291.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3292.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3293.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3294.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3295.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3296.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3297.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3298.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3299.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3300.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3301.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3302.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3303.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3304.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3305.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3306.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3307.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3308.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3309.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3310.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3311.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3312.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3313.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3314.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3315.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3316.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3317.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3318.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3319.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3320.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3321.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3322.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3323.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3324.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3325.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3326.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3327.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3328.ogg",
+        "type": "added"
       }
     ]
   },
   "Voice1.arc": {
-    "checksum": "e05947d5288d05cb617d8052955e8533f1fbeb5f4d5e6572c7525fc5b7eb91b8",
+    "checksum": "4bdfe63cecc2ca2cd03b82db6d6e70ea5f831d2d29abe13d68fe42f84c05359d",
     "members": [
       {
         "name": "ORI_0001.ogg",
@@ -79605,6 +80645,334 @@
       },
       {
         "name": "SAYA_3107.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2095.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2096.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2097.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2098.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2099.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2100.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2101.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2102.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2103.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2104.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2105.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2106.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2107.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2108.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2109.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2110.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2111.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2112.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2113.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2114.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2115.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2116.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2117.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2118.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2119.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2120.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2121.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2122.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2123.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2124.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2125.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2126.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2127.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2128.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2129.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2130.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2131.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2132.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2133.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2134.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2135.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2136.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2137.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2138.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2139.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2140.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2141.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2142.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2143.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2144.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2145.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2146.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2147.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2148.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2149.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2150.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2151.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2152.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2153.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2154.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2155.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2156.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2157.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2158.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2159.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2160.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2161.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2162.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2163.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2164.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2165.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2166.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2167.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2168.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2169.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2170.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2171.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2172.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2173.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2174.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2175.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2176.ogg",
         "type": "added"
       }
     ]
