@@ -4,7 +4,7 @@
 
 本补丁仅供已购买正版游戏的用户使用，不包含任何游戏本体文件。
 
-> **当前版本：v1.0.3-beta** — 已通过部分实机验证，仍在测试中。
+> **当前版本：v1.0.4-beta** — 已通过部分实机验证，仍在测试中。
 
 ![Banner](https://shared.steamstatic.com/store_item_assets/steam/apps/745960/library_hero.jpg?t=1612501446)
 
