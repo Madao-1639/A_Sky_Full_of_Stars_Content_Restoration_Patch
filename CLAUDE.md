@@ -188,10 +188,31 @@ if pattern in decoded:
 - 字母前缀：A=ひかり, B=さや, C=織姫, D=ころな
 - 示例：`Aひかり_01M.pna`, `Bさや_01L.pna`
 
-*补丁资源*：
-- `ORG_[路线代码]_##[L/S].pna`：原版事件 CG（st* 槽可用）
-- `ORG_[字母]角色名_##[L/M/S/W/X].pna`：原版立绘
-- `[路线代码]_9X[L/S].pna`：补丁新增事件 CG（ev01/ev02 槽，无 ORG_ 前缀）
+*补丁资源命名策略*：
+
+**1. Steam 版差分的 CG - 同名冲突（使用 9X 段位）**：
+- 条件：Steam 版和原版**文件名相同但内容不同**（哈希不同）
+- 一对 CG（L/S）只要有一个文件冲突，整对都使用 9X 段位
+- 命名：使用 `9X` 段位编号（90-99）
+- 示例：
+  - `HIK_90L/S.pna` ← 原版 `HIK_09L/S`（与 Steam HIK_09 冲突）
+  - `SAY_90L/S.pna` ← 原版 `SAY_15L/S`（与 Steam SAY_15 冲突）
+  - `COM_90L.pna` ← 原版 `COM_04L`（与 Steam COM_04L 冲突）
+  - `ORI_90L/S.pna` ← 原版 `ORI_11L/S`（ORI_11S 与 Steam 冲突）
+  - `ORI_91L/S.pna` ← 原版 `ORI_12L/S`（ORI_12L/S 与 Steam 冲突）
+
+**2. Steam 版删除的 CG（直接使用原版编号）**：
+- 条件：Steam 版中**不存在**该编号的 CG
+- 命名：**直接继承原版编号**（不使用特殊命名）
+- 示例：
+  - `HIK_15L/S` - `HIK_23L/S`（原版编号，Steam 版不存在）
+  - `SAY_16L/S` - `SAY_23L/S`（原版编号，Steam 版不存在）
+  - `ORI_13L/S` - `ORI_19L/S`（原版编号，Steam 版不存在）
+  - `KOR_11L/S` - `KOR_19L/S`（原版编号，Steam 版不存在）
+
+**3. 原版立绘（无冲突，统一使用 ORG_ 前缀）**：
+- `ORG_[字母]角色名_##[L/M/S/W/X].pna`
+- 示例：`ORG_Aひかり_02L.pna`, `ORG_Bさや_01L.pna`
 
 ### 5. 验收流程
 

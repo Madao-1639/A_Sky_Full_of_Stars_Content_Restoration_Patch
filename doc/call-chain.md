@@ -19,9 +19,9 @@
 | 后缀 | 来源 | 资源配对 | 数量 |
 | :--- | :--- | :--- | :--- |
 | _E | Steam | 裸名 PNA | 277 |
-| _H | Miazora 原版 | ORG_ PNA | 14+ |
+| _H | Miazora 原版 | ORG_ PNA 或 9X 段位 | 17 |
 | _H_E | Steam 过审 H | 裸名 PNA | 3 |
-| 裸名 | 引擎/系统 | - | 75 |
+| 裸名 | 引擎/系统 + 3 个还原脚本 | - | 75 |
 
 ## H 场景连续性维护
 
@@ -112,18 +112,43 @@ for caller, opcode, target in call_chain:
 
 ## 新增脚本清单
 
-来自 final_verification.py：
+补丁向 `asset/Rio.arc` 新增的原版还原脚本共 **20 个**（`asset/zh-CN/Rio.arc` 有同名 `.lng`
+对应）：17 个 `_H` 场景 + 3 个裸名场景。其中 `103d_H`/`110c_H`/`101j_H` 三个为
+Phase 3 追加（并修复其入口/出口调用链，见下文 Phase 3），其余为 Phase 2 及此前还原。
 
 ```python
+# 17 个 _H 场景
 original_scripts = [
-    'yozora_hika_103f.ws2',      # 光路线 H 场景
-    'yozora_hika_103g_H.ws2',    # 光路线 H 场景
-    'yozora_ori_115_H.ws2',      # 織姫路线 H 场景（暖桌场景）
-    'yozora_ori_118_H.ws2',      # 織姫路线 H 场景
-    'yozora_saya_107b_H.ws2',    # 纱夜路线 H 前半
-    'yozora_saya_107d_H.ws2',    # 纱夜路线 H 后半
+    'yozora_hika_103d_H.ws2',   # 光路线 H（Phase 3 新增）
+    'yozora_hika_103g_H.ws2',   # 光路线 H
+    'yozora_hika_108g_H.ws2',   # 光路线 H
+    'yozora_hika_110c_H.ws2',   # 光路线 H（Phase 3 新增）
+    'yozora_koro_115_H.ws2',    # 来露娜路线 H
+    'yozora_koro_121_H.ws2',    # 来露娜路线 H
+    'yozora_koro_124_H.ws2',    # 来露娜路线 H
+    'yozora_koro_126_H.ws2',    # 来露娜路线 H
+    'yozora_koro_131_H.ws2',    # 来露娜路线 H
+    'yozora_ori_115_H.ws2',     # 織姫路线 H（暖桌场景）
+    'yozora_ori_118_H.ws2',     # 織姫路线 H
+    'yozora_ori_123_H.ws2',     # 織姫路线 H
+    'yozora_ori_129_H.ws2',     # 織姫路线 H
+    'yozora_saya_101j_H.ws2',   # 纱夜路线 H（Phase 3 新增）
+    'yozora_saya_102c_H.ws2',   # 纱夜路线 H
+    'yozora_saya_107b_H.ws2',   # 纱夜路线 H 前半
+    'yozora_saya_107d_H.ws2',   # 纱夜路线 H 后半
+]
+
+# 3 个裸名还原脚本（不带 _H 后缀）
+bare_name_scripts = [
+    'yozora_hika_103f.ws2',     # 光路线 H 后续
+    'yozora_koro_127.ws2',      # 来露娜路线 H
+    'yozora_ori_117b.ws2',      # 織姫路线 H 后续
 ]
 ```
+
+**注意**：Miazora 原版虽存在裸名 `yozora_saya_107c.ws2`，但本补丁**沿用 Steam 版
+`107c_E`**，未还原裸名版本；saya_107 穿插链实际为 `107b_H → 107c_E → 107d_H → 107e_E`。
+因此裸名 `107c` 不在新增脚本清单中。
 
 ### yozora_ori_115_H / yozora_ori_118_H 的 9X 段位资源
 

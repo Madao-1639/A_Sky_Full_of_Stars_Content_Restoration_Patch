@@ -1,6 +1,6 @@
 {
   "Rio.arc": {
-    "checksum": "af67533d9f963190696571f26de87a4675330188414e59427739155491fc71ab",
+    "checksum": "ed2d7358bd02c250132a588d6652a6a4f82415b759ad009fbd95b6c6c05eb6ef",
     "members": [
       {
         "name": "BG01_ANIME_ERASE.ws2",
@@ -4712,7 +4712,7 @@
     ]
   },
   "Chip3.arc": {
-    "checksum": "f808ac787dcd13fae711bfc2eb9db7765784cda800448b6d3820b8da8841da20",
+    "checksum": "cebd30bef7d85f90d402873fad758a37640f52897a8443daf902194f07071f31",
     "members": [
       {
         "name": "COM_01L.pna",
@@ -4927,41 +4927,41 @@
         "type": "added"
       },
       {
-        "name": "HIK_91L.pna",
+        "name": "HIK_15L.PNA",
         "type": "added"
       },
       {
-        "name": "HIK_91S.pna",
+        "name": "HIK_15S.PNA",
         "type": "added"
       },
       {
-        "name": "HIK_92L.pna",
+        "name": "HIK_16L.PNA",
         "type": "added"
       },
       {
-        "name": "HIK_92S.pna",
+        "name": "HIK_16S.PNA",
         "type": "added"
       },
       {
-        "name": "HIK_93L.pna",
+        "name": "HIK_22L.PNA",
         "type": "added"
       },
       {
-        "name": "HIK_93S.pna",
+        "name": "HIK_22S.PNA",
         "type": "added"
       },
       {
-        "name": "HIK_94L.pna",
+        "name": "HIK_23L.PNA",
         "type": "added"
       },
       {
-        "name": "HIK_94S.pna",
+        "name": "HIK_23S.PNA",
         "type": "added"
       }
     ]
   },
   "Chip3A.arc": {
-    "checksum": "6de4a0f1803a6b1ede95d01800b28307cbce83d6a89fbdda43daf24e65e09f09",
+    "checksum": "6ecdd50c50e374d1c64ed7b570fd94613382cf379cb61291a9335ac5b2dc883a",
     "members": [
       {
         "name": "KOR_01L.pna",
@@ -5104,18 +5104,6 @@
         "type": "keep"
       },
       {
-        "name": "ORI_11S.pna",
-        "type": "keep"
-      },
-      {
-        "name": "ORI_12L.pna",
-        "type": "keep"
-      },
-      {
-        "name": "ORI_12S.pna",
-        "type": "keep"
-      },
-      {
         "name": "KOR_11L.pna",
         "type": "added"
       },
@@ -5244,25 +5232,37 @@
         "type": "added"
       },
       {
-        "name": "ORI_90L.pna",
+        "name": "ORI_90L.PNA",
         "type": "added"
       },
       {
-        "name": "ORI_91S.pna",
+        "name": "ORI_91S.PNA",
         "type": "added"
       },
       {
-        "name": "ORI_90S.pna",
+        "name": "ORI_90S.PNA",
         "type": "added"
       },
       {
-        "name": "ORI_91L.pna",
+        "name": "ORI_91L.PNA",
         "type": "added"
+      },
+      {
+        "name": "ORI_11S.pna",
+        "type": "keep"
+      },
+      {
+        "name": "ORI_12L.pna",
+        "type": "keep"
+      },
+      {
+        "name": "ORI_12S.pna",
+        "type": "keep"
       }
     ]
   },
   "Chip3B.arc": {
-    "checksum": "13cf031d52b7fc9a38afd652a571dfaccfb3eb763d0ad745f6aa12389354f422",
+    "checksum": "2e8159a5acd884e5de7d4304158c6b50a25b0935b3a591cac93d800295c964a0",
     "members": [
       {
         "name": "SAY_01L.pna",
@@ -5449,11 +5449,11 @@
         "type": "added"
       },
       {
-        "name": "SAY_91L.pna",
+        "name": "SAY_16L.PNA",
         "type": "added"
       },
       {
-        "name": "SAY_91S.pna",
+        "name": "SAY_16S.PNA",
         "type": "added"
       }
     ]

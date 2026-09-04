@@ -15,7 +15,21 @@
 **事件 CG**（路线+场景编号）：
 - 格式：`路线代码_场景编号[L/S].pna`
 - 路线代码：COM（共通）、HIK（ひかり）、SAY（さや）、ORI（織姫）、KOR（ころな）
-- 示例：`COM_04L.pna`（Steam 29 层）、`ORI_90L.pna`（原版，9X 段位，ev01/02 槽拒绝 ORG_ 前缀）
+
+**补丁添加的事件 CG 分为两类**：
+
+1. **Steam 版差分的 CG - 同名冲突**（使用 9X 段位）：
+   - HIK_90L/S ← 原版 HIK_09（HIK_09S 与 Steam 冲突）
+   - SAY_90L/S ← 原版 SAY_15（SAY_15S 与 Steam 冲突）
+   - COM_90L ← 原版 COM_04L（COM_04L 与 Steam 冲突）
+   - ORI_90L/S ← 原版 ORI_11（ORI_11S 与 Steam 冲突）
+   - ORI_91L/S ← 原版 ORI_12（ORI_12L/S 与 Steam 冲突）
+
+2. **Steam 版删除的 CG**（直接继承原版编号）：
+   - HIK_15L/S - HIK_23L/S（原版编号，Steam 版不存在）
+   - SAY_16L/S - SAY_23L/S（原版编号，Steam 版不存在）
+   - ORI_13L/S - ORI_19L/S（原版编号，Steam 版不存在）
+   - KOR_11L/S - KOR_19L/S（原版编号，Steam 版不存在）
 
 **角色立绘**（字母前缀+角色名+差分）：
 - 格式：`[字母前缀]+角色日文名_差分编号[L/M/S/W/X].pna`
@@ -24,15 +38,83 @@
 
 #### 覆盖路线（5 条）
 
-- **com**（共通线）：涉及 103f、103g_H，使用 `COM_90L`（9X 段位，原版 COM_04，无 ORG_ 前缀）
-- **ori**（織姫）：涉及 115_H、118_H，使用 `ORI_90L/S`（原版 ORI_11）、`ORI_91L/S`（原版 ORI_12），
-  均为 9X 段位；118_H 同时引用 `ORI_13L/S`、`ORI_14L/S`（裸名，Steam/原版内容一致，**无冲突**，
-  不需要隔离）
-- **hika**（ひかり）：涉及 103f、103g_H，同时引用 `HIK_17/18/19`（裸名，Steam/原版内容一致，
-  无冲突）
-- **saya**（さや）：涉及 107b_H、107d_H，引用 `SAY_20/21/22/23`（裸名，Steam/原版内容一致，
-  无冲突）；无立绘层面的 ORG_ 隔离需求
-- **koro**（ころな）：立绘层面使用 `ORG_Dころな_*` 系列（st* 槽，见 doc/pna-resources.md）
+##### 1. com（共通线）
+
+**涉及场景**：yozora_hika_103g_H.ws2
+
+**还原 CG**：
+- COM_90L（真正冲突，原版 COM_04L 与 Steam 内容不同）
+- HIK_17L/S, HIK_18L/S, HIK_19L/S（原版独有，Steam 版不存在）
+
+##### 2. hika（ひかり线）
+
+**涉及场景**：
+- yozora_hika_103d_H.ws2
+- yozora_hika_103g_H.ws2
+- yozora_hika_110c_H.ws2
+
+**还原 CG**：
+- HIK_90L/S（真正冲突，原版 HIK_09 与 Steam 内容不同）
+- HIK_15L/S - HIK_23L/S（原版独有，Steam 版不存在）
+  - HIK_15L/S, HIK_16L/S（yozora_hika_103d_H）
+  - HIK_17L/S, HIK_18L/S, HIK_19L/S（yozora_hika_103g_H）
+  - HIK_22L/S, HIK_23L/S（yozora_hika_110c_H）
+
+**还原立绘**：
+- ORG_Aひかり_02L/M, ORG_Aひかり_03L/W（原版专属）
+
+##### 3. saya（さや线）
+
+**涉及场景**：
+- yozora_saya_101j_H.ws2
+- yozora_saya_102c_H.ws2
+- yozora_saya_107b_H.ws2
+- yozora_saya_107d_H.ws2
+
+**还原 CG**：
+- SAY_90L/S（真正冲突，原版 SAY_15 与 Steam 内容不同）
+- SAY_16L/S - SAY_23L/S（原版独有，Steam 版不存在）
+  - SAY_16L/S（yozora_saya_101j_H）
+  - SAY_17L/S, SAY_18L/S, SAY_19L/S（yozora_saya_102c_H）
+  - SAY_20L/S, SAY_21L/S（yozora_saya_107b_H）
+  - SAY_22L/S, SAY_23L/S（yozora_saya_107d_H）
+
+**还原立绘**：
+- ORG_Bさや_01L, ORG_Bさや_02L, ORG_Bさや_03L（原版专属）
+
+##### 4. ori（織姫线）
+
+**涉及场景**：
+- yozora_ori_115_H.ws2
+- yozora_ori_118_H.ws2
+- yozora_ori_123_H.ws2
+- yozora_ori_129_H.ws2
+
+**还原 CG**：
+- ORI_90L/S（真正冲突，原版 ORI_11 与 Steam 内容不同）
+- ORI_91L/S（真正冲突，原版 ORI_12 与 Steam 内容不同）
+- ORI_13L/S - ORI_19L/S（原版独有，Steam 版不存在）
+  - ORI_13L/S, ORI_14L/S（yozora_ori_118_H）
+  - ORI_15L/S, ORI_16L/S（yozora_ori_123_H）
+  - ORI_17L/S, ORI_18L/S, ORI_19L/S（yozora_ori_129_H）
+
+**还原立绘**：
+- ORG_C織姫_01L/W, ORG_C織姫_02W, ORG_C織姫_03L/W（原版专属）
+
+##### 5. koro（ころな线）
+
+**涉及场景**：
+- yozora_koro_115_H.ws2
+- yozora_koro_121_H.ws2
+- yozora_koro_124_H.ws2
+- yozora_koro_126_H.ws2
+- yozora_koro_131_H.ws2
+
+**还原 CG**：
+- KOR_11L/S - KOR_19L/S（填补编号空缺，Steam 只有 01-04, 07-10）
+
+**还原立绘**：
+- ORG_Dころな_01L/X, ORG_Dころな_02L, ORG_Dころな_03L/X（原版专属）
 
 ### 2. 原版语音
 

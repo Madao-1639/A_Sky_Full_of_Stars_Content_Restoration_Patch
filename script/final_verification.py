@@ -23,13 +23,23 @@ for arc in ['Rio.arc', 'Chip1.arc', 'Chip1A.arc', 'Chip2.arc', 'Chip3.arc',
 rio = archives['Rio.arc']
 
 print('=' * 84)
-print('【检查 1】saya_107 调用链完整性')
+print('【检查 1】还原场景调用链完整性（saya_107 + Phase 3）')
 print('=' * 84)
 
 chain = [
+    # saya_107 穿插链
     ('yozora_saya_107b_H.ws2', '0x07', 'YOZORA_SAYA_107C_E'),
     ('yozora_saya_107c_E.ws2', '0x07', 'YOZORA_SAYA_107D_H'),
     ('yozora_saya_107d_H.ws2', '0x07', 'YOZORA_SAYA_107E_E'),
+    # Phase 3：hika_103
+    ('yozora_hika_103c_E.ws2', '0x07', 'YOZORA_HIKA_103D_H'),
+    ('yozora_hika_103d_H.ws2', '0x07', 'YOZORA_HIKA_103E_E'),
+    # Phase 3：hika_110
+    ('yozora_hika_110b_E.ws2', '0x07', 'YOZORA_HIKA_110C_H'),
+    ('yozora_hika_110c_H.ws2', '0x07', 'YOZORA_HIKA_110D_E'),
+    # Phase 3：saya_101
+    ('yozora_saya_101i_E.ws2', '0x07', 'YOZORA_SAYA_101J_H'),
+    ('yozora_saya_101j_H.ws2', '0x07', 'YOZORA_SAYA_102_E'),
 ]
 
 print('预期调用链:')
@@ -60,7 +70,12 @@ for caller, op, target in chain:
 
 # 检查目标脚本存在性
 print('\n目标脚本存在性:')
-targets = ['YOZORA_SAYA_107C_E.WS2', 'YOZORA_SAYA_107D_H.WS2', 'YOZORA_SAYA_107E_E.WS2']
+targets = [
+    'YOZORA_SAYA_107C_E.WS2', 'YOZORA_SAYA_107D_H.WS2', 'YOZORA_SAYA_107E_E.WS2',
+    'YOZORA_HIKA_103D_H.WS2', 'YOZORA_HIKA_103E_E.WS2',
+    'YOZORA_HIKA_110C_H.WS2', 'YOZORA_HIKA_110D_E.WS2',
+    'YOZORA_SAYA_101J_H.WS2', 'YOZORA_SAYA_102_E.WS2',
+]
 for t in targets:
     exists = t in rio
     status = 'OK' if exists else 'FAIL'
@@ -74,13 +89,28 @@ print('\n' + '=' * 84)
 print('【检查 2】新增原版脚本的资源完整性')
 print('=' * 84)
 
-# 所有新增的原版脚本（来自 Resto 1.1.0）
+# 所有新增的原版脚本（17 个 _H + 3 个裸名还原脚本）
 original_scripts = [
-    'yozora_hika_103f.ws2',
+    'yozora_hika_103d_H.ws2',
     'yozora_hika_103g_H.ws2',
+    'yozora_hika_108g_H.ws2',
+    'yozora_hika_110c_H.ws2',
+    'yozora_koro_115_H.ws2',
+    'yozora_koro_121_H.ws2',
+    'yozora_koro_124_H.ws2',
+    'yozora_koro_126_H.ws2',
+    'yozora_koro_131_H.ws2',
     'yozora_ori_115_H.ws2',
+    'yozora_ori_118_H.ws2',
+    'yozora_ori_123_H.ws2',
+    'yozora_ori_129_H.ws2',
+    'yozora_saya_101j_H.ws2',
+    'yozora_saya_102c_H.ws2',
     'yozora_saya_107b_H.ws2',
     'yozora_saya_107d_H.ws2',
+    'yozora_hika_103f.ws2',
+    'yozora_koro_127.ws2',
+    'yozora_ori_117b.ws2',
 ]
 
 # 收集所有 PNA 引用（使用 0x34 显示指令精确解析）
