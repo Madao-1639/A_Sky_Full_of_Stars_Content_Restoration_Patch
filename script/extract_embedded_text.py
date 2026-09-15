@@ -1,7 +1,7 @@
 """提取 _H 脚本中内嵌的回退文本（char\\x00 标记后、%K%P 结尾），按 0x14 指令的 u16 索引排列
 
-用途：为缺少 zh-CN .lng 的新增脚本（yozora_hika_103d_H / yozora_hika_110c_H /
-yozora_saya_101j_H）生成待翻译的文本清单。
+用途：为尚无 zh-CN .lng 的还原场景生成待翻译的文本清单。目标脚本由
+resource/scenes.json 推出（尚无 .lng 的引入场景），不再硬编码脚本名。
 
 格式（已通过 yozora_saya_102c_H.ws2 等已有中文脚本验证）：
     0x14 <idx:u16> <flag:u16> "char\\x00" <SJIS/ASCII text>"%K%P"
@@ -16,18 +16,21 @@ import json
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from tool import arcbuild, ws2
+from tool import arcbuild, resources, ws2
 
 CURRENT_RIO = Path('asset/Rio.arc')
+ZH_RIO = Path('asset/zh-CN/Rio.arc')
 OUTPUT_DIR = Path('tmp/embedded_text')
 
 PATTERN = re.compile(rb'\x14(..)(..)char\x00(.*?)%K%P', re.S)
 
-TARGET_SCRIPTS = [
-    'yozora_hika_103d_H.ws2',
-    'yozora_hika_110c_H.ws2',
-    'yozora_saya_101j_H.ws2',
-]
+
+def missing_lng_scenes():
+    """尚无 zh-CN .lng 的还原场景，返回 .ws2 文件名（按 scenes.json 顺序）。"""
+    have = {name.decode('utf-16le').upper() for name, _ in arcbuild.read_raw(ZH_RIO)}
+    return [scene['id'] + '.ws2'
+            for scene in resources.load('scenes.json')['scenes']
+            if (scene['id'] + '.lng').upper() not in have]
 
 
 def extract(decoded):
@@ -47,12 +50,19 @@ def extract(decoded):
 
 def main():
     print('=== Extract Embedded Fallback Text ===\n')
+
+    targets = missing_lng_scenes()
+    if not targets:
+        print('[OK] 所有还原场景均已有 zh-CN .lng，无需提取')
+        return
+    print(f'待提取: {len(targets)} 个脚本\n')
+
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     rio = arcbuild.read_raw(CURRENT_RIO)
     rio_dict = {name.decode('utf-16le'): data for name, data in rio}
 
-    for script_name in TARGET_SCRIPTS:
+    for script_name in targets:
         print(f'Processing {script_name}...')
         decoded = ws2.decode(rio_dict[script_name])
 

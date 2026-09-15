@@ -1,0 +1,60 @@
+{
+  "_comment": "已处理的同名冲突事件 CG：Miazora 原版与 Steam 同名但哈希不同（或 Steam 直接缺失），补丁把原版内容部署到 9X 段位名下做命名空间隔离，两套资源并存。variants 为逐变体实测状态（steam：differs = 哈希不同，missing = Steam 无此文件）与是否已部署；referenced_by 为引用该补丁名的场景（按剧情先后，id 同 scenes.json）。规则为「一对 L/S 只要一个变体冲突就整对改名」，但仅部署原版脚本真正引用的变体（COM 即为例外）。",
+  "conflicts": [
+    {
+      "route": "COM",
+      "original": "COM_04",
+      "patch": "COM_90",
+      "archive": "Chip3.arc",
+      "variants": {
+        "L": { "steam": "differs", "deployed": true },
+        "S": { "steam": "differs", "deployed": false, "note": "原版脚本未引用 S，故 COM_90S 未部署" }
+      },
+      "referenced_by": ["yozora_hika_103f", "yozora_hika_103g_H"]
+    },
+    {
+      "route": "HIK",
+      "original": "HIK_09",
+      "patch": "HIK_90",
+      "archive": "Chip3.arc",
+      "variants": {
+        "L": { "steam": "differs", "deployed": true },
+        "S": { "steam": "differs", "deployed": true }
+      },
+      "referenced_by": ["yozora_hika_103d_H"]
+    },
+    {
+      "route": "SAY",
+      "original": "SAY_15",
+      "patch": "SAY_90",
+      "archive": "Chip3B.arc",
+      "variants": {
+        "L": { "steam": "differs", "deployed": true },
+        "S": { "steam": "differs", "deployed": true }
+      },
+      "referenced_by": ["yozora_saya_101j_H"]
+    },
+    {
+      "route": "ORI",
+      "original": "ORI_11",
+      "patch": "ORI_90",
+      "archive": "Chip3A.arc",
+      "variants": {
+        "L": { "steam": "missing", "deployed": true },
+        "S": { "steam": "differs", "deployed": true }
+      },
+      "referenced_by": ["yozora_ori_115_H"]
+    },
+    {
+      "route": "ORI",
+      "original": "ORI_12",
+      "patch": "ORI_91",
+      "archive": "Chip3A.arc",
+      "variants": {
+        "L": { "steam": "differs", "deployed": true },
+        "S": { "steam": "differs", "deployed": true }
+      },
+      "referenced_by": ["yozora_ori_118_H"]
+    }
+  ]
+}

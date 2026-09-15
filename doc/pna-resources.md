@@ -12,7 +12,7 @@ PNA 文件分为两大类：**事件 CG** 和**角色立绘**。
 |---------|---------|------|
 | COM | 共通线 | `COM_04L.pna`, `COM_01S.pna` |
 | HIK | ひかり线 | `HIK_17L.pna`, `HIK_18L.pna` |
-| SAY | さや线 | `SAY_20L.pna`, `SAY_23L.pna` |
+| SAY | 沙夜线 | `SAY_20L.pna`, `SAY_23L.pna` |
 | ORI | 織姫线 | `ORI_11L.pna`, `ORI_12L.pna` |
 | KOR | ころな线 | `KOR_07L.pna`, `KOR_19L.pna` |
 
@@ -32,7 +32,7 @@ PNA 文件分为两大类：**事件 CG** 和**角色立绘**。
 | 字母前缀 | 角色日文简称 | 角色英文简称 | 示例 |
 |---------|-------------|-------------|------|
 | A | ひかり | HIKA | `Aひかり_01M.pna`, `Aひかり_02L.pna` |
-| B | さや | SAYA | `Bさや_01L.pna`, `Bさや_03L.pna` |
+| B | 沙夜 | SAYA | `B沙夜_01L.pna`, `B沙夜_03L.pna` |
 | C | 織姫 | ORI | `C織姫_01L.pna`, `C織姫_02M.pna` |
 | D | ころな | KORO | `Dころな_01L.pna`, `Dころな_02L.pna` |
 
@@ -49,19 +49,13 @@ PNA 文件分为两大类：**事件 CG** 和**角色立绘**。
 
 #### 1. Steam 版差分的 CG - 同名冲突（使用 9X 段位）
 
-**条件**：Steam 版和原版**文件名相同但内容不同**（哈希值不同）
-
-**重要**：一对 CG（L/S）只要有一个文件冲突，整对都使用 9X 段位
+**条件**：Steam 版和原版**文件名相同但内容不同**（哈希值不同），或 Steam 直接缺失该文件
 
 **命名规则**：`[ROUTE]_9X[L/S].pna`（7 字节，符合 ev01/ev02 槽限制）
 
-| 原版文件名 | 补丁命名 | 说明 |
-|-----------|---------|------|
-| HIK_09L/S.pna | HIK_90L/S.pna | HIK_09S 与 Steam 冲突 |
-| SAY_15L/S.pna | SAY_90L/S.pna | SAY_15S 与 Steam 冲突 |
-| COM_04L.pna | COM_90L.pna | COM_04L 与 Steam 冲突 |
-| ORI_11L/S.pna | ORI_91L/S.pna | ORI_11S 与 Steam 冲突 |
-| ORI_12L/S.pna | ORI_92L/S.pna | ORI_12L/S 都与 Steam 冲突 |
+**规则**：一对 CG（L/S）只要有一个变体冲突就整对改名，但**只部署脚本真正引用的变体**
+
+**清单、逐变体实测状态、以及每个补丁名被哪些场景引用** → [`resource/cg-conflicts.json`](../resource/cg-conflicts.json)
 
 **重要**：9X 段位仅用于真正的同名冲突，不用于被删除的 CG。
 
@@ -86,7 +80,7 @@ PNA 文件分为两大类：**事件 CG** 和**角色立绘**。
 
 | 命名模式 | 说明 | 示例 |
 |----------|------|------|
-| `ORG_[A-D]角色名_##[L/M/S/W/X].pna` | 原版立绘资源 | `ORG_Bさや_01L.pna`, `ORG_Aひかり_02M.pna` |
+| `ORG_[A-D]角色名_##[L/M/S/W/X].pna` | 原版立绘资源 | `ORG_B沙夜_01L.pna`, `ORG_Aひかり_02M.pna` |
 
 立绘因为进入 st* 槽（无 7 字节限制），可以使用完整的 `ORG_` 前缀和日文角色名。
 

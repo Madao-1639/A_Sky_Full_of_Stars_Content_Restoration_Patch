@@ -10,3 +10,5 @@ payload/*
 releases
 build
 *.spec
+
+*.local.*

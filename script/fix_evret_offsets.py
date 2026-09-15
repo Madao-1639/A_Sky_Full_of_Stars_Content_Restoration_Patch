@@ -20,14 +20,6 @@ from tool import arcbuild, ws2
 CURRENT_RIO = Path('asset/Rio.arc')
 BACKUP_RIO = Path('asset/Rio.arc.before_evret_fix')
 
-# 受影响的脚本（本次修复目标）
-AFFECTED_SCRIPTS = [
-    'yozora_saya_101j_H.ws2',
-    'yozora_ori_118_H.ws2',
-    'yozora_ori_123_H.ws2',
-    'yozora_ori_129_H.ws2',
-]
-
 
 def fix_evret_offset(decoded):
     """就地修复单个脚本的 EVRET field1/field2，返回 (new_decoded, old1, old2, new_val) 或 None"""

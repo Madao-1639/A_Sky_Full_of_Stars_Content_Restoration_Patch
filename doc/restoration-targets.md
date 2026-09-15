@@ -4,117 +4,47 @@
 
 ### 1. 原版 H 场景 CG（PNA 图层资源）
 
-| 资源类型 | 数量 | 命名规则 | 原因 |
-| :--- | :--- | :--- | :--- |
-| 原版专属 CG | 59 个 PNA | ORG_ 前缀或 9X 段位 | 命名空间隔离 |
-| Steam 保留 CG（裸名，多数） | 保持原样 | 裸名（如 HIK_17L） | 不改动 Steam 资源 |
-| Steam 保留 CG（裸名，部分图层级阉割） | 图层级修复 | 裸名（`COM_04L/S`、`COM_05L/S`） | 全画布主图+局部动画帧替换为 Miazora 对应图层，见 `doc/technical-solutions.md` 4.6 |
+| 资源类型 | 命名规则 | 原因 |
+| :--- | :--- | :--- |
+| 原版专属事件 CG（Steam 同名冲突，9 个） | 9X 段位（如 `COM_90L`） | 命名空间隔离，清单见 [`resource/cg-conflicts.json`](../resource/cg-conflicts.json) |
+| 原版专属事件 CG（Steam 版删除，裸名继承原版编号） | 编号段 `HIK_15~23`、`SAY_16~23`、`ORI_13~19`、`KOR_11~19`（各含 L/S） | Steam 无同名文件，无需隔离 |
+| 原版专属立绘（18 个） | `ORG_` 前缀 | st* 槽允许长名，可正常隔离 |
+| Steam 保留 CG（裸名，多数） | 保持原样 | 不改动 Steam 资源 |
+| Steam 保留 CG（裸名，部分图层内阉割） | 保持裸名 + 图层级修复 | 全画布主图 + 局部动画帧替换为 Miazora 对应图层，映射见 [`resource/layer-repairs.json`](../resource/layer-repairs.json) |
 
 #### PNA 资源分类
 
 **事件 CG**（路线+场景编号）：
 - 格式：`路线代码_场景编号[L/S].pna`
-- 路线代码：COM（共通）、HIK（ひかり）、SAY（さや）、ORI（織姫）、KOR（ころな）
+- 路线代码：COM（共通）、HIK（ひかり）、SAY（沙夜）、ORI（織姫）、KOR（ころな）
 
-**补丁添加的事件 CG 分为两类**：
+**补丁添加的事件 CG 分为两类**（具体映射与逐变体实测状态见
+[`resource/cg-conflicts.json`](../resource/cg-conflicts.json)）：
 
-1. **Steam 版差分的 CG - 同名冲突**（使用 9X 段位）：
-   - HIK_90L/S ← 原版 HIK_09（HIK_09S 与 Steam 冲突）
-   - SAY_90L/S ← 原版 SAY_15（SAY_15S 与 Steam 冲突）
-   - COM_90L ← 原版 COM_04L（COM_04L 与 Steam 冲突）
-   - ORI_90L/S ← 原版 ORI_11（ORI_11S 与 Steam 冲突）
-   - ORI_91L/S ← 原版 ORI_12（ORI_12L/S 与 Steam 冲突）
-
-2. **Steam 版删除的 CG**（直接继承原版编号）：
-   - HIK_15L/S - HIK_23L/S（原版编号，Steam 版不存在）
-   - SAY_16L/S - SAY_23L/S（原版编号，Steam 版不存在）
-   - ORI_13L/S - ORI_19L/S（原版编号，Steam 版不存在）
-   - KOR_11L/S - KOR_19L/S（原版编号，Steam 版不存在）
+1. **Steam 版差分的 CG - 同名冲突**：使用 9X 段位，与 Steam 裸名并存
+2. **Steam 版删除的 CG**：直接继承原版编号（不使用特殊命名）
 
 **角色立绘**（字母前缀+角色名+差分）：
 - 格式：`[字母前缀]+角色日文名_差分编号[L/M/S/W/X].pna`
-- 字母前缀：A=ひかり, B=さや, C=織姫, D=ころな
-- 示例：`Aひかり_01M.pna`（Steam）、`ORG_Bさや_01L.pna`（原版）
+- 字母前缀：A=ひかり, B=沙夜, C=織姫, D=ころな
+- 示例：`Aひかり_01M.pna`（Steam）、`ORG_B沙夜_01L.pna`（原版）
 
 #### 覆盖路线（5 条）
 
-##### 1. com（共通线）
+##### 各路线
 
-**涉及场景**：yozora_hika_103g_H.ws2
+各路线涉及的**场景清单**见 [`resource/scenes.json`](../resource/scenes.json)（按 `route` 分组），
+**9X 段位事件 CG 的映射与引用**见 [`resource/cg-conflicts.json`](../resource/cg-conflicts.json)。
+5 条路线各自的还原内容要点：
 
-**还原 CG**：
-- COM_90L（真正冲突，原版 COM_04L 与 Steam 内容不同）
-- HIK_17L/S, HIK_18L/S, HIK_19L/S（原版独有，Steam 版不存在）
+- **com（共通线）**：`yozora_hika_103g_H` 引用了重制的共通事件 CG（原版 `COM_04`）
+- **hika（ひかり线）**：还原场景最多（含裸名 `103f`），同名冲突与 Steam 删除的编号段都有
+- **saya（沙夜线）**：穿插链最长（107 段 `107b_H → 107c_E → 107d_H → 107e_E`）
+- **ori（織姫线）**：唯一同时含两处同名冲突的路线（原版 `ORI_11`、`ORI_12`）
+- **koro（ころな线）**：填补 Steam 的 CG 编号空缺（Steam 只有 01-04、07-10）
 
-##### 2. hika（ひかり线）
-
-**涉及场景**：
-- yozora_hika_103d_H.ws2
-- yozora_hika_103g_H.ws2
-- yozora_hika_110c_H.ws2
-
-**还原 CG**：
-- HIK_90L/S（真正冲突，原版 HIK_09 与 Steam 内容不同）
-- HIK_15L/S - HIK_23L/S（原版独有，Steam 版不存在）
-  - HIK_15L/S, HIK_16L/S（yozora_hika_103d_H）
-  - HIK_17L/S, HIK_18L/S, HIK_19L/S（yozora_hika_103g_H）
-  - HIK_22L/S, HIK_23L/S（yozora_hika_110c_H）
-
-**还原立绘**：
-- ORG_Aひかり_02L/M, ORG_Aひかり_03L/W（原版专属）
-
-##### 3. saya（さや线）
-
-**涉及场景**：
-- yozora_saya_101j_H.ws2
-- yozora_saya_102c_H.ws2
-- yozora_saya_107b_H.ws2
-- yozora_saya_107d_H.ws2
-
-**还原 CG**：
-- SAY_90L/S（真正冲突，原版 SAY_15 与 Steam 内容不同）
-- SAY_16L/S - SAY_23L/S（原版独有，Steam 版不存在）
-  - SAY_16L/S（yozora_saya_101j_H）
-  - SAY_17L/S, SAY_18L/S, SAY_19L/S（yozora_saya_102c_H）
-  - SAY_20L/S, SAY_21L/S（yozora_saya_107b_H）
-  - SAY_22L/S, SAY_23L/S（yozora_saya_107d_H）
-
-**还原立绘**：
-- ORG_Bさや_01L, ORG_Bさや_02L, ORG_Bさや_03L（原版专属）
-
-##### 4. ori（織姫线）
-
-**涉及场景**：
-- yozora_ori_115_H.ws2
-- yozora_ori_118_H.ws2
-- yozora_ori_123_H.ws2
-- yozora_ori_129_H.ws2
-
-**还原 CG**：
-- ORI_90L/S（真正冲突，原版 ORI_11 与 Steam 内容不同）
-- ORI_91L/S（真正冲突，原版 ORI_12 与 Steam 内容不同）
-- ORI_13L/S - ORI_19L/S（原版独有，Steam 版不存在）
-  - ORI_13L/S, ORI_14L/S（yozora_ori_118_H）
-  - ORI_15L/S, ORI_16L/S（yozora_ori_123_H）
-  - ORI_17L/S, ORI_18L/S, ORI_19L/S（yozora_ori_129_H）
-
-**还原立绘**：
-- ORG_C織姫_01L/W, ORG_C織姫_02W, ORG_C織姫_03L/W（原版专属）
-
-##### 5. koro（ころな线）
-
-**涉及场景**：
-- yozora_koro_115_H.ws2
-- yozora_koro_121_H.ws2
-- yozora_koro_124_H.ws2
-- yozora_koro_126_H.ws2
-- yozora_koro_131_H.ws2
-
-**还原 CG**：
-- KOR_11L/S - KOR_19L/S（填补编号空缺，Steam 只有 01-04, 07-10）
-
-**还原立绘**：
-- ORG_Dころな_01L/X, ORG_Dころな_02L, ORG_Dころな_03L/X（原版专属）
+还原立绘共 18 个，统一 `ORG_` 前缀，全部被 `_H` 脚本引用（`final_verification.py`
+【检查 3】验证无冗余）。
 
 ### 2. 原版语音
 
@@ -167,7 +97,7 @@ Steam   Steam    原版H    Steam    原版H    Steam
 1. **资源共存**：ORG_ 前缀或 9X 段位隔离两套 PNA 语义空间（仅在同名冲突时才需要，
    如 saya_107 系列引用的 SAY_20~23 本身无冲突，不隔离）
    - 事件 CG（ev01/ev02 槽）：使用 9X 段位无 ORG_ 前缀（如 `COM_90L.pna`、`ORI_90L.pna`）
-   - 角色立绘（st* 槽）：使用 ORG_ 前缀（如 `ORG_Bさや_01L.pna`）
+   - 角色立绘（st* 槽）：使用 ORG_ 前缀（如 `ORG_B沙夜_01L.pna`）
 2. **脚本穿插**：在 Steam 段落（_E）间插入原版 H 段落（_H）
 3. **配对保证**：_H ↔ ORG_*/9X，_E ↔ Steam 资源
 4. **零破坏性**：不替换整份 Steam 资源、不修改 Steam 脚本内部逻辑（仅改跳转目标）——

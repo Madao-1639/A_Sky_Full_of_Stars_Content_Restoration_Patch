@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""最终验收：检查调用链完整性与资源存在性。"""
+"""最终验收：检查调用链完整性与资源存在性。
+
+映射数据（引入场景、同名冲突、跳转改写）取自 resource/ 下的表，脚本不再各自
+硬编码。【检查 5】把这些表与归档实测结果对账，防止表本身漂移。
+"""
 import sys
 from pathlib import Path
 
@@ -7,9 +11,14 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import re
 from collections import Counter
-from tool import arcbuild, ws2
+from tool import arcbuild, resources, ws2
 
 ASSET = Path('asset')
+BACKUP = Path('backup')
+
+SCENES = resources.load('scenes.json')['scenes']
+CONFLICTS = resources.load('cg-conflicts.json')['conflicts']
+CHAIN = resources.load('call-chain.json')
 
 # 加载所有归档
 archives = {}
@@ -22,99 +31,71 @@ for arc in ['Rio.arc', 'Chip1.arc', 'Chip1A.arc', 'Chip2.arc', 'Chip3.arc',
 
 rio = archives['Rio.arc']
 
+# 0x34 <slot> \x00 <STEM>.PNA \x00 显示指令
+DISPLAY_REF = re.compile(rb'\x34[\x20-\x7e]{2,12}\x00([^\x00]{2,40}?)\.PNA\x00', re.I)
+
+
+def pna_refs(script_stem):
+    """脚本引用的 PNA stem 集合（Shift-JIS 解码，含日文立绘名）。"""
+    member = rio.get(script_stem.upper() + '.WS2')
+    if member is None:
+        return set()
+    stems = set()
+    for m in DISPLAY_REF.finditer(ws2.decode(member[1])):
+        try:
+            stems.add(m.group(1).decode('shift_jis'))
+        except UnicodeDecodeError:
+            pass
+    return stems
+
+
 print('=' * 84)
-print('【检查 1】还原场景调用链完整性（saya_107 + Phase 3）')
+print('【检查 1】还原场景调用链完整性')
 print('=' * 84)
 
-chain = [
-    # saya_107 穿插链
-    ('yozora_saya_107b_H.ws2', '0x07', 'YOZORA_SAYA_107C_E'),
-    ('yozora_saya_107c_E.ws2', '0x07', 'YOZORA_SAYA_107D_H'),
-    ('yozora_saya_107d_H.ws2', '0x07', 'YOZORA_SAYA_107E_E'),
-    # Phase 3：hika_103
-    ('yozora_hika_103c_E.ws2', '0x07', 'YOZORA_HIKA_103D_H'),
-    ('yozora_hika_103d_H.ws2', '0x07', 'YOZORA_HIKA_103E_E'),
-    # Phase 3：hika_110
-    ('yozora_hika_110b_E.ws2', '0x07', 'YOZORA_HIKA_110C_H'),
-    ('yozora_hika_110c_H.ws2', '0x07', 'YOZORA_HIKA_110D_E'),
-    # Phase 3：saya_101
-    ('yozora_saya_101i_E.ws2', '0x07', 'YOZORA_SAYA_101J_H'),
-    ('yozora_saya_101j_H.ws2', '0x07', 'YOZORA_SAYA_102_E'),
-]
+opcode = bytes([int(CHAIN['opcode'], 16)])
 
 print('预期调用链:')
-for caller, op, target in chain:
-    print(f'  {caller} --{op}--> {target}')
+for link in CHAIN['links']:
+    print(f"  {link['caller']} --{CHAIN['opcode']}--> {link['target'].upper()}  [{link['kind']}]")
 
 print('\n实际验证:')
 all_ok = True
-for caller, op, target in chain:
-    if caller.upper() not in rio:
+for link in CHAIN['links']:
+    caller = link['caller'].upper() + '.WS2'
+    target = link['target'].upper()
+    if caller not in rio:
         print(f'  FAIL {caller} 不存在')
         all_ok = False
         continue
 
-    _, raw = rio[caller.upper()]
-    data = ws2.decode(raw)
-
-    if op == '0x07':
-        pattern = b'\x07' + target.encode('ascii') + b'\x00'
-    else:
-        pattern = b'\x04' + target.encode('ascii') + b'\x00'
-
-    count = data.count(pattern)
+    _, raw = rio[caller]
+    count = ws2.decode(raw).count(opcode + target.encode('ascii') + b'\x00')
     status = 'OK' if count > 0 else 'FAIL'
-    print(f'  [{status}] {caller} 调用 {target}: {count} 处')
+    print(f'  [{status}] {link["caller"]} 调用 {target}: {count} 处')
     if count == 0:
         all_ok = False
 
-# 检查目标脚本存在性
+# 跳转目标脚本存在性（由 links 派生，不再单独维护清单）
 print('\n目标脚本存在性:')
-targets = [
-    'YOZORA_SAYA_107C_E.WS2', 'YOZORA_SAYA_107D_H.WS2', 'YOZORA_SAYA_107E_E.WS2',
-    'YOZORA_HIKA_103D_H.WS2', 'YOZORA_HIKA_103E_E.WS2',
-    'YOZORA_HIKA_110C_H.WS2', 'YOZORA_HIKA_110D_E.WS2',
-    'YOZORA_SAYA_101J_H.WS2', 'YOZORA_SAYA_102_E.WS2',
-]
-for t in targets:
-    exists = t in rio
+for target in sorted({link['target'].upper() + '.WS2' for link in CHAIN['links']}):
+    exists = target in rio
     status = 'OK' if exists else 'FAIL'
-    print(f'  {status} {t}: {"存在" if exists else "缺失"}')
+    print(f'  {status} {target}: {"存在" if exists else "缺失"}')
     if not exists:
         all_ok = False
 
 print(f'\n调用链完整性: {"OK 通过" if all_ok else "FAIL 失败"}')
 
 print('\n' + '=' * 84)
-print('【检查 2】新增原版脚本的资源完整性')
+print('【检查 2】还原场景的资源完整性')
 print('=' * 84)
 
-# 所有新增的原版脚本（17 个 _H + 3 个裸名还原脚本）
-original_scripts = [
-    'yozora_hika_103d_H.ws2',
-    'yozora_hika_103g_H.ws2',
-    'yozora_hika_108g_H.ws2',
-    'yozora_hika_110c_H.ws2',
-    'yozora_koro_115_H.ws2',
-    'yozora_koro_121_H.ws2',
-    'yozora_koro_124_H.ws2',
-    'yozora_koro_126_H.ws2',
-    'yozora_koro_131_H.ws2',
-    'yozora_ori_115_H.ws2',
-    'yozora_ori_118_H.ws2',
-    'yozora_ori_123_H.ws2',
-    'yozora_ori_129_H.ws2',
-    'yozora_saya_101j_H.ws2',
-    'yozora_saya_102c_H.ws2',
-    'yozora_saya_107b_H.ws2',
-    'yozora_saya_107d_H.ws2',
-    'yozora_hika_103f.ws2',
-    'yozora_koro_127.ws2',
-    'yozora_ori_117b.ws2',
-]
+# 所有还原脚本（resource/scenes.json）
+original_scripts = [scene['id'] + '.ws2' for scene in SCENES]
 
 # 收集所有 PNA 引用（使用 0x34 显示指令精确解析）
-pna_refs = Counter()
+ref_counts = Counter()
 DISPLAY_PATTERN = re.compile(rb'\x34([^\x00]{2,12})\x00([^\x00]+)\.PNA\x00\x01\x01', re.S | re.I)
 
 for script in original_scripts:
@@ -134,17 +115,17 @@ for script in original_scripts:
                 stem = stem_bytes.decode('ascii')
             except:
                 continue
-        pna_refs[stem] += 1
+        ref_counts[stem] += 1
 
-print(f'新增原版脚本引用的 PNA（共 {len(pna_refs)} 种）:')
-for pna, cnt in sorted(pna_refs.items()):
-    print(f'  {pna}.pna: {cnt} 次引用')
+print(f'还原脚本引用的 PNA（共 {len(ref_counts)} 种）:')
+for stem, cnt in sorted(ref_counts.items()):
+    print(f'  {stem}.pna: {cnt} 次引用')
 
 # 检查资源存在性
 print('\n资源存在性检查:')
 missing = []
-for pna in sorted(pna_refs.keys()):
-    pna_name = (pna + '.PNA').upper()
+for stem in sorted(ref_counts.keys()):
+    pna_name = (stem + '.PNA').upper()
     found = False
     location = None
 
@@ -156,10 +137,10 @@ for pna in sorted(pna_refs.keys()):
 
     status = 'OK' if found else 'FAIL'
     info = f'({location})' if found else '缺失'
-    print(f'  {status} {pna}.pna: {info}')
+    print(f'  {status} {stem}.pna: {info}')
 
     if not found:
-        missing.append(pna)
+        missing.append(stem)
 
 if missing:
     print(f'\nFAIL 缺失 {len(missing)} 个资源: {missing}')
@@ -214,6 +195,68 @@ print(f'  - yozora_saya_107b_H.ws2')
 print(f'  - yozora_saya_107c_E.ws2 (已修改跳转)')
 print(f'  - yozora_saya_107d_H.ws2')
 print(f'  - yozora_saya_107e_E.ws2')
+
+print('\n' + '=' * 84)
+print('【检查 5】resource/ 映射表与归档实测对账')
+print('=' * 84)
+
+backup_rio = {n.decode('utf-16-le').upper() for n, _ in arcbuild.read_raw(BACKUP / 'Rio.arc')}
+scene_members = {scene['id'].upper() + '.WS2' for scene in SCENES}
+
+# 5.1 scenes.json 应与 asset/Rio.arc 相对 backup/Rio.arc 的新增成员一致
+added = {n for n in rio if n not in backup_rio}
+added_ws2 = {n for n in added if n.endswith('.WS2')}
+removed = {n for n in backup_rio if n not in rio}
+
+print('  scenes.json vs Rio.arc 成员差集:')
+for label, extra in (('表中有但归档未新增', scene_members - added_ws2),
+                     ('归档新增但表中没有', added_ws2 - scene_members)):
+    status = 'OK' if not extra else 'FAIL'
+    detail = sorted(extra) if extra else ''
+    print(f'    [{status}] {label}: {len(extra)} 个 {detail}')
+    if extra:
+        all_ok = False
+
+non_script = added - added_ws2
+status = 'OK' if not non_script else 'FAIL'
+print(f'    [{status}] 非脚本类新增成员: {sorted(non_script) if non_script else "无"}')
+if non_script:
+    all_ok = False
+
+status = 'OK' if not removed else 'FAIL'
+print(f'    [{status}] 零破坏性（backup 有而 asset 无）: {sorted(removed) if removed else "无"}')
+if removed:
+    all_ok = False
+
+# 5.2 cg-conflicts.json 的部署状态应与归档成员一致
+print('\n  同名冲突部署状态:')
+for conflict in CONFLICTS:
+    members = archives.get(conflict['archive'], {})
+    for size, variant in conflict['variants'].items():
+        name = (conflict['patch'] + size + '.PNA').upper()
+        present = name in members
+        ok = present == variant['deployed']
+        status = 'OK' if ok else 'FAIL'
+        print(f'    [{status}] {conflict["patch"]}{size} 部署={variant["deployed"]} '
+              f'归档={present} ({conflict["archive"]})')
+        if not ok:
+            all_ok = False
+
+# 5.3 referenced_by 外键闭包，且被引用的场景确实引用该补丁名
+print('\n  同名冲突的引用场景:')
+scene_ids = {scene['id'] for scene in SCENES}
+for conflict in CONFLICTS:
+    prefix = conflict['patch'].upper()
+    for scene_id in conflict['referenced_by']:
+        if scene_id not in scene_ids:
+            print(f'    [FAIL] {scene_id} 不在 scenes.json 中（{conflict["patch"]} 的引用）')
+            all_ok = False
+            continue
+        hits = sorted(s for s in pna_refs(scene_id) if s.upper().startswith(prefix))
+        status = 'OK' if hits else 'FAIL'
+        print(f'    [{status}] {scene_id} 引用 {conflict["patch"]}: {hits if hits else "未引用"}')
+        if not hits:
+            all_ok = False
 
 print('\n' + '=' * 84)
 print('【最终结论】')

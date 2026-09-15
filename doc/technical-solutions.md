@@ -57,33 +57,27 @@ Resto 1.1.0 存在两个功能重复的脚本：
 1. 一旦原版和 Steam 版脚本引用了同名的 PNA，就必须为原版的 PNA 重命名为带 `ORG_` 前缀的文件（或使用 9X 段位无前缀名），再加入游戏中
 2. 原版 PNA 文件一旦改名，就必须在相应的原版脚本中修改原来的引用名为新的名称，否则将导致场景缺失
 
-### 修改脚本引用（共 129 处）
+### 修改脚本引用（共 129 处，历史统计）
 
-| 脚本 | 修改内容 | 说明 |
-|------|----------|------|
-| `yozora_hika_103f.ws2` | `COM_04L` → `COM_90L` | 事件 CG 引用（9X 段位，原版 COM_04） |
-| `yozora_hika_103g_H.ws2` | `COM_04L` → `COM_90L` | 事件 CG 引用（9X 段位，原版 COM_04） |
-| `yozora_ori_115_H.ws2` | `ORI_11L/S` → `ORI_90L/S` | 事件 CG 引用（9X 段位，原版 ORI_11） |
-| `yozora_ori_118_H.ws2` | `ORI_12L/S` → `ORI_91L/S` | 事件 CG 引用（9X 段位，原版 ORI_12）；脚本同时引用
-  裸名 `ORI_13/14L/S`——Steam/原版内容一致，**未改名，无需隔离** |
-| 多个 _H 脚本 | `Bさや_*` → `ORG_Bさや_*` | 角色立绘引用 |
+原版脚本里的资源引用必须同步改名，否则场景缺失。**具体映射（原版名 → 补丁名、以及每个
+补丁名被哪些场景引用）→ [`resource/cg-conflicts.json`](../resource/cg-conflicts.json)**。
+立绘的 `ORG_` 前缀改名适用同一方针。
 
-**注意**：由于 ev01/ev02 事件槽拒绝 ORG_ 前缀，所有事件 CG 改用 9X 段位无前缀命名（如
-`COM_90L.pna`, `ORI_90L.pna`, `ORI_91L.pna`）。早期方案曾用 `HIK_99L`/`ORG_COM_04L`/
-`ORG_ORI_11L` 等命名，现已统一为 9X 段位格式，历史命名仅见于旧文档/旧脚本注释。
+例外：`yozora_ori_118_H` 同时引用裸名 `ORI_13L/S`、`ORI_14L/S`——Steam 与 Miazora
+内容一致（SHA256 核实），**未改名、无需隔离**。
+
+**注意**：由于 ev01/ev02 事件槽拒绝 ORG_ 前缀，所有事件 CG 改用 9X 段位无前缀命名
+（如 `COM_90L.pna`, `ORI_90L.pna`, `ORI_91L.pna`）。早期方案曾用 `HIK_99L`/
+`ORG_COM_04L`/`ORG_ORI_11L` 等命名，现已统一为 9X 段位格式，历史命名仅见于旧文档/
+旧脚本注释。
 
 ### 9X 段位资源位置
 
-| 资源 | 位置 | 大小 | 对应原版 | 状态 |
-|------|------|------|---------|------|
-| `COM_90L.pna` | Chip3.arc | 18,462,890 bytes | Miazora COM_04L（29 层） | 已存在，被引用 |
-| `ORI_90L.pna` | Chip3A.arc | 12,422,712 bytes | Miazora ORI_11L（20 层） | 已存在，被引用 |
-| `ORI_90S.pna` | Chip3A.arc | 3,952,345 bytes | Miazora ORI_11S（20 层） | 已存在，被引用 |
-| `ORI_91L.pna` | Chip3A.arc | 9,322,012 bytes | Miazora ORI_12L（16 层） | 已存在，被引用 |
-| `ORI_91S.pna` | Chip3A.arc | 3,273,976 bytes | Miazora ORI_12S（16 层） | 已存在，被引用 |
-| `ORG_Bさや_01L.pna` | Graphic.arc | - | 角色立绘 | 已存在，被引用 |
-| `ORG_Aひかり_*` | Graphic.arc | - | 角色立绘 | 已存在，被引用 |
-| `ORG_Dころな_*` | Graphic.arc | - | 角色立绘 | 已存在，被引用 |
+补丁名 → 归属归档 → 对应 Miazora 原版名，见
+[`resource/cg-conflicts.json`](../resource/cg-conflicts.json) 的 `archive` / `original`
+字段；实际存在性与部署状态由 `script/final_verification.py`【检查 5】对账。
+
+Miazora 侧的层数（引擎事实，不在表中）：`COM_04L` 29 层、`ORI_11` 20 层、`ORI_12` 16 层。
 
 **说明**：
 - 事件 CG（进 ev01/ev02 槽）：使用 9X 段位无前缀命名
@@ -287,26 +281,28 @@ Steam 删除 H 场景时，不仅删了 H 场景 CG（PNA）与语音，还删�
 
 ### 修复范围与映射关系
 
-| PNA | Steam layer_count | Miazora layer_count | 已替换图层 | 未替换图层 |
-|---|---|---|---|---|
-| `COM_04L.pna`/`COM_04S.pna` | 42 | 29 | 全画布 `lid=1`；两位角色局部帧 `lid=5~16`→Miazora`4~15`、`lid=17~28`→Miazora`16~27` | `lid=2`（Steam 独有 blink 变体）、`lid=29~40`（配 `lid=2` 的 Steam 原创局部帧，Miazora 无对应素材） |
-| `COM_05L.pna`/`COM_05S.pna` | 9 | 9 | 全画布 `lid=1`；两位角色局部帧 `lid=4~7`→Miazora`4~7` | 无（层数完全一致，全部图层已核对） |
+具体的 `(steam_lid, miazora_lid)` 逐层配对、全画布图层与涉及的 4 个成员 →
+[`resource/layer-repairs.json`](../resource/layer-repairs.json)（`script/replace_pna_layers.py` 直接读它）。
 
-`lid=2`/`lid=29~40` 之所以保留 Steam 原样：Miazora 该 PNA 层数更少，没有多出来的这组
-blink 变体和与之配套的局部帧，找不到可对应的原版素材，替换没有数据来源。
+范围概要：`COM_04L/S.pna`（Steam 42 层 vs Miazora 29 层）与 `COM_05L/S.pna`（9 层 vs 9 层）
+各替换全画布 `lid=1` 及两位角色的局部动画帧。
+
+`COM_04L/S` 的 `lid=2`（Steam 独有 blink 变体）与 `lid=29~40`（配 `lid=2` 的 Steam 原创
+局部帧）保留 Steam 原样：Miazora 该 PNA 层数更少，没有多出来的这组 blink 变体和与之配套
+的局部帧，找不到可对应的原版素材，替换没有数据来源。
 
 ### 实现脚本
 
 `script/replace_pna_layers.py`（幂等，可重复运行）：
 - 全画布图层：整层字节从 Miazora 对应 `lid=1` 复制过来
-- 局部动画帧：逐帧按 `(steam_lid, miazora_lid)` 映射表替换，替换前校验两边 `box` 完全一致
-  （不一致则拒绝执行，防止误配）
+- 局部动画帧：逐帧按 `resource/layer-repairs.json` 的 `(steam_lid, miazora_lid)` 配对替换，
+  替换前校验两边 `box` 完全一致（不一致则拒绝执行，防止误配）
 - 写入后回读校验：全部替换目标的字节与来源逐一比对；同时断言 `lid=2`/`lid=29~40` 等不在
   替换范围内的图层字节保持不变
 
 ### 验证
 
-- `arcbuild.verify()` 通过（51 个成员、无 null padding）
-- 全部 36 处替换（4 全画布 + 32 局部帧）回读校验通过
+- `arcbuild.verify()` 通过（无 null padding）
+- 全部 60 处替换（4 全画布 + 56 局部帧）回读校验通过
 - `lid=2`、`lid=29~40` 逐一核对与替换前字节完全一致
 - 实机测试通过：两位角色面部与新背景光照统一，无融合违和感

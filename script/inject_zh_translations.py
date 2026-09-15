@@ -4,9 +4,11 @@
   tmp/embedded_text/<script>.json      - 从脚本提取的英文原文（0..N-1 密集索引）
   tmp/embedded_text/<script>.zh.json   - 对应的中文翻译（同长度、同顺序）
 
-用途：为 Phase 2 新导入的 3 个 _H 脚本（此前 zh-CN/Rio.arc 中没有对应 .lng，
-引擎回退显示 Miazora 内嵌的英文原文）补充临时中文 .lng，格式与其余 295 个
-已有 .lng 完全一致（tool/lng.py: u32 count + u16 长度表 + UTF-16LE^0xCE 字符串）。
+用途：为尚无 .lng 的还原脚本补充临时中文 .lng（引擎在 .lng 缺失时回退显示脚本
+内嵌的 Miazora 英文原文），格式与已有的 .lng 完全一致（tool/lng.py: u32 count +
+u16 长度表 + UTF-16LE^0xCE 字符串）。
+
+工作清单 = tmp/embedded_text/ 下所有已备好的 *.zh.json，不再硬编码脚本名。
 
 幂等：若目标 .lng 已存在且内容与本次生成结果字节一致，跳过写入。
 """
@@ -21,12 +23,13 @@ from tool import arcbuild, lng
 ZH_RIO = Path('asset/zh-CN/Rio.arc')
 BACKUP_ZH_RIO = Path('asset/zh-CN/Rio.arc.before_translation_inject')
 EMBEDDED_DIR = Path('tmp/embedded_text')
+ZH_SUFFIX = '.zh.json'
 
-TARGETS = [
-    'yozora_hika_103d_H',
-    'yozora_hika_110c_H',
-    'yozora_saya_101j_H',
-]
+
+def worklist():
+    """扫描待注入的译文：tmp/embedded_text/ 下的 *.zh.json，按脚本名排序。"""
+    return sorted(p.name[:-len(ZH_SUFFIX)]
+                  for p in EMBEDDED_DIR.glob('*' + ZH_SUFFIX))
 
 
 def main():
@@ -34,10 +37,15 @@ def main():
 
     # 1. 校验翻译文件齐备且行数匹配
     print('1. Validate translation files')
+    stems = worklist()
+    if not stems:
+        print(f'  [!] {EMBEDDED_DIR} 下没有 {ZH_SUFFIX} 文件，无待注入译文')
+        return 1
+    print(f'  待注入: {len(stems)} 个脚本')
     payloads = {}
-    for stem in TARGETS:
+    for stem in stems:
         en_path = EMBEDDED_DIR / f'{stem}.json'
-        zh_path = EMBEDDED_DIR / f'{stem}.zh.json'
+        zh_path = EMBEDDED_DIR / f'{stem}{ZH_SUFFIX}'
 
         if not en_path.exists():
             print(f'  [!] Missing source: {en_path}')

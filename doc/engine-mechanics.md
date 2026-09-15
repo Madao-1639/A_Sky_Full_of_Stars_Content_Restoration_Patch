@@ -99,7 +99,8 @@ LAYER_ORDER 是一个 `.ws2` 文件，但**不是带 opcode 的可执行脚本**
 - 可以继续用 `ORG_` 前缀做命名空间隔离
 - 日文角色名（`ORG_Aひかり_01M`）正常
 
-**当前已部署的命名策略**：
+**当前已部署的命名策略**（完整清单与引用见
+[`resource/cg-conflicts.json`](../resource/cg-conflicts.json)）：
 - hika 103 事件 CG：`COM_90L.pna`（原版 COM_04L，7 字节，无前缀，9X 段位）
 - ori 115/118 事件 CG：`ORI_90L/S.pna`（原版 ORI_11）、`ORI_91L/S.pna`（原版 ORI_12）
 - saya/ori/korona 立绘：`ORG_B沙夜_*`、`ORG_Aひかり_*`、`ORG_Dころな_*`（st 槽，允许长名）
@@ -127,7 +128,8 @@ Steam 引擎对**进 ev01/ev02 事件 CG 槽**的 PNA，与**进 st* 立绘槽**
   - 无严格长度限制
   - 可以使用 `ORG_` 前缀和日文角色名：`ORG_Aひかり_01M`
 
-**当前已部署**：
+**当前已部署**（完整清单与引用见
+[`resource/cg-conflicts.json`](../resource/cg-conflicts.json)）：
 - hika 103 事件 CG：`COM_90L.pna`（原版 COM_04L，共通线）
 - 立绘：`ORG_B沙夜_*`、`ORG_Aひかり_*`、`ORG_Dころな_*`
 

@@ -56,6 +56,7 @@
 **脚本存放规则**：
 - **长期复用的工具**：放入 `tool/`（如 arcbuild.py、ws2.py）
 - **项目流程脚本**：放入 `script/`（如 build_patch.py、final_verification.py）
+- **可复用资源与映射表**：放入 `resource/`（JSON，清单与字段说明见 `resource/README.md`）
 - **一次性/临时脚本**：放入 `tmp/`（任务结束后删除）
 
 ### 3. 测试与发布流程
@@ -81,6 +82,7 @@ tool/
 ├── arcbuild.py      （Arc 文件读写）
 ├── ws2.py           （WS2 脚本编解码 + 成就注入）
 ├── arcstream.py     （大文件流式处理）
+├── resources.py     （读取 resource/ 下的映射表）
 └── lng.py           （文本编码）
 ```
 
@@ -180,39 +182,30 @@ if pattern in decoded:
 
 *事件 CG（路线+场景编号）*：
 - 格式：`路线代码_场景编号[L/S].pna`
-- 路线代码：COM（共通）、HIK（ひかり）、SAY（さや）、ORI（織姫）、KOR（ころな）
+- 路线代码：COM（共通）、HIK（ひかり）、SAY（沙夜）、ORI（織姫）、KOR（ころな）
 - 示例：`COM_04L.pna`, `HIK_17L.pna`, `SAY_20L.pna`
 
 *角色立绘（字母前缀+角色名+差分）*：
 - 格式：`[字母前缀]+角色日文名_差分编号[L/M/S/W/X].pna`
-- 字母前缀：A=ひかり, B=さや, C=織姫, D=ころな
-- 示例：`Aひかり_01M.pna`, `Bさや_01L.pna`
+- 字母前缀：A=ひかり, B=沙夜, C=織姫, D=ころな
+- 示例：`Aひかり_01M.pna`, `B沙夜_01L.pna`
 
 *补丁资源命名策略*：
 
-**1. Steam 版差分的 CG - 同名冲突（使用 9X 段位）**：
-- 条件：Steam 版和原版**文件名相同但内容不同**（哈希不同）
-- 一对 CG（L/S）只要有一个文件冲突，整对都使用 9X 段位
-- 命名：使用 `9X` 段位编号（90-99）
-- 示例：
-  - `HIK_90L/S.pna` ← 原版 `HIK_09L/S`（与 Steam HIK_09 冲突）
-  - `SAY_90L/S.pna` ← 原版 `SAY_15L/S`（与 Steam SAY_15 冲突）
-  - `COM_90L.pna` ← 原版 `COM_04L`（与 Steam COM_04L 冲突）
-  - `ORI_90L/S.pna` ← 原版 `ORI_11L/S`（ORI_11S 与 Steam 冲突）
-  - `ORI_91L/S.pna` ← 原版 `ORI_12L/S`（ORI_12L/S 与 Steam 冲突）
+- **1. Steam 版差分的 CG - 同名冲突（使用 9X 段位）**：
+  - 条件：Steam 版和原版**文件名相同但内容不同**（哈希不同）
+  - 命名：使用 `9X` 段位编号（90-99）
+  - 规则：一对 CG（L/S）只要有一个变体冲突就整对改名，但**只部署脚本真正引用的变体**
+  - **清单、逐变体实测状态、以及每个补丁名被哪些场景引用 → `resource/cg-conflicts.json`**
 
-**2. Steam 版删除的 CG（直接使用原版编号）**：
-- 条件：Steam 版中**不存在**该编号的 CG
-- 命名：**直接继承原版编号**（不使用特殊命名）
-- 示例：
-  - `HIK_15L/S` - `HIK_23L/S`（原版编号，Steam 版不存在）
-  - `SAY_16L/S` - `SAY_23L/S`（原版编号，Steam 版不存在）
-  - `ORI_13L/S` - `ORI_19L/S`（原版编号，Steam 版不存在）
-  - `KOR_11L/S` - `KOR_19L/S`（原版编号，Steam 版不存在）
+- **2. Steam 版删除的 CG（直接使用原版编号）**：
+  - 条件：Steam 版中**不存在**该编号的 CG
+  - 命名：**直接继承原版编号**（不使用特殊命名）
+  - 编号段：`HIK_15~23`、`SAY_16~23`、`ORI_13~19`、`KOR_11~19`（各含 L/S）
 
-**3. 原版立绘（无冲突，统一使用 ORG_ 前缀）**：
-- `ORG_[字母]角色名_##[L/M/S/W/X].pna`
-- 示例：`ORG_Aひかり_02L.pna`, `ORG_Bさや_01L.pna`
+- **3. 原版立绘（无冲突，统一使用 ORG_ 前缀）**：
+  - `ORG_[字母]角色名_##[L/M/S/W/X].pna`
+  - 示例：`ORG_Aひかり_02L.pna`, `ORG_B沙夜_01L.pna`
 
 ### 5. 验收流程
 

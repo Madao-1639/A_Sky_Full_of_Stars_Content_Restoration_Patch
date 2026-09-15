@@ -18,8 +18,7 @@ mamba run -n asky_patch pyinstaller \
     --add-data "tool/arcbuild.py;." \
     --add-data "payload;payload" \
     --add-data "VERSION;." \
-    --add-data "script/icon.ico;." \
-    --icon "script/icon.ico" \
+    --icon "resource/icon.ico" \
     --name "A_Sky_Full_of_Stars_Content_Restoration_Patch_Installer_${VERSION}" \
     --distpath "${RELEASE_DIR}" \
     --clean \

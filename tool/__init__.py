@@ -5,4 +5,5 @@
   - ws2: WS2 脚本编解码与成就注入
   - arcstream: 大文件流式处理
   - lng: 文本编码（lng 文件格式）
+  - resources: 读取 resource/ 下的可复用映射表（JSON）
 """

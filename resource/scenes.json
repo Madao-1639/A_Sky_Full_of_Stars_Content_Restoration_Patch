@@ -1,0 +1,25 @@
+{
+  "_comment": "补丁向 asset/Rio.arc 新增的原版还原场景。本表是这 20 个场景的唯一来源：final_verification.py 据此校验 asset/Rio.arc 相对 backup/Rio.arc 的成员差集；extract_embedded_text.py 据此找出尚无 zh-CN .lng 的场景。数组顺序为剧情先后；id 为 Rio.arc 成员名去掉 .ws2 后的小写 stem。kind：H = 原版 H 场景脚本（_H 后缀，引用 ORG_ 立绘或 9X 段位事件 CG），bare = 裸名还原脚本（无 _H 后缀，按原版编号引用资源）。",
+  "scenes": [
+    { "id": "yozora_hika_103d_H", "route": "hika", "kind": "H" },
+    { "id": "yozora_hika_103f", "route": "hika", "kind": "bare" },
+    { "id": "yozora_hika_103g_H", "route": "hika", "kind": "H" },
+    { "id": "yozora_hika_108g_H", "route": "hika", "kind": "H" },
+    { "id": "yozora_hika_110c_H", "route": "hika", "kind": "H" },
+    { "id": "yozora_saya_101j_H", "route": "saya", "kind": "H" },
+    { "id": "yozora_saya_102c_H", "route": "saya", "kind": "H" },
+    { "id": "yozora_saya_107b_H", "route": "saya", "kind": "H" },
+    { "id": "yozora_saya_107d_H", "route": "saya", "kind": "H" },
+    { "id": "yozora_ori_115_H", "route": "ori", "kind": "H" },
+    { "id": "yozora_ori_117b", "route": "ori", "kind": "bare" },
+    { "id": "yozora_ori_118_H", "route": "ori", "kind": "H" },
+    { "id": "yozora_ori_123_H", "route": "ori", "kind": "H" },
+    { "id": "yozora_ori_129_H", "route": "ori", "kind": "H" },
+    { "id": "yozora_koro_115_H", "route": "koro", "kind": "H" },
+    { "id": "yozora_koro_121_H", "route": "koro", "kind": "H" },
+    { "id": "yozora_koro_124_H", "route": "koro", "kind": "H" },
+    { "id": "yozora_koro_126_H", "route": "koro", "kind": "H" },
+    { "id": "yozora_koro_127", "route": "koro", "kind": "bare" },
+    { "id": "yozora_koro_131_H", "route": "koro", "kind": "H" }
+  ]
+}

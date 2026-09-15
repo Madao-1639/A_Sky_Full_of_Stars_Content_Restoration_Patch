@@ -1,32 +1,21 @@
 #!/usr/bin/env python3
-"""Replace Steam-censored CG layers inside asset/Chip3.arc's COM_04*/COM_05*
-PNA members with the restored Miazora versions.
+"""Replace Steam-censored layers inside asset/Chip3.arc's COM_04*/COM_05* PNA
+members with the restored Miazora versions.
 
-Two kinds of layers are patched:
+Two kinds of layers are patched, both read from resource/layer-repairs.json:
 
-1. Full-canvas frames (layer_id=1), sourced directly from the Miazora
-   archive. Box is already (0, 0, canvas_w, canvas_h) on both Steam and
-   Miazora sides, so only the embedded PNG bytes change.
+1. Full-canvas frames (layer_id=1), sourced from the Miazora archive. The box is
+   already (0, 0, canvas_w, canvas_h) on both sides, so only the embedded PNG
+   bytes change.
 
-2. Local talk-animation frames for both characters in COM_04L/S.pna, plus
-   both characters in COM_05L/S.pna, sourced directly from the Miazora
-   archive:
-     - COM_04L/S.pna right character (box=(1381,24,476,484)/(690,12,239,242)):
-       Steam expanded this group from 12 frames to 24 (see
-       doc/lessons-learned.md). lid=17..28 map to Miazora's lid=16..27 and get
-       replaced; lid=29..40 pair with lid=2 (a Steam-only blink variant with
-       no Miazora counterpart) and are intentionally left untouched.
-     - COM_04L/S.pna left character (box=(489,0,553,574)/(244,0,277,287),
-       lid=5..16 -> Miazora lid=4..15): earlier analysis skipped this group
-       because its bytes were already close to Miazora's OWN local frame
-       (diff ~1-6, i.e. Steam never recolored it). That comparison doesn't
-       prove it matches the NEW background, only that Steam left it alone --
-       in-game testing showed it still didn't blend, so it's replaced too.
-     - COM_05L/S.pna (lid=4..7 -> Miazora lid=4..7): same situation as the
-       left character above; included for the same reason.
+2. Local talk-animation frames, replaced one-for-one along the
+   (steam_lid, miazora_lid) map. This includes groups whose bytes were already
+   close to Miazora's OWN local frame -- a small diff only shows Steam left the
+   group alone, not that it matches the new full-canvas frame. In-game testing
+   showed those still didn't blend, so they are replaced too.
 
-COM_04L/S.pna's layer_id=2 (Steam-only blink variant, no Miazora counterpart)
-is intentionally never touched.
+Layers with no Miazora counterpart (COM_04's lid=2 blink variant, and the
+lid=29..40 frames that pair with it) are intentionally never touched.
 
 Idempotent: skips any layer whose embedded PNG already matches the source
 bytes. Re-reads the written archive to confirm every swap took effect.
@@ -36,33 +25,20 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from tool import arcbuild, pna
+from tool import arcbuild, pna, resources
 
-ASSET = Path('asset')
-ARC_PATH = ASSET / 'Chip3.arc'
-MIA_ARC_PATH = Path('../MiazoraPatch(v1.2)/+18 Version/Chip3.arc')
+REPAIRS = resources.load('layer-repairs.json')
 
-FULL_CANVAS_LID = 1
+ARC_PATH = Path(REPAIRS['target_archive'])
+MIA_ARC_PATH = Path(REPAIRS['source_archive'])
 
-FULL_CANVAS_TARGETS = ['COM_04L.pna', 'COM_04S.pna', 'COM_05L.pna', 'COM_05S.pna']
+FULL_CANVAS_LID = REPAIRS['full_canvas']['layer_id']
+
+FULL_CANVAS_TARGETS = REPAIRS['full_canvas']['members']
 
 # (pna_member, [(steam_lid, mia_lid), ...])
-LOCAL_FRAME_TARGETS = [
-    # right character (box=(1381,24,476,484) / (690,12,239,242)): confirmed
-    # in-game fixed by this mapping.
-    ('COM_04L.pna', [(lid, lid - 1) for lid in range(17, 29)] +
-                     # left character (box=(489,0,553,574)): previously
-                     # skipped on the mistaken assumption that a small diff
-                     # against Miazora's OWN local frame meant no fix was
-                     # needed -- that only shows Steam didn't recolor this
-                     # group, not that it matches the new background. In-game
-                     # testing showed it still doesn't blend, so replace it.
-                     [(lid, lid - 1) for lid in range(5, 17)]),
-    ('COM_04S.pna', [(lid, lid - 1) for lid in range(17, 29)] +
-                     [(lid, lid - 1) for lid in range(5, 17)]),
-    ('COM_05L.pna', [(lid, lid) for lid in range(4, 8)]),
-    ('COM_05S.pna', [(lid, lid) for lid in range(4, 8)]),
-]
+LOCAL_FRAME_TARGETS = [(entry['member'], entry['layers'])
+                       for entry in REPAIRS['local_frames']]
 
 
 def patch_full_canvas(members, by_name, mia_members):

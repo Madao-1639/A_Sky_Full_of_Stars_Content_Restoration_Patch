@@ -12,7 +12,7 @@
 
 **PNA 资源类型**：
 - **事件 CG**：`路线代码_场景编号[L/S].pna`（如 `COM_04L.pna`, `COM_90L.pna`）
-- **角色立绘**：`[字母前缀]+角色日文名_差分编号[L/M/S/W/X].pna`（如 `Bさや_01L.pna`）
+- **角色立绘**：`[字母前缀]+角色日文名_差分编号[L/M/S/W/X].pna`（如 `B沙夜_01L.pna`）
 
 ### 脚本数量统计（Rio.arc）
 
@@ -70,16 +70,16 @@ Steam   Steam    原版H    Steam    原版H    Steam
 
 ## 跳转改写范围
 
-| 改写位置 | 原始跳转 | 修改后跳转 | 用途 |
-| :--- | :--- | :--- | :--- |
-| Steam 入口脚本 | 107A_E → 107E_E | 107A_E → 107B_H | 接入 H 场景 |
-| 原版 H 脚本 | 107B → 107C | 107B_H → 107C_E | 续接 Steam 过渡 |
-| 原版 H 脚本 | 107D → 107E | 107D_H → 107E_E | 汇合 Steam 结尾 |
-| _H 内部资源引用（hika_103） | COM_04L.PNA | COM_90L.PNA | 命名空间隔离（9X 段位） |
+**完整的调用链改写（caller → target）**→ [`resource/call-chain.json`](../resource/call-chain.json)，
+由 `script/final_verification.py` 校验跳转是否存在、目标是否可达。
 
-**改写统计**：共 129 处资源引用改写（历史记录，含 hika_103 的 COM_04L→9X 段位改写，
-以及多个 _H 脚本的立绘 ORG_ 前缀改写；saya_107 系列不在此列，因其引用的 SAY_20~23
-资源本身无冲突，未被改写）
+改写分两类：
+
+- **入口改接**：Steam 入口脚本原先跳到 `*_H_E`（Steam 过审阉割版），改为跳到完整 H 的 `*_H`
+  （如 `107A_E → 107B_H`）
+- **出口汇合**：原版 H 脚本照搬的裸名目标（Steam 版不存在）改为对应的 `_E`（如
+  `107D_H → 107E_E`）
+
 
 ## 完整性检查策略
 
@@ -113,38 +113,10 @@ for caller, opcode, target in call_chain:
 ## 新增脚本清单
 
 补丁向 `asset/Rio.arc` 新增的原版还原脚本共 **20 个**（`asset/zh-CN/Rio.arc` 有同名 `.lng`
-对应）：17 个 `_H` 场景 + 3 个裸名场景。其中 `103d_H`/`110c_H`/`101j_H` 三个为
-Phase 3 追加（并修复其入口/出口调用链，见下文 Phase 3），其余为 Phase 2 及此前还原。
+对应）：17 个 `_H` 场景 + 3 个裸名场景。
 
-```python
-# 17 个 _H 场景
-original_scripts = [
-    'yozora_hika_103d_H.ws2',   # 光路线 H（Phase 3 新增）
-    'yozora_hika_103g_H.ws2',   # 光路线 H
-    'yozora_hika_108g_H.ws2',   # 光路线 H
-    'yozora_hika_110c_H.ws2',   # 光路线 H（Phase 3 新增）
-    'yozora_koro_115_H.ws2',    # 来露娜路线 H
-    'yozora_koro_121_H.ws2',    # 来露娜路线 H
-    'yozora_koro_124_H.ws2',    # 来露娜路线 H
-    'yozora_koro_126_H.ws2',    # 来露娜路线 H
-    'yozora_koro_131_H.ws2',    # 来露娜路线 H
-    'yozora_ori_115_H.ws2',     # 織姫路线 H（暖桌场景）
-    'yozora_ori_118_H.ws2',     # 織姫路线 H
-    'yozora_ori_123_H.ws2',     # 織姫路线 H
-    'yozora_ori_129_H.ws2',     # 織姫路线 H
-    'yozora_saya_101j_H.ws2',   # 纱夜路线 H（Phase 3 新增）
-    'yozora_saya_102c_H.ws2',   # 纱夜路线 H
-    'yozora_saya_107b_H.ws2',   # 纱夜路线 H 前半
-    'yozora_saya_107d_H.ws2',   # 纱夜路线 H 后半
-]
-
-# 3 个裸名还原脚本（不带 _H 后缀）
-bare_name_scripts = [
-    'yozora_hika_103f.ws2',     # 光路线 H 后续
-    'yozora_koro_127.ws2',      # 来露娜路线 H
-    'yozora_ori_117b.ws2',      # 織姫路线 H 后续
-]
-```
+**完整清单（含路线与类型）**→ [`resource/scenes.json`](../resource/scenes.json)，由
+`script/final_verification.py` 检查 `asset/Rio.arc` 相对 `backup/Rio.arc` 的成员差集。
 
 **注意**：Miazora 原版虽存在裸名 `yozora_saya_107c.ws2`，但本补丁**沿用 Steam 版
 `107c_E`**，未还原裸名版本；saya_107 穿插链实际为 `107b_H → 107c_E → 107d_H → 107e_E`。
@@ -153,13 +125,12 @@ bare_name_scripts = [
 ### yozora_ori_115_H / yozora_ori_118_H 的 9X 段位资源
 
 这两个脚本都引用织姫线原版事件 CG，Steam 同名资源图层数不足或缺失，按
-[doc/pna-resources.md](pna-resources.md) 的 9X 段位规则隔离：
+[doc/pna-resources.md](pna-resources.md) 的 9X 段位规则隔离。
 
-| 脚本 | 引用（9X 段位） | 对应原版资源 | 部署位置 |
-|------|-----------------|-------------|---------|
-| `yozora_ori_115_H.ws2` | `ORI_90L`/`ORI_90S` | Miazora `ORI_11L`/`ORI_11S`（20 层） | Chip3A.arc |
-| `yozora_ori_118_H.ws2` | `ORI_91L`/`ORI_91S` | Miazora `ORI_12L`/`ORI_12S`（16 层） | Chip3A.arc |
-| `yozora_ori_118_H.ws2` | `ORI_13L/S`、`ORI_14L/S`（裸名） | 与 Steam 内容一致，**无冲突**，勿改名 | Chip3A.arc（Steam 原有） |
+**映射与引用场景** → [`resource/cg-conflicts.json`](../resource/cg-conflicts.json)：
+`yozora_ori_115_H` → `ORI_90`（Miazora `ORI_11`，20 层），`yozora_ori_118_H` → `ORI_91`
+（Miazora `ORI_12`，16 层），均部署在 Chip3A.arc。两个脚本同时引用裸名 `ORI_13L/S`、
+`ORI_14L/S`——与 Steam 内容一致，**无冲突，勿改名**。
 
 **踩坑记录**：曾误将 `ORI_11S` 部署成 `ORI_91S`（应为 `ORI_90S`），且发现后未清理，
 导致 `yozora_ori_118_H` 长期使用内容错配的 `ORI_91S`（背景黑屏但不报错）。另外一度误判

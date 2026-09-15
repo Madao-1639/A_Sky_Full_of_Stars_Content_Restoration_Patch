@@ -1,0 +1,15 @@
+{
+  "_comment": "补丁改写的脚本跳转（opcode 0x07 = 调用另一脚本）。caller / target 为 Rio.arc 成员 stem（使用时需大写并加 .ws2）；kind：entry = 由 Steam 脚本接入还原场景，exit = 还原场景汇合回 Steam 脚本。final_verification.py 据此校验跳转存在且目标可达。",
+  "opcode": "0x07",
+  "links": [
+    { "caller": "yozora_saya_107b_H", "target": "yozora_saya_107c_E", "kind": "exit" },
+    { "caller": "yozora_saya_107c_E", "target": "yozora_saya_107d_H", "kind": "entry" },
+    { "caller": "yozora_saya_107d_H", "target": "yozora_saya_107e_E", "kind": "exit" },
+    { "caller": "yozora_hika_103c_E", "target": "yozora_hika_103d_H", "kind": "entry" },
+    { "caller": "yozora_hika_103d_H", "target": "yozora_hika_103e_E", "kind": "exit" },
+    { "caller": "yozora_hika_110b_E", "target": "yozora_hika_110c_H", "kind": "entry" },
+    { "caller": "yozora_hika_110c_H", "target": "yozora_hika_110d_E", "kind": "exit" },
+    { "caller": "yozora_saya_101i_E", "target": "yozora_saya_101j_H", "kind": "entry" },
+    { "caller": "yozora_saya_101j_H", "target": "yozora_saya_102_E", "kind": "exit" }
+  ]
+}
