@@ -4,6 +4,7 @@ tmp/
 test_save_files/*.png
 backup/
 *.backup*
+*.before_*
 
 payload/*
 !payload/metadata.json
@@ -12,3 +13,4 @@ build
 *.spec
 
 *.local.*
+.mcp.json

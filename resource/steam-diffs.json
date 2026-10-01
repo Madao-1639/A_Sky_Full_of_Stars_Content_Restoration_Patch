@@ -1,0 +1,270 @@
+{
+ "_comment": "Steam 版对 H 场景上下文的**改写范围**（按插入点）。Steam 删减 H 场景时把前后的邻居脚本也改写成\"没有发生过 H\"的语境；本表记录各插入点两侧的实测状态与一句话。`status`：pass=✅ 通 / minor=⚠️ 轻 / hard=❌ 硬。`neighbor` = 该侧的邻居脚本 stem（`null` 表示该插入点此侧无邻居、无需检查，此时 status 仅作原表留档）。**逐条差分数据**（演出/文本记录级/同句数无语音句语义/资源，四来源）见 `seam-diffs.json`；**处理结果**见 `seam-handling.json`。由一次一致性核对生成，数据源＝用户给定的权威表 + `script/seam/seam_profile.py` 的 SEAMS。",
+ "legend": {
+  "pass": "✅ 通",
+  "minor": "⚠️ 轻",
+  "hard": "❌ 硬"
+ },
+ "insertions": [
+  {
+   "id": "yozora_hika_108g_H",
+   "route": "hika",
+   "entry": {
+    "neighbor": "yozora_hika_108f_E",
+    "status": "hard"
+   },
+   "exit": {
+    "neighbor": "yozora_hika_108h_E",
+    "status": "pass"
+   },
+   "note": "`108F_E` 结尾改成\"**……居然睡着了**／我也闭上眼睛\"，H 场景开场即\"嚼…啾噗…\"音效+CG"
+  },
+  {
+   "id": "yozora_hika_103d_H",
+   "route": "hika",
+   "entry": {
+    "neighbor": "yozora_hika_103c_E",
+    "status": "pass"
+   },
+   "exit": {
+    "neighbor": "yozora_hika_103e_E",
+    "status": "hard"
+   },
+   "note": "`103E_E[1]` 把刚演完的性爱写成\"**一百个吻的余韵**\"，`[10]`\"我们亲吻了好多次呢\"（原版是\"初体验的余韵/我们做了呢\"）"
+  },
+  {
+   "id": "yozora_hika_103f",
+   "route": "hika",
+   "entry": {
+    "neighbor": "yozora_hika_103e_E",
+    "status": "minor"
+   },
+   "exit": {
+    "neighbor": null,
+    "status": "pass"
+   },
+   "note": "`103E_E` 结尾删了\"去露天温泉\"改成\"想和你待到早上\"；103f 自带地点交代，冲击有限"
+  },
+  {
+   "id": "yozora_hika_103g_H",
+   "route": "hika",
+   "entry": {
+    "neighbor": null,
+    "status": "pass"
+   },
+   "exit": {
+    "neighbor": "yozora_hika_103h_E",
+    "status": "pass"
+   },
+   "note": "`103H_E` 与原版**逐字相同**，最干净的一处"
+  },
+  {
+   "id": "yozora_hika_110c_H",
+   "route": "hika",
+   "entry": {
+    "neighbor": "yozora_hika_110b_E",
+    "status": "pass"
+   },
+   "exit": {
+    "neighbor": "yozora_hika_110d_E",
+    "status": "minor"
+   },
+   "note": "`110D_E[2]`\"洗清了我的劈腿嫌疑后，小光就去洗澡了\"是**悬空引用**——原版 110c_H 全篇无劈腿剧情"
+  },
+  {
+   "id": "yozora_saya_102c_H",
+   "route": "saya",
+   "entry": {
+    "neighbor": "yozora_saya_102b_E",
+    "status": "hard"
+   },
+   "exit": {
+    "neighbor": "yozora_saya_102d_E",
+    "status": "hard"
+   },
+   "note": "前：`102b_E` 结尾改成\"**不如我们打扑克吧？**\"；后：`102d_E` 开头\"打完扑克喝了茶之后\"（原版是\"**做完爱一起洗了澡**\"）"
+  },
+  {
+   "id": "yozora_saya_107b_H",
+   "route": "saya",
+   "entry": {
+    "neighbor": "yozora_saya_107a_E",
+    "status": "hard"
+   },
+   "exit": {
+    "neighbor": "yozora_saya_107c_E",
+    "status": "minor"
+   },
+   "note": "前：`107a_E` 改成\"沙夜甩下话先走出车厢／我赶忙追上去\"，而 107b_H 第 0/1 句\"也没人说过不要什么的话吧／**我始终抱紧着她**\"是接原版\"追上去把沙夜抱进怀里\"写的"
+  },
+  {
+   "id": "yozora_saya_107d_H",
+   "route": "saya",
+   "entry": {
+    "neighbor": null,
+    "status": "hard"
+   },
+   "exit": {
+    "neighbor": "yozora_saya_107e_E",
+    "status": "hard"
+   },
+   "note": "前：`107c_E` 收在\"沙夜泡晕、我赶忙救起\"；后：`107e_E` 开头\"**救起被温泉泡得眼冒金星的沙夜后**…\"会主动否认刚播完的 H"
+  },
+  {
+   "id": "yozora_saya_101j_H",
+   "route": "saya",
+   "entry": {
+    "neighbor": "yozora_saya_101i_E",
+    "status": "pass"
+   },
+   "exit": {
+    "neighbor": "yozora_saya_102_E",
+    "status": "pass"
+   },
+   "note": "四线里唯一进出都通的；但副作用见下方\"横向发现\""
+  },
+  {
+   "id": "yozora_ori_115_H",
+   "route": "ori",
+   "entry": {
+    "neighbor": "yozora_ori_114b_E",
+    "status": "minor"
+   },
+   "exit": {
+    "neighbor": "yozora_ori_116_E",
+    "status": "hard"
+   },
+   "note": "后：`116_E` 开头倒退回\"**暖桌内的攻防战暂时停战**／只动用双腿的战斗还挺累人的\"，并重演\"腿不小心碰到→故意戳弄\""
+  },
+  {
+   "id": "yozora_ori_118_H",
+   "route": "ori",
+   "entry": {
+    "neighbor": null,
+    "status": "minor"
+   },
+   "exit": {
+    "neighbor": "yozora_ori_119_E",
+    "status": "hard"
+   },
+   "note": "前：`117a_E` 删掉结尾\"两小时班＋借浴室\"；后：`119_E` 全文改写成\"初吻后又吻了好多次／打着密谈旗号闲聊\""
+  },
+  {
+   "id": "yozora_ori_123_H",
+   "route": "ori",
+   "entry": {
+    "neighbor": "yozora_ori_122b_E",
+    "status": "hard"
+   },
+   "exit": {
+    "neighbor": "yozora_ori_124_E",
+    "status": "pass"
+   },
+   "note": "前：`122b_E` 结尾改成\"**山坡看星星**\"，H 场景却从\"无人前台选房入住\"开场"
+  },
+  {
+   "id": "yozora_ori_129_H",
+   "route": "ori",
+   "entry": {
+    "neighbor": "yozora_ori_128c_E",
+    "status": "hard"
+   },
+   "exit": {
+    "neighbor": "yozora_ori_130_E",
+    "status": "pass"
+   },
+   "note": "前：`128c_E` 砍掉 46 句（含\"**在大浴场前见吧**\"），H 场景直接\"在大浴场前与织姬重逢\""
+  },
+  {
+   "id": "yozora_koro_121_H",
+   "route": "koro",
+   "entry": {
+    "neighbor": "yozora_koro_120_E",
+    "status": "hard"
+   },
+   "exit": {
+    "neighbor": "yozora_koro_122_E",
+    "status": "hard"
+   },
+   "note": "后：`122_E[0]`\"我们不断拥吻，确认着彼此的爱意\"、`[23]`\"**不是刚说过明天再亲吻吗**\""
+  },
+  {
+   "id": "yozora_koro_124_H",
+   "route": "koro",
+   "entry": {
+    "neighbor": "yozora_koro_123a_E",
+    "status": "hard"
+   },
+   "exit": {
+    "neighbor": "yozora_koro_125_E",
+    "status": "pass"
+   },
+   "note": "前：`123a_E` 停在**公交站**的叮嘱，H 场景在来露娜家房间（原版 34 句\"上楼/参观房间/聊武一/再做一次的同意\"全被删）"
+  },
+  {
+   "id": "yozora_koro_126_H",
+   "route": "koro",
+   "entry": {
+    "neighbor": "yozora_koro_125b_E",
+    "status": "hard"
+   },
+   "exit": {
+    "neighbor": null,
+    "status": "pass"
+   },
+   "note": "前：`125b_E` 改成\"**今天先送你回家**，她虽然遗憾但最终还是同意了\""
+  },
+  {
+   "id": "yozora_koro_131_H",
+   "route": "koro",
+   "entry": {
+    "neighbor": "yozora_koro_130_ep1_E",
+    "status": "hard"
+   },
+   "exit": {
+    "neighbor": "yozora_koro_132_ep2_E",
+    "status": "minor"
+   },
+   "note": "前：`130_ep1_E` 改成\"**流星的声音让我感到一阵心安，缓缓闭上了眼睛**／这是人家有生以来最棒的夜晚\"；后：`132_ep2_E` 把\"又做了好几次\"改成\"都睡了过去\""
+  },
+  {
+   "id": "yozora_koro_115_H",
+   "route": "koro",
+   "entry": {
+    "neighbor": "yozora_koro_114b_E",
+    "status": "minor"
+   },
+   "exit": {
+    "neighbor": "yozora_koro_116_E",
+    "status": "pass"
+   },
+   "note": "前：`114b_E` 把\"脱衣上床\"换成爱的独白（\"喜欢到了痛彻心扉的地步\"），动作铺垫缺失"
+  },
+  {
+   "id": "yozora_koro_127",
+   "route": "koro",
+   "entry": {
+    "neighbor": null,
+    "status": "pass"
+   },
+   "exit": {
+    "neighbor": "yozora_koro_128_E",
+    "status": "pass"
+   },
+   "note": "`128_E` 与原版逐字一致（仅换行）"
+  },
+  {
+   "id": "yozora_ori_117b",
+   "route": "ori",
+   "entry": {
+    "neighbor": "yozora_ori_117a_E",
+    "status": "minor"
+   },
+   "exit": {
+    "neighbor": null,
+    "status": "pass"
+   },
+   "note": "前：`117a_E` 删掉\"两小时班/借浴室\"→ `117b` 的\"2 小时过去了\"\"你洗过澡了吧\"缺前因；`117b→118_H` 本身无损"
+  }
+ ]
+}

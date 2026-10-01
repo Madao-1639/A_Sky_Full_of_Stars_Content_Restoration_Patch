@@ -1,0 +1,880 @@
+{
+ "_comment": "差分接缝的**分脚本处理记录**：每个重建脚本（成员名 = Steam 名去掉 `_E`）差分段落还原了哪些内容、动了哪些资源。`restored_records` = 取原版文本的记录条数（其余记录沿用 Steam 官中）；`whole_blocks` = 按原版整块重建的原版记录区间（`[[lo,hi]]`，闭区间，原版记录序号）；`renamed` = 立绘/事件 CG 的隔离改名（原版名 → 隔离名）；`resources_added` = 为引用它而新增部署的原版资源（Steam 缺失的语音/背景等）；`achievements_injected` = 补注入的 `CG_ACHIEVEMENT` 调用数。差分数据的来源见 `seam-diffs.json`；同名冲突的取舍见 `resource-decisions.json`。**本表为权威记录、不可再生成**（构建时用的逐场景草稿已随 `tmp/` 清理删除）；实机验证若发现不一致，直接改本表。",
+ "scripts": [
+  {
+   "new": "yozora_hika_103e",
+   "steam_from": "yozora_hika_103e_E",
+   "restored_records": 21,
+   "whole_blocks": [],
+   "renamed": {
+    "Aひかり_02L.pna": "ORG_Aひかり_02L.PNA",
+    "Aひかり_02M.pna": "ORG_Aひかり_02M.PNA"
+   },
+   "resources_added": [
+    "HIKA_2127.ogg",
+    "HIKA_2128.ogg",
+    "HIKA_2129.ogg",
+    "HIKA_2130.ogg",
+    "HIKA_2150.ogg",
+    "HIKA_2151.ogg",
+    "HIKA_2152.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_hika_103c",
+   "steam_from": "yozora_hika_103c_E",
+   "restored_records": 0,
+   "whole_blocks": [],
+   "renamed": {
+    "Aひかり_02L.pna": "ORG_Aひかり_02L.PNA",
+    "Aひかり_02M.pna": "ORG_Aひかり_02M.PNA",
+    "Aひかり_03X.pna": "ORG_Aひかり_03X.PNA"
+   },
+   "resources_added": [],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_hika_103h",
+   "steam_from": "yozora_hika_103h_E",
+   "restored_records": 0,
+   "whole_blocks": [],
+   "renamed": {
+    "Aひかり_02L.pna": "ORG_Aひかり_02L.PNA",
+    "Aひかり_02M.pna": "ORG_Aひかり_02M.PNA",
+    "B沙夜_01L.pna": "ORG_B沙夜_01L.PNA"
+   },
+   "resources_added": [],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_hika_108f",
+   "steam_from": "yozora_hika_108f_E",
+   "restored_records": 8,
+   "whole_blocks": [],
+   "renamed": {
+    "Aひかり_02L.pna": "ORG_Aひかり_02L.PNA",
+    "Aひかり_02M.pna": "ORG_Aひかり_02M.PNA"
+   },
+   "resources_added": [
+    "HIKA_2890.ogg",
+    "HIKA_2891.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_hika_108h",
+   "steam_from": "yozora_hika_108h_E",
+   "restored_records": 10,
+   "whole_blocks": [
+    [
+     23,
+     32
+    ]
+   ],
+   "renamed": {
+    "Aひかり_02M.pna": "ORG_Aひかり_02M.PNA"
+   },
+   "resources_added": [
+    "HIKA_3017.ogg",
+    "HIKA_3018.ogg",
+    "HIKA_3019.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_hika_110b",
+   "steam_from": "yozora_hika_110b_E",
+   "restored_records": 18,
+   "whole_blocks": [
+    [
+     68,
+     80
+    ]
+   ],
+   "renamed": {
+    "HIK_12L.pna": "HIK_91L.PNA",
+    "HIK_12S.pna": "HIK_91S.PNA"
+   },
+   "resources_added": [
+    "HIKA_3207.ogg",
+    "HIKA_3208.ogg",
+    "HIKA_3209.ogg"
+   ],
+   "achievements_injected": 3,
+   "done": true
+  },
+  {
+   "new": "yozora_hika_110d",
+   "steam_from": "yozora_hika_110d_E",
+   "restored_records": 2,
+   "whole_blocks": [],
+   "renamed": {
+    "Aひかり_02L.pna": "ORG_Aひかり_02L.PNA"
+   },
+   "resources_added": [],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_saya_101i",
+   "steam_from": "yozora_saya_101i_E",
+   "restored_records": 15,
+   "whole_blocks": [
+    [
+     168,
+     171
+    ],
+    [
+     180,
+     190
+    ]
+   ],
+   "renamed": {
+    "B沙夜_01L.pna": "ORG_B沙夜_01L.PNA",
+    "B沙夜_03L.pna": "ORG_B沙夜_03L.PNA"
+   },
+   "resources_added": [
+    "SAYA_2084.ogg",
+    "SAYA_2085.ogg",
+    "SAYA_2088.ogg",
+    "SAYA_2089.ogg",
+    "SAYA_2090.ogg"
+   ],
+   "achievements_injected": 1,
+   "done": true
+  },
+  {
+   "new": "yozora_saya_102",
+   "steam_from": "yozora_saya_102_E",
+   "restored_records": 22,
+   "whole_blocks": [
+    [
+     101,
+     122
+    ]
+   ],
+   "renamed": {
+    "Aひかり_02L.pna": "ORG_Aひかり_02L.PNA",
+    "Aひかり_02M.pna": "ORG_Aひかり_02M.PNA",
+    "B沙夜_01L.pna": "ORG_B沙夜_01L.PNA",
+    "B沙夜_03L.pna": "ORG_B沙夜_03L.PNA",
+    "Dころな_01L.pna": "ORG_Dころな_01L.PNA"
+   },
+   "resources_added": [
+    "SAYA_2191.ogg",
+    "SAYA_2192.ogg",
+    "SAYA_2193.ogg",
+    "SAYA_2194.ogg",
+    "SAYA_2195.ogg",
+    "SAYA_2196.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_saya_102b",
+   "steam_from": "yozora_saya_102b_E",
+   "restored_records": 54,
+   "whole_blocks": [
+    [
+     16,
+     69
+    ]
+   ],
+   "renamed": {
+    "B沙夜_01L.pna": "ORG_B沙夜_01L.PNA",
+    "B沙夜_02L.pna": "ORG_B沙夜_02L.PNA",
+    "B沙夜_03L.pna": "ORG_B沙夜_03L.PNA"
+   },
+   "resources_added": [
+    "SAYA_2227.ogg",
+    "SAYA_2228.ogg",
+    "SAYA_2229.ogg",
+    "SAYA_2230.ogg",
+    "SAYA_2231.ogg",
+    "SAYA_2232.ogg",
+    "SAYA_2233.ogg",
+    "SAYA_2234.ogg",
+    "SAYA_2235.ogg",
+    "SAYA_2236.ogg",
+    "SAYA_2237.ogg",
+    "SAYA_2238.ogg",
+    "SAYA_2239.ogg",
+    "SAYA_2240.ogg",
+    "SAYA_2241.ogg",
+    "SAYA_2242.ogg",
+    "SAYA_2243.ogg",
+    "SAYA_2244.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_saya_102d",
+   "steam_from": "yozora_saya_102d_E",
+   "restored_records": 10,
+   "whole_blocks": [
+    [
+     0,
+     9
+    ]
+   ],
+   "renamed": {
+    "B沙夜_01L.pna": "ORG_B沙夜_01L.PNA",
+    "B沙夜_03L.pna": "ORG_B沙夜_03L.PNA"
+   },
+   "resources_added": [
+    "SAYA_2421.ogg",
+    "SAYA_2422.ogg",
+    "SAYA_2423.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_saya_107a",
+   "steam_from": "yozora_saya_107a_E",
+   "restored_records": 0,
+   "whole_blocks": [],
+   "renamed": {
+    "B沙夜_01L.pna": "ORG_B沙夜_01L.PNA",
+    "B沙夜_02L.pna": "ORG_B沙夜_02L.PNA",
+    "B沙夜_03L.pna": "ORG_B沙夜_03L.PNA"
+   },
+   "resources_added": [],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_saya_107c",
+   "steam_from": "yozora_saya_107c_E",
+   "restored_records": 66,
+   "whole_blocks": [
+    [
+     2,
+     62
+    ]
+   ],
+   "renamed": {},
+   "resources_added": [
+    "SAYA_2984.ogg",
+    "SAYA_2985.ogg",
+    "SAYA_2986.ogg",
+    "SAYA_2987.ogg",
+    "SAYA_2988.ogg",
+    "SAYA_2989.ogg",
+    "SAYA_2990.ogg",
+    "SAYA_2991.ogg",
+    "SAYA_2992.ogg",
+    "SAYA_2993.ogg",
+    "SAYA_2994.ogg",
+    "SAYA_2995.ogg",
+    "SAYA_2996.ogg",
+    "SAYA_2997.ogg",
+    "SAYA_2998.ogg",
+    "SAYA_2999.ogg",
+    "SAYA_3000.ogg",
+    "SAYA_3001.ogg",
+    "SAYA_3002.ogg",
+    "SAYA_3003.ogg",
+    "SAY_22L.pna"
+   ],
+   "achievements_injected": 14,
+   "done": true
+  },
+  {
+   "new": "yozora_saya_107e",
+   "steam_from": "yozora_saya_107e_E",
+   "restored_records": 22,
+   "whole_blocks": [
+    [
+     0,
+     21
+    ]
+   ],
+   "renamed": {
+    "B沙夜_01L.pna": "ORG_B沙夜_01L.PNA",
+    "B沙夜_02L.pna": "ORG_B沙夜_02L.PNA",
+    "B沙夜_03L.pna": "ORG_B沙夜_03L.PNA"
+   },
+   "resources_added": [
+    "SAYA_3108.ogg",
+    "SAYA_3109.ogg",
+    "SAYA_3110.ogg",
+    "SAYA_3111.ogg",
+    "SAYA_3112.ogg",
+    "SAYA_3113.ogg",
+    "SAYA_3114.ogg",
+    "SAYA_3115.ogg",
+    "SAYA_3116.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_ori_114b",
+   "steam_from": "yozora_ori_114b_E",
+   "restored_records": 19,
+   "whole_blocks": [
+    [
+     44,
+     61
+    ]
+   ],
+   "renamed": {
+    "C織姫_01L.pna": "ORG_C織姫_01L.PNA",
+    "C織姫_03L.pna": "ORG_C織姫_03L.PNA"
+   },
+   "resources_added": [
+    "ORI_1472.ogg",
+    "ORI_1473.ogg",
+    "ORI_1474.ogg",
+    "ORI_1475.ogg",
+    "ORI_1476.ogg",
+    "ORI_1477.ogg",
+    "ORI_1478.ogg",
+    "ORI_1479.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_ori_116",
+   "steam_from": "yozora_ori_116_E",
+   "restored_records": 48,
+   "whole_blocks": [
+    [
+     0,
+     16
+    ],
+    [
+     17,
+     18
+    ],
+    [
+     40,
+     45
+    ]
+   ],
+   "renamed": {
+    "C織姫_01L.pna": "ORG_C織姫_01L.PNA",
+    "C織姫_03L.pna": "ORG_C織姫_03L.PNA",
+    "ORI_11S.pna": "ORI_90S.PNA"
+   },
+   "resources_added": [
+    "ORI_1613.ogg",
+    "ORI_1614.ogg",
+    "ORI_1615.ogg",
+    "ORI_1616.ogg",
+    "ORI_1617.ogg",
+    "ORI_1625.ogg",
+    "ORI_1626.ogg",
+    "ORI_1627.ogg",
+    "ORI_1628.ogg",
+    "TAKE_0345.ogg",
+    "TAKE_0346.ogg",
+    "TAKE_0347.ogg",
+    "TAKE_0348.ogg",
+    "TAKE_0349.ogg",
+    "TAKE_0350.ogg",
+    "TAKE_0351.ogg",
+    "TAKE_0352.ogg",
+    "TAKE_0353.ogg",
+    "TAKE_0354.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_ori_117a",
+   "steam_from": "yozora_ori_117a_E",
+   "restored_records": 86,
+   "whole_blocks": [
+    [
+     51,
+     136
+    ]
+   ],
+   "renamed": {
+    "C織姫_01L.pna": "ORG_C織姫_01L.PNA",
+    "C織姫_03L.pna": "ORG_C織姫_03L.PNA",
+    "ORI_12S.pna": "ORI_91S.PNA",
+    "ORI_11S.pna": "ORI_90S.PNA"
+   },
+   "resources_added": [
+    "ORI_1670.ogg",
+    "ORI_1671.ogg",
+    "ORI_1672.ogg",
+    "ORI_1673.ogg",
+    "ORI_1674.ogg",
+    "ORI_1675.ogg",
+    "ORI_1676.ogg",
+    "ORI_1677.ogg",
+    "ORI_1678.ogg",
+    "ORI_1679.ogg",
+    "ORI_1680.ogg",
+    "ORI_1681.ogg",
+    "ORI_1682.ogg",
+    "ORI_1683.ogg",
+    "ORI_1684.ogg",
+    "ORI_1685.ogg",
+    "ORI_1686.ogg",
+    "ORI_1687.ogg",
+    "ORI_1688.ogg",
+    "ORI_1689.ogg",
+    "ORI_1691.ogg",
+    "ORI_1692.ogg",
+    "ORI_1693.ogg",
+    "ORI_1694.ogg",
+    "ORI_1695.ogg",
+    "ORI_1696.ogg",
+    "ORI_1697.ogg",
+    "ORI_1698.ogg",
+    "ORI_1699.ogg",
+    "ORI_1700.ogg"
+   ],
+   "achievements_injected": 16,
+   "done": true
+  },
+  {
+   "new": "yozora_ori_119",
+   "steam_from": "yozora_ori_119_E",
+   "restored_records": 36,
+   "whole_blocks": [
+    [
+     0,
+     33
+    ]
+   ],
+   "renamed": {
+    "C織姫_01L.pna": "ORG_C織姫_01L.PNA",
+    "C織姫_03L.pna": "ORG_C織姫_03L.PNA"
+   },
+   "resources_added": [
+    "ORI_2008.ogg",
+    "ORI_2009.ogg",
+    "ORI_2010.ogg",
+    "ORI_2011.ogg",
+    "ORI_2012.ogg",
+    "ORI_2013.ogg",
+    "ORI_2014.ogg",
+    "ORI_2015.ogg",
+    "ORI_2016.ogg",
+    "ORI_2017.ogg",
+    "ORI_2018.ogg",
+    "ORI_2019.ogg",
+    "ORI_2020.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_ori_122b",
+   "steam_from": "yozora_ori_122b_E",
+   "restored_records": 89,
+   "whole_blocks": [
+    [
+     0,
+     60
+    ],
+    [
+     80,
+     81
+    ],
+    [
+     87,
+     111
+    ]
+   ],
+   "renamed": {
+    "C織姫_01L.pna": "ORG_C織姫_01L.PNA",
+    "C織姫_03L.pna": "ORG_C織姫_03L.PNA",
+    "C織姫_03X.pna": "ORG_C織姫_03X.PNA"
+   },
+   "resources_added": [
+    "BG_07C_X1.png",
+    "ORI_2150.ogg",
+    "ORI_2151.ogg",
+    "ORI_2152.ogg",
+    "ORI_2153.ogg",
+    "ORI_2154.ogg",
+    "ORI_2155.ogg",
+    "ORI_2156.ogg",
+    "ORI_2157.ogg",
+    "ORI_2158.ogg",
+    "ORI_2159.ogg",
+    "ORI_2160.ogg",
+    "ORI_2161.ogg",
+    "ORI_2162.ogg",
+    "ORI_2163.ogg",
+    "ORI_2164.ogg",
+    "ORI_2165.ogg",
+    "ORI_2166.ogg",
+    "ORI_2167.ogg",
+    "ORI_2168.ogg",
+    "ORI_2169.ogg",
+    "ORI_2170.ogg",
+    "ORI_2171.ogg",
+    "ORI_2172.ogg",
+    "ORI_2173.ogg",
+    "ORI_2174.ogg",
+    "ORI_2185.ogg",
+    "ORI_2186.ogg",
+    "ORI_2187.ogg",
+    "ORI_2188.ogg",
+    "ORI_2189.ogg",
+    "ORI_2190.ogg",
+    "ORI_2191.ogg",
+    "ORI_2192.ogg",
+    "ORI_2193.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_ori_124",
+   "steam_from": "yozora_ori_124_E",
+   "restored_records": 0,
+   "whole_blocks": [],
+   "renamed": {
+    "C織姫_01L.pna": "ORG_C織姫_01L.PNA",
+    "Dころな_01L.pna": "ORG_Dころな_01L.PNA",
+    "Dころな_03L.pna": "ORG_Dころな_03L.PNA"
+   },
+   "resources_added": [],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_ori_128c",
+   "steam_from": "yozora_ori_128c_E",
+   "restored_records": 52,
+   "whole_blocks": [
+    [
+     11,
+     12
+    ],
+    [
+     77,
+     126
+    ]
+   ],
+   "renamed": {
+    "C織姫_01L.pna": "ORG_C織姫_01L.PNA",
+    "C織姫_03L.pna": "ORG_C織姫_03L.PNA",
+    "Dころな_01L.pna": "ORG_Dころな_01L.PNA",
+    "C織姫_01X.pna": "ORG_C織姫_01X.PNA",
+    "C織姫_03X.pna": "ORG_C織姫_03X.PNA"
+   },
+   "resources_added": [
+    "ORI_2797.ogg",
+    "ORI_2798.ogg",
+    "ORI_2799.ogg",
+    "ORI_2800.ogg",
+    "ORI_2801.ogg",
+    "ORI_2802.ogg",
+    "ORI_2803.ogg",
+    "ORI_2804.ogg",
+    "ORI_2805.ogg",
+    "ORI_2806.ogg",
+    "ORI_2807.ogg",
+    "ORI_2808.ogg",
+    "ORI_2809.ogg",
+    "ORI_2810.ogg",
+    "ORI_2811.ogg",
+    "ORI_2812.ogg",
+    "ORI_2813.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_ori_130",
+   "steam_from": "yozora_ori_130_E",
+   "restored_records": 0,
+   "whole_blocks": [],
+   "renamed": {
+    "B沙夜_01L.pna": "ORG_B沙夜_01L.PNA",
+    "B沙夜_03L.pna": "ORG_B沙夜_03L.PNA",
+    "C織姫_01L.pna": "ORG_C織姫_01L.PNA",
+    "C織姫_03L.pna": "ORG_C織姫_03L.PNA",
+    "Dころな_01L.pna": "ORG_Dころな_01L.PNA"
+   },
+   "resources_added": [],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_koro_114b",
+   "steam_from": "yozora_koro_114b_E",
+   "restored_records": 10,
+   "whole_blocks": [
+    [
+     95,
+     103
+    ]
+   ],
+   "renamed": {
+    "B沙夜_03L.pna": "ORG_B沙夜_03L.PNA",
+    "Dころな_01L.pna": "ORG_Dころな_01L.PNA",
+    "Dころな_02L.pna": "ORG_Dころな_02L.PNA",
+    "Dころな_03L.pna": "ORG_Dころな_03L.PNA",
+    "Dころな_02X.pna": "ORG_Dころな_02X.PNA"
+   },
+   "resources_added": [
+    "KORO_1508.ogg",
+    "KORO_1524.ogg",
+    "KORO_1525.ogg",
+    "KORO_1526.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_koro_116",
+   "steam_from": "yozora_koro_116_E",
+   "restored_records": 0,
+   "whole_blocks": [],
+   "renamed": {
+    "Dころな_01L.pna": "ORG_Dころな_01L.PNA",
+    "Dころな_03L.pna": "ORG_Dころな_03L.PNA"
+   },
+   "resources_added": [],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_koro_120",
+   "steam_from": "yozora_koro_120_E",
+   "restored_records": 47,
+   "whole_blocks": [
+    [
+     108,
+     153
+    ]
+   ],
+   "renamed": {
+    "Dころな_01L.pna": "ORG_Dころな_01L.PNA",
+    "Dころな_02L.pna": "ORG_Dころな_02L.PNA",
+    "Dころな_03L.pna": "ORG_Dころな_03L.PNA",
+    "Dころな_01X.pna": "ORG_Dころな_01X.PNA"
+   },
+   "resources_added": [
+    "KORO_1793.ogg",
+    "KORO_1794.ogg",
+    "KORO_1795.ogg",
+    "KORO_1796.ogg",
+    "KORO_1797.ogg",
+    "KORO_1798.ogg",
+    "KORO_1799.ogg",
+    "KORO_1800.ogg",
+    "KORO_1801.ogg",
+    "KORO_1802.ogg",
+    "KORO_1803.ogg",
+    "KORO_1804.ogg",
+    "KORO_1805.ogg",
+    "KORO_1806.ogg",
+    "KORO_1807.ogg",
+    "KORO_1808.ogg",
+    "KORO_1809.ogg",
+    "KORO_1810.ogg",
+    "KORO_1811.ogg",
+    "KORO_1812.ogg",
+    "KORO_1813.ogg",
+    "KORO_1814.ogg",
+    "KORO_1815.ogg"
+   ],
+   "achievements_injected": 1,
+   "done": true
+  },
+  {
+   "new": "yozora_koro_122",
+   "steam_from": "yozora_koro_122_E",
+   "restored_records": 63,
+   "whole_blocks": [
+    [
+     27,
+     59
+    ],
+    [
+     60,
+     63
+    ],
+    [
+     88,
+     95
+    ]
+   ],
+   "renamed": {
+    "Dころな_01L.pna": "ORG_Dころな_01L.PNA",
+    "Dころな_02L.pna": "ORG_Dころな_02L.PNA",
+    "Dころな_03L.pna": "ORG_Dころな_03L.PNA"
+   },
+   "resources_added": [
+    "KORO_2048.ogg",
+    "KORO_2049.ogg",
+    "KORO_2050.ogg",
+    "KORO_2051.ogg",
+    "KORO_2052.ogg",
+    "KORO_2060.ogg",
+    "KORO_2061.ogg",
+    "KORO_2062.ogg",
+    "KORO_2063.ogg",
+    "KORO_2064.ogg",
+    "KORO_2065.ogg",
+    "KORO_2066.ogg",
+    "KORO_2067.ogg",
+    "KORO_2068.ogg",
+    "KORO_2069.ogg",
+    "KORO_2070.ogg",
+    "KORO_2071.ogg",
+    "KORO_2072.ogg",
+    "KORO_2073.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_koro_123a",
+   "steam_from": "yozora_koro_123a_E",
+   "restored_records": 36,
+   "whole_blocks": [
+    [
+     18,
+     50
+    ]
+   ],
+   "renamed": {
+    "Dころな_01L.pna": "ORG_Dころな_01L.PNA",
+    "Dころな_03L.pna": "ORG_Dころな_03L.PNA"
+   },
+   "resources_added": [
+    "KORO_2120.ogg",
+    "KORO_2130.ogg",
+    "KORO_2131.ogg",
+    "KORO_2132.ogg",
+    "KORO_2133.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_koro_125",
+   "steam_from": "yozora_koro_125_E",
+   "restored_records": 1,
+   "whole_blocks": [],
+   "renamed": {
+    "Dころな_01L.pna": "ORG_Dころな_01L.PNA",
+    "Dころな_02L.pna": "ORG_Dころな_02L.PNA",
+    "Dころな_03L.pna": "ORG_Dころな_03L.PNA"
+   },
+   "resources_added": [],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_koro_125b",
+   "steam_from": "yozora_koro_125b_E",
+   "restored_records": 41,
+   "whole_blocks": [
+    [
+     19,
+     59
+    ]
+   ],
+   "renamed": {
+    "Dころな_01L.pna": "ORG_Dころな_01L.PNA",
+    "Dころな_02L.pna": "ORG_Dころな_02L.PNA",
+    "Dころな_03L.pna": "ORG_Dころな_03L.PNA"
+   },
+   "resources_added": [
+    "KORO_2362.ogg",
+    "KORO_2363.ogg",
+    "KORO_2364.ogg",
+    "KORO_2365.ogg",
+    "KORO_2366.ogg",
+    "KORO_2367.ogg",
+    "KORO_2368.ogg",
+    "KORO_2369.ogg",
+    "KORO_2370.ogg",
+    "KORO_2371.ogg",
+    "KORO_2372.ogg",
+    "KORO_2373.ogg",
+    "KORO_2374.ogg",
+    "KORO_2375.ogg",
+    "KORO_2376.ogg",
+    "KORO_2377.ogg",
+    "KORO_2378.ogg",
+    "KORO_2379.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_koro_128",
+   "steam_from": "yozora_koro_128_E",
+   "restored_records": 0,
+   "whole_blocks": [],
+   "renamed": {
+    "Dころな_01L.pna": "ORG_Dころな_01L.PNA",
+    "Dころな_03L.pna": "ORG_Dころな_03L.PNA"
+   },
+   "resources_added": [],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_koro_130_ep1",
+   "steam_from": "yozora_koro_130_ep1_E",
+   "restored_records": 4,
+   "whole_blocks": [],
+   "renamed": {
+    "B沙夜_01L.pna": "ORG_B沙夜_01L.PNA",
+    "C織姫_01L.pna": "ORG_C織姫_01L.PNA",
+    "C織姫_03L.pna": "ORG_C織姫_03L.PNA",
+    "Dころな_01L.pna": "ORG_Dころな_01L.PNA",
+    "Dころな_02L.pna": "ORG_Dころな_02L.PNA",
+    "Dころな_03L.pna": "ORG_Dころな_03L.PNA",
+    "Dころな_03X.pna": "ORG_Dころな_03X.PNA"
+   },
+   "resources_added": [
+    "Cutin_46A.png",
+    "KORO_2790.ogg",
+    "KORO_2793.ogg",
+    "KORO_2794.ogg",
+    "KORO_2795.ogg"
+   ],
+   "achievements_injected": 0,
+   "done": true
+  },
+  {
+   "new": "yozora_koro_132_ep2",
+   "steam_from": "yozora_koro_132_ep2_E",
+   "restored_records": 10,
+   "whole_blocks": [
+    [
+     0,
+     5
+    ],
+    [
+     12,
+     14
+    ]
+   ],
+   "renamed": {
+    "Dころな_01L.pna": "ORG_Dころな_01L.PNA",
+    "Dころな_02L.pna": "ORG_Dころな_02L.PNA",
+    "Dころな_03L.pna": "ORG_Dころな_03L.PNA"
+   },
+   "resources_added": [],
+   "achievements_injected": 0,
+   "done": true
+  }
+ ]
+}

@@ -7,7 +7,7 @@
 **核心目标**：
 1. 保留 Steam 成就系统
 2. 恢复完整 H 场景内容
-3. 零破坏性修改（不替换 Steam 原有资源）
+3. 零破坏性修改（不替换 Steam 原有素材；有意删除的 Steam 脚本记录在 `resource/removed-scripts.json`）
 
 ## 项目背景
 
@@ -52,10 +52,12 @@
 - 任务完成后立即清理 `tmp/` 目录
 - 重要的中间结果应移动到 `releases/` 或其他持久化目录
 - 不将临时文件提交到版本控制
+- **磁盘空间不足时**：多半是 **Git LFS 的 tmp** 目录塞满，**直接删除即可**（不影响仓库内容，
+  只影响 LFS 的传输缓存）
 
 **脚本存放规则**：
 - **长期复用的工具**：放入 `tool/`（如 arcbuild.py、ws2.py）
-- **项目流程脚本**：放入 `script/`（如 build_patch.py、final_verification.py）
+- **项目流程脚本**：放入 `script/`（如 generate_payload.py、final_verification.py）
 - **可复用资源与映射表**：放入 `resource/`（JSON，清单与字段说明见 `resource/README.md`）
 - **一次性/临时脚本**：放入 `tmp/`（任务结束后删除）
 
@@ -72,7 +74,7 @@
 
 **原则**：开发和测试使用完整文件（asset/），发布时才制作增量包（payload/）
 
-### 3. 库和脚本组织
+### 4. 库和脚本组织
 
 **tool/ 是 Python 包**（通过 `__init__.py`），提供通用库：
 
@@ -80,10 +82,14 @@
 tool/
 ├── __init__.py      （包标记）
 ├── arcbuild.py      （Arc 文件读写）
-├── ws2.py           （WS2 脚本编解码 + 成就注入）
 ├── arcstream.py     （大文件流式处理）
-├── resources.py     （读取 resource/ 下的映射表）
-└── lng.py           （文本编码）
+├── ws2.py           （WS2 脚本编解码 + 成就注入）
+├── ws2disasm.py     （WS2 线性反汇编器）
+├── ws2patch.py      （WS2 补丁原语：偏移重定位 / 引用扫描 / 策略加载）
+├── pna.py           （PNA 图层容器读写）
+├── lng.py           （本地化文本 .lng 编解码）
+├── cht_cipher.py    （民汉繁中 exe 密码的离线参考实现）
+└── resources.py     （读取 resource/ 下的映射表）
 ```
 
 脚本通过 `from tool import arcbuild, ws2` 等方式导入，所有脚本使用相对于项目根的路径。从项目根执行：
@@ -94,7 +100,7 @@ bash script/pack.sh                  # 打包 exe 到 releases/
 python script/final_verification.py  # 全量验证
 ```
 
-### 4. 脚本开发规范
+### 5. 脚本开发规范
 
 **幂等性**：
 - 所有工具脚本必须支持重复运行，临时文件除外
@@ -171,43 +177,7 @@ if pattern in decoded:
 - 搜索时使用 `.lower()` 进行不区分大小写匹配
 - 示例：`EFBG00_01.PNG` vs `efbg00_01.png`（实际文件是 `.PNG`）
 
-### 4. 命名规范
-
-**脚本命名**：
-- `*_E.ws2`：Steam 版脚本，引用 Steam 资源
-- `*_H.ws2`：原版 H 场景脚本，引用 ORG_* 或 9X 段位资源
-- `*_H_E.ws2`：Steam 过审 H 场景脚本，引用 Steam 资源
-
-**PNA 资源命名**：
-
-*事件 CG（路线+场景编号）*：
-- 格式：`路线代码_场景编号[L/S].pna`
-- 路线代码：COM（共通）、HIK（ひかり）、SAY（沙夜）、ORI（織姫）、KOR（ころな）
-- 示例：`COM_04L.pna`, `HIK_17L.pna`, `SAY_20L.pna`
-
-*角色立绘（字母前缀+角色名+差分）*：
-- 格式：`[字母前缀]+角色日文名_差分编号[L/M/S/W/X].pna`
-- 字母前缀：A=ひかり, B=沙夜, C=織姫, D=ころな
-- 示例：`Aひかり_01M.pna`, `B沙夜_01L.pna`
-
-*补丁资源命名策略*：
-
-- **1. Steam 版差分的 CG - 同名冲突（使用 9X 段位）**：
-  - 条件：Steam 版和原版**文件名相同但内容不同**（哈希不同）
-  - 命名：使用 `9X` 段位编号（90-99）
-  - 规则：一对 CG（L/S）只要有一个变体冲突就整对改名，但**只部署脚本真正引用的变体**
-  - **清单、逐变体实测状态、以及每个补丁名被哪些场景引用 → `resource/cg-conflicts.json`**
-
-- **2. Steam 版删除的 CG（直接使用原版编号）**：
-  - 条件：Steam 版中**不存在**该编号的 CG
-  - 命名：**直接继承原版编号**（不使用特殊命名）
-  - 编号段：`HIK_15~23`、`SAY_16~23`、`ORI_13~19`、`KOR_11~19`（各含 L/S）
-
-- **3. 原版立绘（无冲突，统一使用 ORG_ 前缀）**：
-  - `ORG_[字母]角色名_##[L/M/S/W/X].pna`
-  - 示例：`ORG_Aひかり_02L.pna`, `ORG_B沙夜_01L.pna`
-
-### 5. 验收流程
+### 6. 验收流程
 
 每次重大修改后必须执行：
 
@@ -224,26 +194,12 @@ if pattern in decoded:
 - 规范化后哈希稳定，安装器校验通过
 - 详见 `doc/lessons-learned.md` 第 8 节
 
-### 6. 备份策略
+### 7. 备份策略
 
 **重要修改前必须备份**：
 - Arc 归档修改前备份（如 `Rio.arc.before_xxx`）
 - 记录备份时间和修改原因
 - 验证备份文件完整性
-
-### 7. 版本控制
-
-**不提交的文件**：
-- `tmp/` 目录下的所有文件
-- 备份文件（*.before_*）
-- 临时输出文件
-- 大型二进制文件（使用 Git LFS 或外部存储）
-
-**必须提交的文件**：
-- 所有 Python 脚本
-- 文档文件（README.md 和 doc/ 下所有文件）
-- 配置文件
-- `payload/METADATA.json`（每个 asset 已含 SHA256 校验值，安装器据此校验，无需单独的 SHA256SUMS 文件）
 
 ### 8. 调试规范
 
@@ -288,3 +244,4 @@ if pattern in decoded:
 - [doc/engine-mechanics.md](doc/engine-mechanics.md) - 引擎机制
 - [doc/lessons-learned.md](doc/lessons-learned.md) - 问题记录
 - [doc/acceptance-criteria.md](doc/acceptance-criteria.md) - 验收标准
+- [doc/extract_cn_scripts.md](doc/extract_cn_scripts.md) - 从「替换启动项 exe」型汉化补丁中提取汉化文本（方法论 + 繁中版实操 runbook + 结论复核 §6；交付物 `resource/cht_text/`）

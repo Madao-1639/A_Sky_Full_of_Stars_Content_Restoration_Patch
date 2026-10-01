@@ -13,7 +13,7 @@ mkdir -p "$RELEASE_DIR"
 rm -rf build *.spec
 
 # 使用 mamba 环境执行 PyInstaller 打包
-mamba run -n asky_patch pyinstaller \
+mamba run -n GalRev pyinstaller \
     --onefile \
     --add-data "tool/arcbuild.py;." \
     --add-data "payload;payload" \

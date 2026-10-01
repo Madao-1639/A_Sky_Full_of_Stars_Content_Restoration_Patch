@@ -1,25 +1,265 @@
 {
-  "_comment": "补丁向 asset/Rio.arc 新增的原版还原场景。本表是这 20 个场景的唯一来源：final_verification.py 据此校验 asset/Rio.arc 相对 backup/Rio.arc 的成员差集；extract_embedded_text.py 据此找出尚无 zh-CN .lng 的场景。数组顺序为剧情先后；id 为 Rio.arc 成员名去掉 .ws2 后的小写 stem。kind：H = 原版 H 场景脚本（_H 后缀，引用 ORG_ 立绘或 9X 段位事件 CG），bare = 裸名还原脚本（无 _H 后缀，按原版编号引用资源）。",
+  "_comment": "补丁向 asset/Rio.arc 新增的原版还原场景。本表是这些新增场景的唯一来源：final_verification.py 据此校验 asset/Rio.arc 相对 backup/Rio.arc 的成员差集；extract_embedded_text.py 据此找出尚无 zh-CN .lng 的场景。数组顺序为剧情先后；id 为 Rio.arc 成员名去掉 .ws2 后的小写 stem。kind：H = 原版 H 场景脚本（_H 后缀，引用 ORG_ 立绘或 9X 段位事件 CG），bare = 裸名还原脚本（无 _H 后缀，按原版编号引用资源），seam = 差分接缝修复脚本（成员名沿用 Steam 名去掉 _E 后缀，基底为 Steam 脚本、差分段落回原版，引用 ORG_ 立绘）。",
   "scenes": [
-    { "id": "yozora_hika_103d_H", "route": "hika", "kind": "H" },
-    { "id": "yozora_hika_103f", "route": "hika", "kind": "bare" },
-    { "id": "yozora_hika_103g_H", "route": "hika", "kind": "H" },
-    { "id": "yozora_hika_108g_H", "route": "hika", "kind": "H" },
-    { "id": "yozora_hika_110c_H", "route": "hika", "kind": "H" },
-    { "id": "yozora_saya_101j_H", "route": "saya", "kind": "H" },
-    { "id": "yozora_saya_102c_H", "route": "saya", "kind": "H" },
-    { "id": "yozora_saya_107b_H", "route": "saya", "kind": "H" },
-    { "id": "yozora_saya_107d_H", "route": "saya", "kind": "H" },
-    { "id": "yozora_ori_115_H", "route": "ori", "kind": "H" },
-    { "id": "yozora_ori_117b", "route": "ori", "kind": "bare" },
-    { "id": "yozora_ori_118_H", "route": "ori", "kind": "H" },
-    { "id": "yozora_ori_123_H", "route": "ori", "kind": "H" },
-    { "id": "yozora_ori_129_H", "route": "ori", "kind": "H" },
-    { "id": "yozora_koro_115_H", "route": "koro", "kind": "H" },
-    { "id": "yozora_koro_121_H", "route": "koro", "kind": "H" },
-    { "id": "yozora_koro_124_H", "route": "koro", "kind": "H" },
-    { "id": "yozora_koro_126_H", "route": "koro", "kind": "H" },
-    { "id": "yozora_koro_127", "route": "koro", "kind": "bare" },
-    { "id": "yozora_koro_131_H", "route": "koro", "kind": "H" }
+    {
+      "id": "yozora_hika_103d_H",
+      "route": "hika",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_hika_103e",
+      "route": "hika",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_hika_103f",
+      "route": "hika",
+      "kind": "bare"
+    },
+    {
+      "id": "yozora_hika_103g_H",
+      "route": "hika",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_hika_108g_H",
+      "route": "hika",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_hika_110c_H",
+      "route": "hika",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_saya_101j_H",
+      "route": "saya",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_saya_102c_H",
+      "route": "saya",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_saya_107b_H",
+      "route": "saya",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_saya_107d_H",
+      "route": "saya",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_ori_115_H",
+      "route": "ori",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_ori_117b",
+      "route": "ori",
+      "kind": "bare"
+    },
+    {
+      "id": "yozora_ori_118_H",
+      "route": "ori",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_ori_123_H",
+      "route": "ori",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_ori_129_H",
+      "route": "ori",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_koro_115_H",
+      "route": "koro",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_koro_121_H",
+      "route": "koro",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_koro_124_H",
+      "route": "koro",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_koro_126_H",
+      "route": "koro",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_koro_127",
+      "route": "koro",
+      "kind": "bare"
+    },
+    {
+      "id": "yozora_koro_131_H",
+      "route": "koro",
+      "kind": "H"
+    },
+    {
+      "id": "yozora_hika_103c",
+      "route": "hika",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_hika_103h",
+      "route": "hika",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_hika_108f",
+      "route": "hika",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_hika_108h",
+      "route": "hika",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_hika_110b",
+      "route": "hika",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_hika_110d",
+      "route": "hika",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_saya_101i",
+      "route": "saya",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_saya_102",
+      "route": "saya",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_saya_102b",
+      "route": "saya",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_saya_102d",
+      "route": "saya",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_saya_107a",
+      "route": "saya",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_saya_107c",
+      "route": "saya",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_saya_107e",
+      "route": "saya",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_ori_114b",
+      "route": "ori",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_ori_116",
+      "route": "ori",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_ori_117a",
+      "route": "ori",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_ori_119",
+      "route": "ori",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_ori_122b",
+      "route": "ori",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_ori_124",
+      "route": "ori",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_ori_128c",
+      "route": "ori",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_ori_130",
+      "route": "ori",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_koro_114b",
+      "route": "koro",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_koro_116",
+      "route": "koro",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_koro_120",
+      "route": "koro",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_koro_122",
+      "route": "koro",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_koro_123a",
+      "route": "koro",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_koro_125",
+      "route": "koro",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_koro_125b",
+      "route": "koro",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_koro_128",
+      "route": "koro",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_koro_130_ep1",
+      "route": "koro",
+      "kind": "seam"
+    },
+    {
+      "id": "yozora_koro_132_ep2",
+      "route": "koro",
+      "kind": "seam"
+    }
   ]
 }

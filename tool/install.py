@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-満天の星 内容还原补丁安装器 v1.0.0-beta
+満天の星 内容还原补丁安装器
 A Sky Full of Stars - Content Restoration Patch Installer
 
 安装说明：

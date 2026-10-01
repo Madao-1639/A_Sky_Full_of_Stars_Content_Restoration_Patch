@@ -30,18 +30,18 @@
 以 saya_107 为例（纱夜路线第 107 段）：
 
 ```
-107b_H  →  107c_E  →  107d_H  →  107e_E
+107b_H  →  107c  →  107d_H  →  107e
    ↓         ↓         ↓         ↓
-ORG_*   Steam*    ORG_*   Steam*
+裸名SAY   接缝(Steam)  裸名SAY   接缝(Steam)
 ```
 
-- **107b_H**：原版 H 前半（引用 `SAY_20L/S`、`SAY_21L/S`，裸名，Steam/原版内容一致无冲突）
-- **107c_E**：Steam 改写版过渡（台词被重写，引用 Steam 资源）
-- **107d_H**：原版 H 后半（引用 `SAY_22L/S`、`SAY_23L/S`，裸名，同样无冲突）
-- **107e_E**：Steam 版结尾
+- **107b_H**：原版 H 前半（引用 `SAY_20L/S`、`SAY_21L/S`，Steam 已删的 CG，裸名继承原版编号，无冲突）
+- **107c**：Steam 保留的过渡段（台词曾被审核改写，**差分接缝修复**阶段按原版重建）
+- **107d_H**：原版 H 后半（引用 `SAY_22L/S`、`SAY_23L/S`，同样无冲突）
+- **107e**：Steam 版结尾（同上按原版重建）
 
 **注**：saya_107 系列不涉及 ORG_ 前缀或 9X 段位隔离——引用的 SAY_20~23 系列资源在
-Steam 与 Miazora 中内容完全相同（已用 SHA256 核实），不存在同名冲突。
+Steam 与原版中内容完全相同（已用 SHA256 核实），不存在同名冲突。
 
 ### 为什么要穿插？
 
@@ -62,11 +62,12 @@ Steam 删除了部分 H 场景但保留了前后文，必须在 Steam 段落间�
 
 **补丁还原后（Steam + 原版混合）**：
 ```
-107_E → 107a_E → 107b_H → 107c_E → 107d_H → 107e_E
-   │        │        │        │        │        │
-Steam   Steam    原版H    Steam    原版H    Steam
-资源     资源    裸名SAY   资源    裸名SAY   资源
+107_E → 107a → 107b_H → 107c → 107d_H → 107e
+   │       │       │        │       │       │
+Steam   接缝     原版H    接缝     原版H    接缝
+资源    (Steam)  裸名SAY  (Steam)  裸名SAY  (Steam)
 ```
+（`107a`/`107c`/`107e` 是把原 Steam `*_E` 脚本按原版内容重建后的接缝脚本，成员名去掉 `_E`。）
 
 ## 跳转改写范围
 
@@ -112,15 +113,16 @@ for caller, opcode, target in call_chain:
 
 ## 新增脚本清单
 
-补丁向 `asset/Rio.arc` 新增的原版还原脚本共 **20 个**（`asset/zh-CN/Rio.arc` 有同名 `.lng`
-对应）：17 个 `_H` 场景 + 3 个裸名场景。
+补丁向 `asset/Rio.arc` 新增的脚本共 **51 个**（`asset/zh-CN/Rio.arc` 有同名 `.lng` 对应）：
+17 个 `_H` 场景 + 3 个裸名场景 + **31 个差分接缝修复脚本**（成员名沿用 Steam 名去掉 `_E`，基底为
+Steam 脚本、差分段落回原版、共用部分仍用 Steam 官中；规则见 [`doc/file-formats.md`](file-formats.md)
+的「差分接缝修复」，清单见 [`resource/scenes.json`](../resource/scenes.json)）。
 
 **完整清单（含路线与类型）**→ [`resource/scenes.json`](../resource/scenes.json)，由
 `script/final_verification.py` 检查 `asset/Rio.arc` 相对 `backup/Rio.arc` 的成员差集。
 
-**注意**：Miazora 原版虽存在裸名 `yozora_saya_107c.ws2`，但本补丁**沿用 Steam 版
-`107c_E`**，未还原裸名版本；saya_107 穿插链实际为 `107b_H → 107c_E → 107d_H → 107e_E`。
-因此裸名 `107c` 不在新增脚本清单中。
+**注意**：`yozora_saya_107c` 在补丁里是**差分接缝修复脚本**（原 Steam `107c_E` 已随重建旁路并删除），
+saya_107 穿插链实际为 `107b_H → 107c → 107d_H → 107e`；这四个脚本都在 `resource/scenes.json` 的清单中。
 
 ### yozora_ori_115_H / yozora_ori_118_H 的 9X 段位资源
 
@@ -178,18 +180,23 @@ if script.endswith('_H.ws2'):
   （`YOZORA_HIKA_103E`/`YOZORA_HIKA_110D`/`YOZORA_SAYA_102`），未适配 Steam 版脚本清单
   ——当前 Rio.arc 中只有对应的 `_E` 版本，裸名版本不存在。
 
-**修复**（详见 `tmp/phase3_call_chain_report.md`）：
+**修复**（分两阶段）：Phase 3 先把入口从 `*_H_E` 改接真原版 `*_H`、出口从"裸名目标（当时不存在）"
+改接 Steam 的 `*_E`；**差分接缝修复**阶段再把这三个入口脚本按原版重建为无 `_E` 的接缝脚本，
+出口目标随之改指重建后的接缝脚本。当前链路以 [`resource/call-chain.json`](../resource/call-chain.json)
+为准（`final_verification.py` 据此校验）：
 
 | 脚本 | 修改 | 旧目标 | 新目标 |
 |---|---|---|---|
-| `yozora_hika_103c_E.ws2` | 入口改接 | `YOZORA_HIKA_103D_H_E` | `YOZORA_HIKA_103D_H` |
-| `yozora_hika_110b_E.ws2` | 入口改接 | `YOZORA_HIKA_110C_H_E` | `YOZORA_HIKA_110C_H` |
-| `yozora_saya_101i_E.ws2` | 入口改接 | `YOZORA_SAYA_101J_H_E` | `YOZORA_SAYA_101J_H` |
-| `yozora_hika_103d_H.ws2` | 出口修正 | `YOZORA_HIKA_103E`（不存在） | `YOZORA_HIKA_103E_E` |
-| `yozora_hika_110c_H.ws2` | 出口修正 | `YOZORA_HIKA_110D`（不存在） | `YOZORA_HIKA_110D_E` |
-| `yozora_saya_101j_H.ws2` | 出口修正 | `YOZORA_SAYA_102`（不存在） | `YOZORA_SAYA_102_E` |
+| `yozora_hika_103d_H.ws2` | 出口 | `YOZORA_HIKA_103E_E` | `YOZORA_HIKA_103E` |
+| `yozora_hika_110c_H.ws2` | 出口 | `YOZORA_HIKA_110D_E` | `YOZORA_HIKA_110D` |
+| `yozora_saya_101j_H.ws2` | 出口 | `YOZORA_SAYA_102_E` | `YOZORA_SAYA_102` |
+| `yozora_hika_103c.ws2` | 入口 | `YOZORA_HIKA_103D_H_E` | `YOZORA_HIKA_103D_H` |
+| `yozora_hika_110b.ws2` | 入口 | `YOZORA_HIKA_110C_H_E` | `YOZORA_HIKA_110C_H` |
+| `yozora_saya_101i.ws2` | 入口 | `YOZORA_SAYA_101J_H_E` | `YOZORA_SAYA_101J_H` |
 
-修复后 `yozora_hika_103d_H_E.ws2`、`yozora_hika_110c_H_E.ws2`、`yozora_saya_101j_H_E.ws2`
-三个脚本失去主线入口（仍被 `REPLAY_EXE.ws2` 回放菜单引用），成为孤立脚本，是否清理留待后续任务。
+`yozora_hika_103d_H_E`、`yozora_hika_110c_H_E`、`yozora_saya_101j_H_E` 三个过审替换版孤儿已随
+差分接缝修复一并删除（清单见 [`resource/removed-scripts.json`](../resource/removed-scripts.json)）。
+`REPLAY_EXE.ws2`（回想菜单）的 18 条 `0x07` 指向的是**这 17 个 `_H` 场景**而非 `_H_E`，故删除孤儿
+**不影响回放**。
 
-其余 14 个 `_H` 脚本调用链核实原本即正确，本次未改动。17 个 `_H` 脚本调用链覆盖率现为 100%。
+其余 14 个 `_H` 脚本调用链核实原本即正确。17 个 `_H` 脚本调用链覆盖率 100%。

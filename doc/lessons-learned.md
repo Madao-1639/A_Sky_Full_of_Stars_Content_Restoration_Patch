@@ -92,13 +92,8 @@ byte_pattern = resource_name.encode('shift_jis')
 
 **注意**：
 - `01 82 6e` 的 0x6e82 是常量不是偏移，不用改
-- 脚本必须幂等，支持重复运行
-- **不止改名会踩这个坑**：`inject_achievements.py` 给全部 14 个 `_H` 场景插入
-  `CG_ACHIEVEMENT` 调用后同样会撑大脚本、移动 `0b <gallery> 01` 指令位置，一度忘了接着跑
-  `fix_evret_offsets.py`，导致此前已修复过的 ori_115_H/ori_118_H 等全部 14 个场景重新
-  失效。已跑 `fix_evret_offsets.py` 修复并全量复查通过，同时在该脚本的收尾提示里补上了
-  强制提醒。**任何修改 `.ws2` 内容的脚本（改名、注入调用、插入指令……）收尾都必须包含
-  这一步，且要对全部 `_H` 脚本复查，不能只查本次改动涉及的那几个**
+- **不止改名会踩这个坑**：任何往脚本里插入指令的操作（如注入 `CG_ACHIEVEMENT` 调用）同样会撑大脚本、移动 `0b <gallery> 01` 的位置
+- 因此**任何修改 `.ws2` 内容的脚本（改名、注入、插指令……）收尾都必须跑 `fix_evret_offsets.py`，且要对全部 `_H` 脚本复查，不能只查本次改动涉及的那几个**
 
 ### 7. 9X 段位部署时源资源与目标名错配（第五类缺陷）
 
@@ -213,7 +208,7 @@ cnt, fsize, end = arcbuild.verify(arc)
 | 4. EVRET 偏移失效 | 回主菜单 | 无错误码 | 重算并修正偏移指针 |
 | 5. 9X 段位源/目标错配 | 背景黑屏，仅立绘正常 | 无错误码 | SHA256 核对部署源与目标一致 |
 | 6. Arc 文件非规范格式 | 哈希校验失败 | 无错误码 | 运行 `normalize_arc_padding()` 规范化 |
-| 7. PNA 图层级内容残留 | 面部与背景光照不融合 | 无错误码 | 按 box 分组逐层比对，用 Miazora 对应图层替换（`script/replace_pna_layers.py`） |
+| 7. PNA 图层级内容残留 | 面部与背景光照不融合 | 无错误码 | 按 box 分组逐层比对，用 Miazora 对应图层替换（`script/tools/replace_pna_layers.py`） |
 
 ## 最佳实践
 

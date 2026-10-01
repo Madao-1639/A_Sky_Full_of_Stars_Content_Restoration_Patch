@@ -20,14 +20,24 @@ SCENES = resources.load('scenes.json')['scenes']
 CONFLICTS = resources.load('cg-conflicts.json')['conflicts']
 CHAIN = resources.load('call-chain.json')
 
-# 加载所有归档
+# 两侧归档都没有、由游戏另处归档（Effect/SysGraphic 等）提供的资源 → 引用安全、零新增。
+# 来源：resource/seam-diffs.json 的 verdict == "ABSENT_BOTH"。
+ABSENT_BOTH = {(n or '').rsplit('.', 1)[0].upper()
+               for n in resources.load('seam-diffs.json').get('absent_both', [])}
+
+# 加载所有归档（asset/ 优先；asset/ 未分发者回退 backup/——那是游戏自带的原档，
+# 补丁不删游戏文件，运行时可从游戏目录解析，故引用安全、零新增）
 archives = {}
+ARCH_BASE = {}
 for arc in ['Rio.arc', 'Chip1.arc', 'Chip1A.arc', 'Chip2.arc', 'Chip3.arc',
-            'Chip3A.arc', 'Chip3B.arc', 'Graphic.arc']:
-    p = ASSET / arc
-    if p.exists():
-        archives[arc] = {n.decode('utf-16-le').upper(): (n.decode('utf-16-le'), d)
-                         for n, d in arcbuild.read_raw(p)}
+            'Chip3A.arc', 'Chip3B.arc', 'Chip4.arc', 'Graphic.arc']:
+    for base in (ASSET, BACKUP):
+        p = base / arc
+        if p.exists():
+            archives[arc] = {n.decode('utf-16-le').upper(): (n.decode('utf-16-le'), d)
+                             for n, d in arcbuild.read_raw(p)}
+            ARCH_BASE[arc] = base.name
+            break
 
 rio = archives['Rio.arc']
 
@@ -132,8 +142,12 @@ for stem in sorted(ref_counts.keys()):
     for arc_name, members in archives.items():
         if pna_name in members:
             found = True
-            location = arc_name
+            location = '%s (%s/)' % (arc_name, ARCH_BASE[arc_name])
             break
+
+    if not found and stem.upper() in ABSENT_BOTH:
+        found = True
+        location = 'ABSENT_BOTH：两侧归档都没有，由游戏另处归档提供'
 
     status = 'OK' if found else 'FAIL'
     info = f'({location})' if found else '缺失'
@@ -206,7 +220,17 @@ scene_members = {scene['id'].upper() + '.WS2' for scene in SCENES}
 # 5.1 scenes.json 应与 asset/Rio.arc 相对 backup/Rio.arc 的新增成员一致
 added = {n for n in rio if n not in backup_rio}
 added_ws2 = {n for n in added if n.endswith('.WS2')}
-removed = {n for n in backup_rio if n not in rio}
+# 有意删除的 Steam 成员（"零破坏性"的例外白名单，见 resource/removed-scripts.json）：
+# 被旁路的 `*_E` 脚本已由去 `_E` 的重建接缝脚本取代；3 个 `*_H_E` 是过审 H 场景的孤儿替换版。
+try:
+    EXPECTED_REMOVED = {n.upper() for n in resources.load('removed-scripts.json')['rio']}
+except Exception:                                                     # noqa: BLE001
+    EXPECTED_REMOVED = set()
+removed_all = {n for n in backup_rio if n not in rio}
+removed = removed_all - EXPECTED_REMOVED
+if removed_all - removed:
+    print(f'    [INFO] 有意删除（白名单）{len(removed_all - removed)} 个: '
+          f'{sorted(removed_all - removed)}')
 
 print('  scenes.json vs Rio.arc 成员差集:')
 for label, extra in (('表中有但归档未新增', scene_members - added_ws2),

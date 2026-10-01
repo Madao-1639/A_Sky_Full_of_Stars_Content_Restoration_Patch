@@ -1,0 +1,1067 @@
+{
+ "_comment": "WS2 指令分类表。判据只有一条 —— 是否与演出相关：演出相关 → use_orig（取原版）；与演出无关 → keep_steam（保留 Steam）；判不了 → needs_user（必须问用户，不得自行决定）。消费者：script/seam/gen_worklist.py 的施工单生成、script/seam/build_seam.py 的合并策略。in_diffs = 该 opcode 在 seam-diffs.json 的 present 条目里出现的次数（只有 in_diffs>0 的策略才实际被用到）。批处理前，全部 needs_user opcode 已逐项裁定为 use_orig，此后差异中不再有 needs_user。",
+ "policy_values": {
+  "use_orig": "取原版该指令",
+  "keep_steam": "保留 Steam（不动）",
+  "needs_user": "无法判定，必须问用户"
+ },
+ "ops": [
+  {
+   "opcode": "0x0",
+   "name": "Undefined",
+   "present": false,
+   "confidence": "low",
+   "policy": "keep_steam",
+   "evidence": "解析器 Undefined（1B、无操作数），疑为填充/游离字节；不作为演出处理",
+   "note": "差异中 7 处，建议单独排查",
+   "counts": {
+    "steam": 756,
+    "orig": 694,
+    "backup": 693
+   },
+   "in_diffs": 9
+  },
+  {
+   "opcode": "0x1",
+   "name": "Condition",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "条件分支（控制流/跳过已读机制）",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 2920,
+    "orig": 2274,
+    "backup": 2850
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x2",
+   "name": "Jump2",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "条件跳转（跳过已读机制，用户裁定保留；带文件内绝对偏移）",
+   "note": "",
+   "counts": {
+    "steam": 1178,
+    "orig": 7,
+    "backup": 1176
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x4",
+   "name": "RunFile",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "调用脚本（含 LAYER_ORDER / CG_ACHIEVEMENT）",
+   "note": "",
+   "counts": {
+    "steam": 31302,
+    "orig": 28126,
+    "backup": 27331
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x5",
+   "name": "Unk05",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "系统原语",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 29,
+    "orig": 34,
+    "backup": 29
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x6",
+   "name": "Jump",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "文件内跳转（带绝对偏移）",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 444,
+    "orig": 1036,
+    "backup": 427
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x7",
+   "name": "NextFile",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "跳转下一脚本（跳转改写由施工单单独处理）",
+   "note": "",
+   "counts": {
+    "steam": 346,
+    "orig": 342,
+    "backup": 308
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x8",
+   "name": "Unk08",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "系统原语",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 1,
+    "orig": 1,
+    "backup": 1
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x9",
+   "name": "LayerConfig",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "试点实机：图层透明度被 Steam 改过 → 已裁定回原版",
+   "note": "",
+   "counts": {
+    "steam": 58651,
+    "orig": 54479,
+    "backup": 50499
+   },
+   "in_diffs": 962
+  },
+  {
+   "opcode": "0xa",
+   "name": "Unk0A",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "系统原语",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 1,
+    "orig": 0,
+    "backup": 1
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0xb",
+   "name": "SetFlag",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "用户裁定：承载 CG 的 gallery/differential id，回退会改动画廊/成就 id",
+   "note": "",
+   "counts": {
+    "steam": 6914,
+    "orig": 6711,
+    "backup": 3336
+   },
+   "in_diffs": 387
+  },
+  {
+   "opcode": "0xe",
+   "name": "Unk0E",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "选项头/过渡块",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 11,
+    "orig": 11,
+    "backup": 11
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0xf",
+   "name": "ShowChoice",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "选项表（UI/分支）",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 4,
+    "orig": 4,
+    "backup": 4
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x11",
+   "name": "SetTimer",
+   "present": null,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "用户 2026-09-17 裁定：取原版（**编码形态用 Steam、秒数取值用原版**，按维度拆开）",
+   "note": "差异中 36 处",
+   "counts": {
+    "steam": 2390,
+    "orig": 2349,
+    "backup": 2259
+   },
+   "in_diffs": 36
+  },
+  {
+   "opcode": "0x12",
+   "name": "StartTimer",
+   "present": null,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "用户 2026-09-17 裁定：与 0x11 同族同判，取原版（仅 name，无秒数）",
+   "note": "差异中 30 处",
+   "counts": {
+    "steam": 2390,
+    "orig": 2349,
+    "backup": 2259
+   },
+   "in_diffs": 30
+  },
+  {
+   "opcode": "0x13",
+   "name": "Unk13",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "系统原语",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 38,
+    "orig": 36,
+    "backup": 38
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x14",
+   "name": "DisplayMessage",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "文本记录（文本内容由施工单 §4 与 .lng 单独决定）",
+   "note": "",
+   "counts": {
+    "steam": 46574,
+    "orig": 45856,
+    "backup": 38822
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x15",
+   "name": "SetDisplayName",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "说话人前缀（由 NameTable 决定，不由本表）",
+   "note": "",
+   "counts": {
+    "steam": 72192,
+    "orig": 45848,
+    "backup": 64398
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x16",
+   "name": "Unk16",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "本轮 Unk 调查：图层块起始/对话框层显隐，与演出无关；试点实证保留",
+   "note": "",
+   "counts": {
+    "steam": 9319,
+    "orig": 9263,
+    "backup": 8662
+   },
+   "in_diffs": 133
+  },
+  {
+   "opcode": "0x18",
+   "name": "AddMessageToLog",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "文本日志（机制）",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 60,
+    "orig": 0,
+    "backup": 60
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x19",
+   "name": "Unk19",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "系统原语",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 60,
+    "orig": 60,
+    "backup": 60
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x1a",
+   "name": "OpenTitle",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "系统（打开标题）",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 1,
+    "orig": 1,
+    "backup": 1
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x1b",
+   "name": "Unk1B",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "系统原语",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 3,
+    "orig": 3,
+    "backup": 3
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x1c",
+   "name": "ExecuteFunction",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "执行引擎函数（跳过已读 GetMsgSkip 等，用户裁定保留）",
+   "note": "",
+   "counts": {
+    "steam": 3212,
+    "orig": 4661,
+    "backup": 3210
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x1d",
+   "name": "Unk1D",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "文本框显隐辅助（机制）",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 1,
+    "orig": 1,
+    "backup": 1
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x1e",
+   "name": "PlayMusic",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "BGM；同族 StopMusic 已在试点按回原版处理",
+   "note": "",
+   "counts": {
+    "steam": 1190,
+    "orig": 1182,
+    "backup": 1161
+   },
+   "in_diffs": 24
+  },
+  {
+   "opcode": "0x1f",
+   "name": "StopMusic",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "试点实机：StopMusic 参数被 Steam 改过 → 回原版",
+   "note": "",
+   "counts": {
+    "steam": 2385,
+    "orig": 1205,
+    "backup": 2356
+   },
+   "in_diffs": 137
+  },
+  {
+   "opcode": "0x20",
+   "name": "MusicUnk1",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "BGM 附属参数",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 10,
+    "orig": 10,
+    "backup": 10
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x28",
+   "name": "SoundEffect",
+   "present": null,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "用户 2026-09-17 裁定：音效属演出（与 BGM 0x1e/0x1f 同判）→ 取原版",
+   "note": "差异中 50 处",
+   "counts": {
+    "steam": 1137,
+    "orig": 1117,
+    "backup": 1112
+   },
+   "in_diffs": 50
+  },
+  {
+   "opcode": "0x29",
+   "name": "SoundUnk1",
+   "present": null,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "用户 2026-09-17 裁定：音效附属，同 0x28 → 取原版",
+   "note": "差异中 42 处",
+   "counts": {
+    "steam": 600,
+    "orig": 516,
+    "backup": 596
+   },
+   "in_diffs": 42
+  },
+  {
+   "opcode": "0x2a",
+   "name": "SoundUnk2",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "音效附属参数",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 6,
+    "orig": 6,
+    "backup": 6
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x2e",
+   "name": "CharMessageStart",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "试点实机：语音名不同 → 换回原版 OGG",
+   "note": "",
+   "counts": {
+    "steam": 18627,
+    "orig": 18429,
+    "backup": 15850
+   },
+   "in_diffs": 37
+  },
+  {
+   "opcode": "0x32",
+   "name": "VariableUnk32",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "变量类",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 2,
+    "orig": 2,
+    "backup": 2
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x33",
+   "name": "SetBackground",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "用户裁定：背景画面属演出（BG_20D→BG_20G 已回原版）",
+   "note": "",
+   "counts": {
+    "steam": 11370,
+    "orig": 11054,
+    "backup": 11036
+   },
+   "in_diffs": 267
+  },
+  {
+   "opcode": "0x34",
+   "name": "UsePnaPackage",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "试点实机：立绘引用按演出处理（冲突改 ORG_ 隔离名）",
+   "note": "",
+   "counts": {
+    "steam": 17196,
+    "orig": 16991,
+    "backup": 15298
+   },
+   "in_diffs": 349
+  },
+  {
+   "opcode": "0x35",
+   "name": "PlayMovie",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "影片播放（画面）",
+   "note": "差异中 6 处",
+   "counts": {
+    "steam": 72,
+    "orig": 58,
+    "backup": 71
+   },
+   "in_diffs": 6
+  },
+  {
+   "opcode": "0x37",
+   "name": "ClearLayer",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "清层（画面）",
+   "note": "",
+   "counts": {
+    "steam": 8492,
+    "orig": 8354,
+    "backup": 8067
+   },
+   "in_diffs": 158
+  },
+  {
+   "opcode": "0x38",
+   "name": "VariableUnk3",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "变量类",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 37,
+    "orig": 36,
+    "backup": 37
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x39",
+   "name": "DisplayCharacterImage",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "试点实机：立绘帧号被 Steam 改过 → 回原版",
+   "note": "改帧号须同步改 count",
+   "counts": {
+    "steam": 17167,
+    "orig": 16969,
+    "backup": 15269
+   },
+   "in_diffs": 635
+  },
+  {
+   "opcode": "0x3a",
+   "name": "UnkBackground2",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "背景类（画面）",
+   "note": "",
+   "counts": {
+    "steam": 63,
+    "orig": 59,
+    "backup": 62
+   },
+   "in_diffs": 4
+  },
+  {
+   "opcode": "0x3d",
+   "name": "Unk3D",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "系统原语",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 1,
+    "orig": 1,
+    "backup": 1
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x3e",
+   "name": "Unk3E",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "系统原语",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 9,
+    "orig": 9,
+    "backup": 9
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x3f",
+   "name": "LayersList",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "图层清单",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 1,
+    "orig": 1,
+    "backup": 1
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x40",
+   "name": "SetMask",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "遮罩（画面）",
+   "note": "",
+   "counts": {
+    "steam": 568,
+    "orig": 563,
+    "backup": 517
+   },
+   "in_diffs": 3
+  },
+  {
+   "opcode": "0x41",
+   "name": "UnkBackground3",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "背景类（画面）",
+   "note": "差异中未出现，策略仅形式",
+   "counts": {
+    "steam": 1,
+    "orig": 1,
+    "backup": 1
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x42",
+   "name": "Unk42",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "本轮 Unk 调查：作用于 bg*/st* 槽，属演出",
+   "note": "语义未定名但归属明确",
+   "counts": {
+    "steam": 1358,
+    "orig": 1318,
+    "backup": 1330
+   },
+   "in_diffs": 54
+  },
+  {
+   "opcode": "0x43",
+   "name": "Unk43",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "槽指令（与 0x42 同族，但差异中未出现）",
+   "note": "差异中未出现，策略仅形式",
+   "counts": {
+    "steam": 59,
+    "orig": 60,
+    "backup": 59
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x45",
+   "name": "DragBackground",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "试点实机：Steam 新增的 DragBackground 已按回原版处理并通过",
+   "note": "",
+   "counts": {
+    "steam": 9547,
+    "orig": 6034,
+    "backup": 9304
+   },
+   "in_diffs": 287
+  },
+  {
+   "opcode": "0x46",
+   "name": "MoveBackground",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "试点实机：图层坐标/位置属演出",
+   "note": "",
+   "counts": {
+    "steam": 52120,
+    "orig": 51287,
+    "backup": 49463
+   },
+   "in_diffs": 1040
+  },
+  {
+   "opcode": "0x47",
+   "name": "Effect1",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "特效（画面）",
+   "note": "",
+   "counts": {
+    "steam": 7273,
+    "orig": 7163,
+    "backup": 7005
+   },
+   "in_diffs": 137
+  },
+  {
+   "opcode": "0x48",
+   "name": "Effect2",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "特效（画面）",
+   "note": "",
+   "counts": {
+    "steam": 5291,
+    "orig": 5220,
+    "backup": 5071
+   },
+   "in_diffs": 88
+  },
+  {
+   "opcode": "0x4a",
+   "name": "Unk4A",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "本作新增，差异中未出现",
+   "note": "差异中未出现，策略仅形式",
+   "counts": {
+    "steam": 3,
+    "orig": 3,
+    "backup": 3
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x51",
+   "name": "VariableUnk51",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "变量类",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 1610,
+    "orig": 1610,
+    "backup": 1610
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x52",
+   "name": "VariableUnk2",
+   "present": null,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "用户 2026-09-17 裁定：数值型动画参数，属演出 → 取原版",
+   "note": "差异中 4 处",
+   "counts": {
+    "steam": 29,
+    "orig": 24,
+    "backup": 29
+   },
+   "in_diffs": 4
+  },
+  {
+   "opcode": "0x53",
+   "name": "VariableUnk4",
+   "present": null,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "用户 2026-09-17 裁定：T*_ANIME_ERASE 动画擦除，属演出 → 取原版",
+   "note": "差异中 3 处",
+   "counts": {
+    "steam": 42,
+    "orig": 37,
+    "backup": 42
+   },
+   "in_diffs": 3
+  },
+  {
+   "opcode": "0x56",
+   "name": "RainStart",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "降雨开始（画面）",
+   "note": "差异中 6 处",
+   "counts": {
+    "steam": 16,
+    "orig": 16,
+    "backup": 16
+   },
+   "in_diffs": 6
+  },
+  {
+   "opcode": "0x57",
+   "name": "UnkBackground1",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "背景类（画面）",
+   "note": "",
+   "counts": {
+    "steam": 5111,
+    "orig": 5220,
+    "backup": 4891
+   },
+   "in_diffs": 85
+  },
+  {
+   "opcode": "0x5c",
+   "name": "RainEnd",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "降雨结束（画面）",
+   "note": "差异中未出现，策略仅形式",
+   "counts": {
+    "steam": 16,
+    "orig": 16,
+    "backup": 16
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x64",
+   "name": "Unk64",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "本轮 Unk 调查：淡入淡出标记，属演出；两版取值无差异",
+   "note": "仅一侧有/无时用原版",
+   "counts": {
+    "steam": 23086,
+    "orig": 22850,
+    "backup": 20893
+   },
+   "in_diffs": 179
+  },
+  {
+   "opcode": "0x65",
+   "name": "C65",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "试点实机：渐变参数被 Steam 改过 → 回原版",
+   "note": "",
+   "counts": {
+    "steam": 21976,
+    "orig": 21756,
+    "backup": 19831
+   },
+   "in_diffs": 379
+  },
+  {
+   "opcode": "0x66",
+   "name": "ShowGraphic",
+   "present": true,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "遮罩/图像显示（画面）",
+   "note": "",
+   "counts": {
+    "steam": 1120,
+    "orig": 1105,
+    "backup": 1072
+   },
+   "in_diffs": 26
+  },
+  {
+   "opcode": "0x67",
+   "name": "Unk67",
+   "present": null,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "用户 2026-09-17 裁定：与动画同族，属演出 → 取原版",
+   "note": "差异中 3 处",
+   "counts": {
+    "steam": 137,
+    "orig": 137,
+    "backup": 135
+   },
+   "in_diffs": 3
+  },
+  {
+   "opcode": "0x68",
+   "name": "Unk68",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "系统原语",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 3,
+    "orig": 3,
+    "backup": 3
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0x6e",
+   "name": "SetVariable",
+   "present": null,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "用户 2026-09-17 裁定：本表出现的全是 SetVariable(STQUAKE_KEY) 震屏，试点 103e 已按原版补回 → 取原版",
+   "note": "差异中 30 处",
+   "counts": {
+    "steam": 102,
+    "orig": 259,
+    "backup": 97
+   },
+   "in_diffs": 30
+  },
+  {
+   "opcode": "0x6f",
+   "name": "VariableUnk",
+   "present": null,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "用户 2026-09-17 裁定：ANIMATION_KEY/ANIMATION_SETKEY，属演出 → 取原版",
+   "note": "差异中 4 处",
+   "counts": {
+    "steam": 74,
+    "orig": 120,
+    "backup": 74
+   },
+   "in_diffs": 4
+  },
+  {
+   "opcode": "0xf0",
+   "name": "UnkScreen",
+   "present": null,
+   "confidence": "high",
+   "policy": "use_orig",
+   "evidence": "用户 2026-09-17 裁定：UnkScreen 屏幕特效，属演出 → 取原版",
+   "note": "差异中 1 处",
+   "counts": {
+    "steam": 26,
+    "orig": 0,
+    "backup": 26
+   },
+   "in_diffs": 1
+  },
+  {
+   "opcode": "0xfb",
+   "name": "UnkFB",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "系统原语",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 2,
+    "orig": 2,
+    "backup": 2
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0xfc",
+   "name": "UnkFC",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "系统原语",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 0,
+    "orig": 1,
+    "backup": 0
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0xfd",
+   "name": "UnkFD",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "系统原语",
+   "note": "差异中未出现",
+   "counts": {
+    "steam": 9,
+    "orig": 9,
+    "backup": 9
+   },
+   "in_diffs": 0
+  },
+  {
+   "opcode": "0xff",
+   "name": "FileEnd",
+   "present": false,
+   "confidence": "high",
+   "policy": "keep_steam",
+   "evidence": "脚本结束（试点沿用 Steam 原值；a 语义未定、已实测容错）",
+   "note": "",
+   "counts": {
+    "steam": 303,
+    "orig": 299,
+    "backup": 282
+   },
+   "in_diffs": 0
+  }
+ ],
+ "_action_summary": {
+  "delete_steam": 1265,
+  "use_orig": 449,
+  "keep_steam": 529,
+  "needs_user": 203,
+  "insert_orig": 3245
+ }
+}

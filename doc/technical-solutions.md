@@ -282,7 +282,7 @@ Steam 删除 H 场景时，不仅删了 H 场景 CG（PNA）与语音，还删�
 ### 修复范围与映射关系
 
 具体的 `(steam_lid, miazora_lid)` 逐层配对、全画布图层与涉及的 4 个成员 →
-[`resource/layer-repairs.json`](../resource/layer-repairs.json)（`script/replace_pna_layers.py` 直接读它）。
+[`resource/layer-repairs.json`](../resource/layer-repairs.json)（`script/tools/replace_pna_layers.py` 直接读它）。
 
 范围概要：`COM_04L/S.pna`（Steam 42 层 vs Miazora 29 层）与 `COM_05L/S.pna`（9 层 vs 9 层）
 各替换全画布 `lid=1` 及两位角色的局部动画帧。
@@ -293,7 +293,7 @@ Steam 删除 H 场景时，不仅删了 H 场景 CG（PNA）与语音，还删�
 
 ### 实现脚本
 
-`script/replace_pna_layers.py`（幂等，可重复运行）：
+`script/tools/replace_pna_layers.py`（幂等，可重复运行）：
 - 全画布图层：整层字节从 Miazora 对应 `lid=1` 复制过来
 - 局部动画帧：逐帧按 `resource/layer-repairs.json` 的 `(steam_lid, miazora_lid)` 配对替换，
   替换前校验两边 `box` 完全一致（不一致则拒绝执行，防止误配）

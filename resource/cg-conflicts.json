@@ -24,6 +24,17 @@
       "referenced_by": ["yozora_hika_103d_H"]
     },
     {
+      "route": "HIK",
+      "original": "HIK_12",
+      "patch": "HIK_91",
+      "archive": "Chip3.arc",
+      "variants": {
+        "L": { "steam": "differs", "deployed": true },
+        "S": { "steam": "differs", "deployed": true }
+      },
+      "referenced_by": ["yozora_hika_110b"]
+    },
+    {
       "route": "SAY",
       "original": "SAY_15",
       "patch": "SAY_90",

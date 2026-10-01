@@ -1,0 +1,229 @@
+{
+ "_comment": "同句数、无语音句的**语义改写**（Steam 把性内容换成中性说法）——按语音/句数配对的工具都看不见，只能逐条人工复核。判定见 `doc/file-formats.md` 的「差分接缝修复」；本表是 seam-diffs.json 的 semantic 来源，也是施工单里\"差分类记录\"的一部分。**逐条人工复核整理**，是 `script/seam/build_seam_diffs.py` 的输入（该工具不再从文档解析）；增改条目直接编辑本表。",
+ "items": [
+  {
+   "seam": "yozora_hika_103e",
+   "label": "H1",
+   "position": "1–2 ⇄ 1–2",
+   "orig_jp": "初めての体験の後の**余韻**が、まだ残っている。／快感が全身を包み込んだ時の痺れや、気怠さ、好きな人と“初めて”を共有できた喜びが…",
+   "orig_idx": [
+    1,
+    2
+   ],
+   "steam_idx": [
+    1,
+    2
+   ]
+  },
+  {
+   "seam": "yozora_hika_103e",
+   "label": "H2",
+   "position": "17 ⇄ 17",
+   "orig_jp": "「ひかりも、**エッチ**だったしな」",
+   "orig_idx": [
+    17,
+    17
+   ],
+   "steam_idx": [
+    17,
+    17
+   ]
+  },
+  {
+   "seam": "yozora_hika_108f",
+   "label": "H3",
+   "position": "130–137（8 句）⇄ 130–154（25 句）",
+   "orig_jp": "「ねえ、しよっか？」／「……**エッチ**。しよ」／「ひかりが俺の背中に豊かな胸を押しつけてくる」等",
+   "orig_idx": [
+    130,
+    137
+   ],
+   "steam_idx": [
+    8,
+    8
+   ]
+  },
+  {
+   "seam": "yozora_hika_108h",
+   "label": "H4",
+   "position": "26–32（7 句）⇄ 26–31（6 句）",
+   "orig_jp": "「……暁斗激しいんだもん」（H 余韵）等",
+   "orig_idx": [
+    26,
+    32
+   ],
+   "steam_idx": [
+    7,
+    7
+   ]
+  },
+  {
+   "seam": "yozora_hika_110b",
+   "label": "H5",
+   "position": "73–80（8 句）⇄ 73–75（3 句）",
+   "orig_jp": "「俺は…オッパイを…指でつっついた」／「服の上からでも、ブラが外れているのがわかる！」等",
+   "orig_idx": [
+    73,
+    80
+   ],
+   "steam_idx": [
+    8,
+    8
+   ]
+  },
+  {
+   "seam": "yozora_hika_110b",
+   "label": "H6",
+   "position": "132–135（4 句）⇄ 127–128（2 句）",
+   "orig_jp": "「（ぴゃっ！？）」「（オッパイつつかれた……！）」",
+   "orig_idx": [
+    132,
+    135
+   ],
+   "steam_idx": [
+    4,
+    4
+   ]
+  },
+  {
+   "seam": "yozora_hika_110d",
+   "label": "H7",
+   "position": "1–2 之间**新增** 1 句",
+   "orig_jp": "（原版无）",
+   "orig_idx": [
+    1,
+    2
+   ],
+   "steam_idx": [
+    1,
+    1
+   ]
+  },
+  {
+   "seam": "yozora_ori_116",
+   "label": "O2",
+   "position": "35 ⇄ 86",
+   "orig_jp": "許可も得ないうちから、その、織姫を**求めてしまって**",
+   "orig_idx": [
+    35,
+    35
+   ],
+   "steam_idx": [
+    86,
+    86
+   ]
+  },
+  {
+   "seam": "yozora_ori_116",
+   "label": "O3",
+   "position": "47 ⇄ 114",
+   "orig_jp": "「次は、絶対**抱きます**」",
+   "orig_idx": [
+    47,
+    47
+   ],
+   "steam_idx": [
+    114,
+    114
+   ]
+  },
+  {
+   "seam": "yozora_ori_119",
+   "label": "O1",
+   "position": "35 ⇄ 24",
+   "orig_jp": "呆然としているところに、ひょいと飛びついて頬にキスされてしまった。",
+   "orig_idx": [
+    35,
+    35
+   ],
+   "steam_idx": [
+    24,
+    24
+   ]
+  },
+  {
+   "seam": "yozora_ori_122b",
+   "label": "O4",
+   "position": "73 ⇄ 39",
+   "orig_jp": "「でも、娘さんと**エッチするために**お邪魔するってのは、さすがに……」",
+   "orig_idx": [
+    73,
+    73
+   ],
+   "steam_idx": [
+    39,
+    39
+   ]
+  },
+  {
+   "seam": "yozora_koro_122",
+   "label": "K1",
+   "position": "14–15 ⇄ 0–1",
+   "orig_jp": "下宿先であまり好き勝手やるのはよくない。／これを機に、店長と美晴先生にはきちんと話を通しておこう。",
+   "orig_idx": [
+    14,
+    15
+   ],
+   "steam_idx": [
+    0,
+    1
+   ]
+  },
+  {
+   "seam": "yozora_koro_122",
+   "label": "K2",
+   "position": "67 ⇄ 44",
+   "orig_jp": "まだ**痛みの残る**ころなちゃんを守るように抱き寄せた。",
+   "orig_idx": [
+    67,
+    67
+   ],
+   "steam_idx": [
+    44,
+    44
+   ]
+  },
+  {
+   "seam": "yozora_koro_122",
+   "label": "K3",
+   "position": "74 ⇄ 51",
+   "orig_jp": "軽くたしなめつつ、ちゅっとしてあげた。",
+   "orig_idx": [
+    74,
+    74
+   ],
+   "steam_idx": [
+    51,
+    51
+   ]
+  },
+  {
+   "seam": "yozora_koro_125",
+   "label": "K4",
+   "position": "58 ⇄ 58",
+   "orig_jp": "「口にするのは**やりすぎ**だから、こっちにね」",
+   "orig_idx": [
+    58,
+    58
+   ],
+   "steam_idx": [
+    58,
+    58
+   ]
+  },
+  {
+   "seam": "yozora_koro_132_ep2",
+   "label": "K5",
+   "position": "8 ⇄ 7",
+   "orig_jp": "結局、あの後ころなちゃんと**何度かえっちをして**、疲れてそのまま眠ってしまった。",
+   "orig_idx": [
+    8,
+    8
+   ],
+   "steam_idx": [
+    7,
+    7
+   ]
+  }
+ ]
+}

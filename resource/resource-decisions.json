@@ -1,0 +1,453 @@
+{
+ "Aひかり_02L.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORG_Aひかり_02L.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Aひかり_02M.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORG_Aひかり_02M.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "B沙夜_01L.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORG_B沙夜_01L.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "B沙夜_02L.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORG_B沙夜_02L.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "B沙夜_03L.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORG_B沙夜_03L.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "C織姫_01L.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORG_C織姫_01L.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "C織姫_03L.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORG_C織姫_03L.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Dころな_01L.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORG_Dころな_01L.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Dころな_02L.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORG_Dころな_02L.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Dころな_03L.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORG_Dころな_03L.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "HIK_12L.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "HIK_91L.PNA",
+  "archive": "Chip3.arc",
+  "note": "用户 2026-09-17 裁定维持真冲突（复核：5/9 层、19.3%、峰值 242）。隔离名 **HIK_91L**，依据用户定的顺序规则（9X 按脚本顺序编号）：HIK_09 首引用于 103d_H(103)→HIK_90；HIK_12 首引用于 110b(110)→**HIK_91**，顺序在后、无需重编号。**已部署**（asset/Chip3.arc 的 HIK_91L.pna）。"
+ },
+ "HIK_12S.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "HIK_91S.PNA",
+  "archive": "Chip3.arc",
+  "note": "同 HIK_12L。隔离名 HIK_91S，**已部署**（asset/Chip3.arc 的 HIK_91S.pna）。"
+ },
+ "ORI_12S.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORI_91S.PNA",
+  "archive": "Chip3A.arc；字节",
+  "note": ""
+ },
+ "Aひかり_01L.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Aひかり_01L.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Aひかり_01M.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Aひかり_01M.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Aひかり_01S.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Aひかり_01S.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Aひかり_01W.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Aひかり_01W.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Aひかり_02S.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Aひかり_02S.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Aひかり_02W.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Aひかり_02W.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Aひかり_03L.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Aひかり_03L.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Aひかり_03M.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Aひかり_03M.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Aひかり_03S.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Aひかり_03S.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Aひかり_03W.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Aひかり_03W.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "B沙夜_01M.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_B沙夜_01M.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "B沙夜_01S.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_B沙夜_01S.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "B沙夜_01W.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_B沙夜_01W.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "B沙夜_02M.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_B沙夜_02M.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "B沙夜_02S.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_B沙夜_02S.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "B沙夜_02W.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_B沙夜_02W.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "B沙夜_03M.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_B沙夜_03M.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "B沙夜_03S.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_B沙夜_03S.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "B沙夜_03W.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_B沙夜_03W.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "C織姫_01M.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_C織姫_01M.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "C織姫_01S.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_C織姫_01S.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "C織姫_01W.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_C織姫_01W.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "C織姫_02L.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_C織姫_02L.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "C織姫_02M.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_C織姫_02M.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "C織姫_02S.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_C織姫_02S.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "C織姫_02W.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_C織姫_02W.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "C織姫_03M.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_C織姫_03M.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "C織姫_03S.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_C織姫_03S.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "C織姫_03W.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_C織姫_03W.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Dころな_01M.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Dころな_01M.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Dころな_01S.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Dころな_01S.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Dころな_01W.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Dころな_01W.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Dころな_02M.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Dころな_02M.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Dころな_02S.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Dころな_02S.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Dころな_02W.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Dころな_02W.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Dころな_03M.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Dころな_03M.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Dころな_03S.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Dころな_03S.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Dころな_03W.pna": {
+  "verdict": "误报",
+  "isolation_name": "ORG_Dころな_03W.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "HIK_09L.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "HIK_90L.pna",
+  "archive": "Chip3.arc；字节",
+  "note": "**真冲突**（2026-09-17 更正）：此前重判按**裸名**统计 `0x39` 帧得\"0 个选中\"→ 误判为误报；实际脚本引用的是**隔离名**（`HIK_90L.pna`），别名解析后差异层会被 `0x39` 选中。隔离副本已部署且被 `_H` 场景引用，**无需改动**；错的是表。"
+ },
+ "HIK_09S.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "HIK_90S.pna",
+  "archive": "Chip3.arc；字节",
+  "note": "**真冲突**（2026-09-17 更正）：此前重判按**裸名**统计 `0x39` 帧得\"0 个选中\"→ 误判为误报；实际脚本引用的是**隔离名**（`HIK_90S.pna`），别名解析后差异层会被 `0x39` 选中。隔离副本已部署且被 `_H` 场景引用，**无需改动**；错的是表。"
+ },
+ "ORI_12L.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORI_91L.PNA",
+  "archive": "Chip3A.arc；字节",
+  "note": "**真冲突**（2026-09-17 更正）：此前重判按**裸名**统计 `0x39` 帧得\"0 个选中\"→ 误判为误报；实际脚本引用的是**隔离名**（`ORI_91L.PNA`），别名解析后差异层会被 `0x39` 选中。隔离副本已部署且被 `_H` 场景引用，**无需改动**；错的是表。"
+ },
+ "SAY_15L.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "SAY_90L.pna",
+  "archive": "Chip3B.arc；字节",
+  "note": "**真冲突**（2026-09-17 更正）：此前重判按**裸名**统计 `0x39` 帧得\"0 个选中\"→ 误判为误报；实际脚本引用的是**隔离名**（`SAY_90L.pna`），别名解析后差异层会被 `0x39` 选中。隔离副本已部署且被 `_H` 场景引用，**无需改动**；错的是表。"
+ },
+ "SAY_15S.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "SAY_90S.pna",
+  "archive": "Chip3B.arc；字节",
+  "note": "**真冲突**（2026-09-17 更正）：此前重判按**裸名**统计 `0x39` 帧得\"0 个选中\"→ 误判为误报；实际脚本引用的是**隔离名**（`SAY_90S.pna`），别名解析后差异层会被 `0x39` 选中。隔离副本已部署且被 `_H` 场景引用，**无需改动**；错的是表。"
+ },
+ "Aひかり_01X.pna": {
+  "verdict": "待定",
+  "isolation_name": "ORG_Aひかり_01X.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Aひかり_02X.pna": {
+  "verdict": "待定",
+  "isolation_name": "ORG_Aひかり_02X.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "Aひかり_03X.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORG_Aひかり_03X.PNA",
+  "archive": "Graphic.arc",
+  "note": "逐层配对不可靠（原版 35 层大图 ⇄ Steam 68 层碎片，Steam 重打包）→ 改用**合成画布**比较（`script/probe/compose_diff.py`）：差 0.36%、峰值 167。读图比对：**原版有乳头、Steam 已抹除** → 确属打码真冲突 → 引入原版 + 隔离名 ORG_。"
+ },
+ "B沙夜_01X.pna": {
+  "verdict": "待定",
+  "isolation_name": "ORG_B沙夜_01X.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "B沙夜_02X.pna": {
+  "verdict": "待定",
+  "isolation_name": "ORG_B沙夜_02X.pna",
+  "archive": "Graphic.arc；字节",
+  "note": ""
+ },
+ "COM_04L.pna": {
+  "verdict": "误报",
+  "isolation_name": null,
+  "archive": "Chip3.arc",
+  "note": "重判判「待定」（层 29⇄42 结构不一致），但**合成画布完全一致**（差 0.0000%、峰值 0）→ 差异纯属 Steam 重打包（少数大层 ⇄ 许多小层），画面相同 → **误报，零改动**。（该资源的原版内容已由 resource/layer-repairs.json 的图层级修复处理，无需隔离名。）"
+ },
+ "COM_04S.pna": {
+  "verdict": "误报",
+  "isolation_name": null,
+  "archive": "Chip3.arc",
+  "note": "同 COM_04L：合成比较差 0.0092%、峰值 11（噪声级）→ 误报，零改动。"
+ },
+ "C織姫_01X.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORG_C織姫_01X.PNA",
+  "archive": "Graphic.arc",
+  "note": "同 Aひかり_03X：合成比较差 0.35%、峰值 97（层 33⇄69，Steam 重打包）→ 真冲突，隔离名 ORG_。"
+ },
+ "C織姫_03X.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORG_C織姫_03X.PNA",
+  "archive": "Graphic.arc",
+  "note": "同 Aひかり_03X：合成比较差 0.29%、峰值 149（层 40⇄86）→ 真冲突，隔离名 ORG_。"
+ },
+ "Dころな_01X.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORG_Dころな_01X.PNA",
+  "archive": "Graphic.arc",
+  "note": "同 Aひかり_03X：合成比较差 0.22%、峰值 121（层 53⇄101）→ 真冲突，隔离名 ORG_。"
+ },
+ "Dころな_02X.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORG_Dころな_02X.PNA",
+  "archive": "Graphic.arc",
+  "note": "同 Aひかり_03X：合成比较差 0.21%、峰值 118（层 37⇄63）→ 真冲突，隔离名 ORG_。"
+ },
+ "Dころな_03X.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORG_Dころな_03X.PNA",
+  "archive": "Graphic.arc",
+  "note": "同 Aひかり_03X：合成比较差 0.23%、峰值 77（层 37⇄62）→ 真冲突，隔离名 ORG_。"
+ },
+ "J田尻_01L.pna": {
+  "verdict": "采用Steam",
+  "isolation_name": null,
+  "archive": "Graphic.arc",
+  "note": "合成比较差 0.0151%、峰值 120。**方向反常**：读图显示 **Steam 版有露骨内容（阴茎），日文原版反而没有**。**用户 2026-09-17 裁定：用 Steam 版**（不引入隔离副本、零改动）——保留完整内容，符合还原初衷。"
+ },
+ "J田尻_01M.pna": {
+  "verdict": "采用Steam",
+  "isolation_name": null,
+  "archive": "Graphic.arc",
+  "note": "同 J田尻_01L（合成差 0.0112%、峰值 121）。**用户裁定：用 Steam 版**，零改动。"
+ },
+ "J田尻_01S.pna": {
+  "verdict": "采用Steam",
+  "isolation_name": null,
+  "archive": "Graphic.arc",
+  "note": "同 J田尻_01L（合成差 0.0110%、峰值 120）。**用户裁定：用 Steam 版**，零改动。"
+ },
+ "J田尻_01W.pna": {
+  "verdict": "采用Steam",
+  "isolation_name": null,
+  "archive": "Graphic.arc",
+  "note": "同 J田尻_01L（合成差 0.1274%、峰值 32，层结构 43⇄49）。**用户裁定：用 Steam 版**，零改动。"
+ },
+ "ORI_11S.pna": {
+  "verdict": "真冲突",
+  "isolation_name": "ORI_90S.PNA",
+  "archive": "Chip3A.arc；字节",
+  "note": ""
+ },
+ "Cutin_98B_01A.png": {
+  "verdict": "本地化",
+  "isolation_name": null,
+  "archive": "Chip2.arc",
+  "note": "用户 2026-09-17 实检 + 对照图确认：差异是**内嵌文字的本地化**（原版 `AGO/CURRENT/PAST` → Steam `Middle/Now/elem.`），非打码/改绘。→ **用 Steam 版（有中文）**；脚本本就引用裸名，零改动。对照图为 358×58 的文字带。"
+ },
+ "KOR_04L.pna": {
+  "verdict": "误报",
+  "isolation_name": null,
+  "archive": "Chip3A.arc",
+  "note": "重判原判「真冲突」，但对照图显示差异只在左上角 56x57 空背景区、峰值 27~37、无可辨内容改动。**用户 2026-09-17 目测无差异 → 暂不引入隔离副本**（零改动）。"
+ },
+ "_comment": " **本表为权威记录、不可再生成**（生成器的输入已在清理 `tmp/` 时删除）；直接编辑即可。2026-09-17 修正 5 条事件 CG 的误判（别名解析缺失所致，见各条 note）。"
+}

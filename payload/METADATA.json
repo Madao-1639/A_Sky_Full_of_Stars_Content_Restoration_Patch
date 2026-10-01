@@ -1,6 +1,6 @@
 {
   "Rio.arc": {
-    "checksum": "ed2d7358bd02c250132a588d6652a6a4f82415b759ad009fbd95b6c6c05eb6ef",
+    "checksum": "031f5ea49eae8c5d3a611bcd129d66508237f43e3fe25ca307ec6b91e1306998",
     "members": [
       {
         "name": "BG01_ANIME_ERASE.ws2",
@@ -676,18 +676,6 @@
       },
       {
         "name": "yozora_hika_103b_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_hika_103c_E.ws2",
-        "type": "modified"
-      },
-      {
-        "name": "yozora_hika_103d_H_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_hika_103e_E.ws2",
         "type": "modified"
       },
       {
@@ -697,10 +685,6 @@
       {
         "name": "yozora_hika_103g_H.ws2",
         "type": "added"
-      },
-      {
-        "name": "yozora_hika_103h_E.ws2",
-        "type": "keep"
       },
       {
         "name": "yozora_hika_104_E.ws2",
@@ -788,19 +772,11 @@
       },
       {
         "name": "yozora_hika_108e_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_hika_108f_E.ws2",
         "type": "modified"
       },
       {
         "name": "yozora_hika_108g_H.ws2",
         "type": "added"
-      },
-      {
-        "name": "yozora_hika_108h_E.ws2",
-        "type": "keep"
       },
       {
         "name": "yozora_hika_109_E.ws2",
@@ -832,19 +808,7 @@
       },
       {
         "name": "yozora_hika_110a_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_hika_110b_E.ws2",
         "type": "modified"
-      },
-      {
-        "name": "yozora_hika_110c_H_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_hika_110d_E.ws2",
-        "type": "keep"
       },
       {
         "name": "yozora_hika_110e_E.ws2",
@@ -924,19 +888,11 @@
       },
       {
         "name": "yozora_koro_114a_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_koro_114b_E.ws2",
         "type": "modified"
       },
       {
         "name": "yozora_koro_115_H.ws2",
         "type": "added"
-      },
-      {
-        "name": "yozora_koro_116_E.ws2",
-        "type": "keep"
       },
       {
         "name": "yozora_koro_117_E.ws2",
@@ -952,10 +908,6 @@
       },
       {
         "name": "yozora_koro_119_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_koro_120_E.ws2",
         "type": "modified"
       },
       {
@@ -963,15 +915,7 @@
         "type": "added"
       },
       {
-        "name": "yozora_koro_122_E.ws2",
-        "type": "keep"
-      },
-      {
         "name": "yozora_koro_123_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_koro_123a_E.ws2",
         "type": "modified"
       },
       {
@@ -979,15 +923,7 @@
         "type": "added"
       },
       {
-        "name": "yozora_koro_125_E.ws2",
-        "type": "keep"
-      },
-      {
         "name": "yozora_koro_125a_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_koro_125b_E.ws2",
         "type": "modified"
       },
       {
@@ -999,28 +935,16 @@
         "type": "added"
       },
       {
-        "name": "yozora_koro_128_E.ws2",
-        "type": "keep"
-      },
-      {
         "name": "yozora_koro_128a_E.ws2",
         "type": "keep"
       },
       {
         "name": "yozora_koro_129_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_koro_130_ep1_E.ws2",
         "type": "modified"
       },
       {
         "name": "yozora_koro_131_H.ws2",
         "type": "added"
-      },
-      {
-        "name": "yozora_koro_132_ep2_E.ws2",
-        "type": "keep"
       },
       {
         "name": "yozora_ori_101_E.ws2",
@@ -1144,10 +1068,6 @@
       },
       {
         "name": "yozora_ori_114a_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_ori_114b_E.ws2",
         "type": "modified"
       },
       {
@@ -1155,15 +1075,7 @@
         "type": "added"
       },
       {
-        "name": "yozora_ori_116_E.ws2",
-        "type": "keep"
-      },
-      {
         "name": "yozora_ori_117_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_ori_117a_E.ws2",
         "type": "modified"
       },
       {
@@ -1173,10 +1085,6 @@
       {
         "name": "yozora_ori_118_H.ws2",
         "type": "added"
-      },
-      {
-        "name": "yozora_ori_119_E.ws2",
-        "type": "keep"
       },
       {
         "name": "yozora_ori_120_E.ws2",
@@ -1200,19 +1108,11 @@
       },
       {
         "name": "yozora_ori_122a_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_ori_122b_E.ws2",
         "type": "modified"
       },
       {
         "name": "yozora_ori_123_H.ws2",
         "type": "added"
-      },
-      {
-        "name": "yozora_ori_124_E.ws2",
-        "type": "keep"
       },
       {
         "name": "yozora_ori_124a_E.ws2",
@@ -1256,19 +1156,11 @@
       },
       {
         "name": "yozora_ori_128b_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_ori_128c_E.ws2",
         "type": "modified"
       },
       {
         "name": "yozora_ori_129_H.ws2",
         "type": "added"
-      },
-      {
-        "name": "yozora_ori_130_E.ws2",
-        "type": "keep"
       },
       {
         "name": "yozora_ori_131_ep_E.ws2",
@@ -1308,35 +1200,15 @@
       },
       {
         "name": "yozora_saya_101h_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_saya_101i_E.ws2",
         "type": "modified"
       },
       {
-        "name": "yozora_saya_101j_H_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_saya_102_E.ws2",
-        "type": "keep"
-      },
-      {
         "name": "yozora_saya_102a_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_saya_102b_E.ws2",
         "type": "modified"
       },
       {
         "name": "yozora_saya_102c_H.ws2",
         "type": "added"
-      },
-      {
-        "name": "yozora_saya_102d_E.ws2",
-        "type": "keep"
       },
       {
         "name": "yozora_saya_103_E.ws2",
@@ -1436,10 +1308,6 @@
       },
       {
         "name": "yozora_saya_107_E.ws2",
-        "type": "keep"
-      },
-      {
-        "name": "yozora_saya_107a_E.ws2",
         "type": "modified"
       },
       {
@@ -1447,16 +1315,8 @@
         "type": "added"
       },
       {
-        "name": "yozora_saya_107c_E.ws2",
-        "type": "modified"
-      },
-      {
         "name": "yozora_saya_107d_H.ws2",
         "type": "added"
-      },
-      {
-        "name": "yozora_saya_107e_E.ws2",
-        "type": "keep"
       },
       {
         "name": "yozora_saya_108_E.ws2",
@@ -1481,11 +1341,139 @@
       {
         "name": "yozora_saya_101j_H.ws2",
         "type": "added"
+      },
+      {
+        "name": "yozora_hika_103e.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_hika_103c.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_hika_103h.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_hika_108f.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_hika_108h.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_hika_110b.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_hika_110d.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_saya_101i.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_saya_102.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_saya_102b.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_saya_102d.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_saya_107a.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_saya_107c.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_saya_107e.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_ori_114b.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_ori_116.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_ori_117a.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_ori_119.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_ori_122b.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_ori_124.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_ori_128c.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_ori_130.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_koro_114b.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_koro_116.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_koro_120.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_koro_122.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_koro_123a.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_koro_125.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_koro_125b.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_koro_128.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_koro_130_ep1.ws2",
+        "type": "added"
+      },
+      {
+        "name": "yozora_koro_132_ep2.ws2",
+        "type": "added"
       }
     ]
   },
   "Chip1.arc": {
-    "checksum": "719f67e137e378a114ce238432ad794105a15b6c403108cca0c8fc4a7393ae4c",
+    "checksum": "04da94386ecf3fd6a5f277bf416aa315964abdc5424fe435165c886ea6aac49c",
     "members": [
       {
         "name": "BG_01A_S.png",
@@ -2710,6 +2698,10 @@
       {
         "name": "BG_04N_X2.png",
         "type": "added"
+      },
+      {
+        "name": "BG_07C_X1.png",
+        "type": "added"
       }
     ]
   },
@@ -3307,7 +3299,7 @@
     ]
   },
   "Chip2.arc": {
-    "checksum": "ee7fe1df15c8eebbeb1cbc603f5b4d8c14565ab0741e46179f57bdee5f13d0cb",
+    "checksum": "05e977a53529909cd62c591a224499cd5e20f72592e69476372c5d7c8916995c",
     "members": [
       {
         "name": "APPLI_COM101_A.png",
@@ -4708,11 +4700,15 @@
       {
         "name": "EST_1077.png",
         "type": "added"
+      },
+      {
+        "name": "Cutin_46A.png",
+        "type": "added"
       }
     ]
   },
   "Chip3.arc": {
-    "checksum": "cebd30bef7d85f90d402873fad758a37640f52897a8443daf902194f07071f31",
+    "checksum": "13598c23f11b9afb364121678f0ea8b79df22396dfb382c20de7b81fe3dad236",
     "members": [
       {
         "name": "COM_01L.pna",
@@ -4956,6 +4952,14 @@
       },
       {
         "name": "HIK_23S.PNA",
+        "type": "added"
+      },
+      {
+        "name": "HIK_91L.pna",
+        "type": "added"
+      },
+      {
+        "name": "HIK_91S.pna",
         "type": "added"
       }
     ]
@@ -5459,7 +5463,7 @@
     ]
   },
   "Graphic.arc": {
-    "checksum": "7b719252b71fc66abeadf44a11ea20e16d7fe0c8183c1fb3f29a695e2af5c9a4",
+    "checksum": "3305e10d70c1ce0317285adbf11f87ed181507c84cec188983871b284ca9e80d",
     "members": [
       {
         "name": "AひかりY_01L.pna",
@@ -6242,23 +6246,11 @@
         "type": "added"
       },
       {
-        "name": "ORG_Aひかり_01M.pna",
-        "type": "added"
-      },
-      {
         "name": "ORG_Aひかり_02M.pna",
         "type": "added"
       },
       {
-        "name": "ORG_Aひかり_03W.pna",
-        "type": "added"
-      },
-      {
         "name": "ORG_Aひかり_02L.pna",
-        "type": "added"
-      },
-      {
-        "name": "ORG_Aひかり_03L.pna",
         "type": "added"
       },
       {
@@ -6290,25 +6282,29 @@
         "type": "added"
       },
       {
-        "name": "ORG_C織姫_01W.pna",
-        "type": "added"
-      },
-      {
-        "name": "ORG_C織姫_02W.pna",
-        "type": "added"
-      },
-      {
-        "name": "ORG_C織姫_03W.pna",
-        "type": "added"
-      },
-      {
         "name": "ORG_B沙夜_02L.pna",
+        "type": "added"
+      },
+      {
+        "name": "ORG_Aひかり_03X.pna",
+        "type": "added"
+      },
+      {
+        "name": "ORG_C織姫_01X.pna",
+        "type": "added"
+      },
+      {
+        "name": "ORG_C織姫_03X.pna",
+        "type": "added"
+      },
+      {
+        "name": "ORG_Dころな_02X.pna",
         "type": "added"
       }
     ]
   },
   "Voice.arc": {
-    "checksum": "57654aea973baf8bdc24084395551e709f0e572f94b1776e374041b422b782ed",
+    "checksum": "398fbb1b4d5d3b5f44db717dcb76e872f8bbe5ac576f20c9752d4baeed557a0e",
     "members": [
       {
         "name": "CHAMP_0001.ogg",
@@ -55745,11 +55741,403 @@
       {
         "name": "HIKA_3328.ogg",
         "type": "added"
+      },
+      {
+        "name": "HIKA_2127.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2128.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2129.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2130.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2150.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2151.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2152.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2890.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_2891.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3017.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3018.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3019.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3207.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3208.ogg",
+        "type": "added"
+      },
+      {
+        "name": "HIKA_3209.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1508.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1524.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1525.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1526.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1793.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1794.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1795.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1796.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1797.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1798.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1799.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1800.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1801.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1802.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1803.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1804.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1805.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1806.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1807.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1808.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1809.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1810.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1811.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1812.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1813.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1814.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_1815.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2048.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2049.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2050.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2051.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2052.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2060.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2061.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2062.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2063.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2064.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2065.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2066.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2067.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2068.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2069.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2070.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2071.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2072.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2073.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2120.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2130.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2131.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2132.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2133.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2362.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2363.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2364.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2365.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2366.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2367.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2368.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2369.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2370.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2371.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2372.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2373.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2374.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2375.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2376.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2377.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2378.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2379.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2790.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2793.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2794.ogg",
+        "type": "added"
+      },
+      {
+        "name": "KORO_2795.ogg",
+        "type": "added"
+      },
+      {
+        "name": "TAKE_0345.ogg",
+        "type": "added"
+      },
+      {
+        "name": "TAKE_0346.ogg",
+        "type": "added"
+      },
+      {
+        "name": "TAKE_0347.ogg",
+        "type": "added"
+      },
+      {
+        "name": "TAKE_0348.ogg",
+        "type": "added"
+      },
+      {
+        "name": "TAKE_0349.ogg",
+        "type": "added"
+      },
+      {
+        "name": "TAKE_0350.ogg",
+        "type": "added"
+      },
+      {
+        "name": "TAKE_0351.ogg",
+        "type": "added"
+      },
+      {
+        "name": "TAKE_0352.ogg",
+        "type": "added"
+      },
+      {
+        "name": "TAKE_0353.ogg",
+        "type": "added"
+      },
+      {
+        "name": "TAKE_0354.ogg",
+        "type": "added"
       }
     ]
   },
   "Voice1.arc": {
-    "checksum": "4bdfe63cecc2ca2cd03b82db6d6e70ea5f831d2d29abe13d68fe42f84c05359d",
+    "checksum": "1858a58d20ab0d37eff18fd4503dbb306e6d37c88868d37588c7b580e4ee1924",
     "members": [
       {
         "name": "ORI_0001.ogg",
@@ -80973,6 +81361,694 @@
       },
       {
         "name": "SAYA_2176.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1472.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1473.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1474.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1475.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1476.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1477.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1478.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1479.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1613.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1614.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1615.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1616.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1617.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1625.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1626.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1627.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1628.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1670.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1671.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1672.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1673.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1674.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1675.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1676.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1677.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1678.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1679.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1680.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1681.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1682.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1683.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1684.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1685.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1686.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1687.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1688.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1689.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1691.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1692.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1693.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1694.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1695.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1696.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1697.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1698.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1699.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_1700.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2008.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2009.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2010.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2011.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2012.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2013.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2014.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2015.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2016.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2017.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2018.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2019.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2020.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2150.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2151.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2152.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2153.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2154.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2155.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2156.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2157.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2158.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2159.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2160.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2161.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2162.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2163.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2164.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2165.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2166.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2167.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2168.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2169.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2170.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2171.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2172.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2173.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2174.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2185.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2186.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2187.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2188.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2189.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2190.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2191.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2192.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2193.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2797.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2798.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2799.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2800.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2801.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2802.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2803.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2804.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2805.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2806.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2807.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2808.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2809.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2810.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2811.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2812.ogg",
+        "type": "added"
+      },
+      {
+        "name": "ORI_2813.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2084.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2085.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2088.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2089.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2090.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2191.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2192.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2193.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2194.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2195.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2196.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2227.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2228.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2229.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2230.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2231.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2232.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2233.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2234.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2235.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2236.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2237.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2238.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2239.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2240.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2241.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2242.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2243.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2244.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2421.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2422.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2423.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2984.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2985.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2986.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2987.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2988.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2989.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2990.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2991.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2992.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2993.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2994.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2995.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2996.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2997.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2998.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_2999.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_3000.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_3001.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_3002.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_3003.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_3108.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_3109.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_3110.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_3111.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_3112.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_3113.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_3114.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_3115.ogg",
+        "type": "added"
+      },
+      {
+        "name": "SAYA_3116.ogg",
         "type": "added"
       }
     ]
