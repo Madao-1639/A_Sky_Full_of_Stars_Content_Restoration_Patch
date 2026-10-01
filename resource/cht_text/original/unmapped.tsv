@@ -1,0 +1,9 @@
+# stem	line	pos	jp	原因
+yozora_com_402a_A	0	123	%P	无 >=0x81 字节（补丁按设计不查表）
+yozora_com_402a_B	0	434	%P	无 >=0x81 字节（补丁按设计不查表）
+yozora_com_A_101a_A	0	394	%P	无 >=0x81 字节（补丁按设计不查表）
+yozora_com_A_101a_B	0	444	%P	无 >=0x81 字节（补丁按设计不查表）
+yozora_com_A_103b_A	0	920	%P	无 >=0x81 字节（补丁按设计不查表）
+yozora_com_A_103b_B	0	920	%P	无 >=0x81 字节（补丁按设计不查表）
+yozora_com_B_103b_A	0	120	%P	无 >=0x81 字节（补丁按设计不查表）
+yozora_com_B_103b_B	0	230	%P	无 >=0x81 字节（补丁按设计不查表）
