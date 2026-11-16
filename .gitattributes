@@ -1,4 +1,0 @@
-*.arc filter=lfs diff=lfs merge=lfs -text
-
-# 例外：本次修复涉及的归档改以普通 blob 入库（LFS 配额已满，且该文件仅 8.6 MB）
-asset/Rio.arc !filter !diff !merge

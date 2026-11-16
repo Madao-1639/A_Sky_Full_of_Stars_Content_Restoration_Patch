@@ -14,3 +14,6 @@ build
 
 *.local.*
 .mcp.json
+
+# 补丁产物（约 6 GB）不入库：构建源改为本地完整文件，release 见 releases/
+asset/
