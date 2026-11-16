@@ -983,12 +983,12 @@
   },
   {
    "opcode": "0xf0",
-   "name": "UnkScreen",
-   "present": null,
+   "name": "UnlockAchievement",
+   "present": true,
    "confidence": "high",
-   "policy": "use_orig",
-   "evidence": "用户 2026-09-17 裁定：UnkScreen 屏幕特效，属演出 → 取原版",
-   "note": "差异中 1 处",
+   "policy": "keep_steam",
+   "evidence": "实测定性：Steam 专属成就解锁（id 0x00..0x13 共 20 个，与 UserGameStatsSchema_745960.bin 的 NEW_ACHIEVEMENT_1_0..1_19 一一对应；原版 0 条；CG_ACHIEVEMENT 用 0xf0 0e..13 发 CG 成就；0x0c = Complete the Korona route）。2026-09-17 的「UnkScreen/use_orig」裁定据此更正",
+   "note": "replace/delete 块级取原版会整块丢掉成就调用；脚本级兑底 script/seam/preserve_achievements.py；闸 check_cg_unlock.py",
    "counts": {
     "steam": 26,
     "orig": 0,

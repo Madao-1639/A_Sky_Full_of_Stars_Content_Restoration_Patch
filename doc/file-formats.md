@@ -20,6 +20,50 @@
 - `0x34`：显示 PNA 图层资源
 - `0x66`：特效遮罩，缺失时容忍（仅画面瑕疵）
 
+### CG 显示的固有 id 对（画廊 / 成就解锁）
+
+画廊 CG 的显示指令后面**恒跟一对 `0b` 置位**（全语料形状统一）：
+
+```
+0x34 <slot> 00 <STEM>.PNA 00 01 01   0b <A:u16> 01   0b <B:u16> 01   [04 CG_ACHIEVEMENT 00]
+```
+
+* `A` ∈ **1120..1228**：CG 组号（一个 CG 的 L/S 变体共用一个 A）。
+* `B` ∈ **1250..1659**：画廊缩略图**条目号**（Steam 编号）。`CG_PAGE.ws2` 对每个条目用 `0x01 Condition` 读 B（==1.0），并配一个 `0x1c openCgBrowser <NAME>.PNA` —— 共 410 条。
+* `CG_ACHIEVEMENT.ws2` 顺序读同一批 410 个 B，把已置位条数累加进**旗标 55**，再按阈值 **82 / 164 / 246 / 328 / 410** 发放 6 个 CG 成就（最后一次 `0xf0 13` 需要 410/410）。
+* 原版（2015）与 Steam **各自编号**：原版 B 可到 2251，`CG_PAGE`/`CG_ACHIEVEMENT` 只存在于 Steam 侧、只认 1250..1659。⇒ **两套 B 不可互换**；还原脚本里原版 B 落在 1250..1659 时只是「碰巧撞上」Steam 的另一个条目，不能当解锁映射用。
+* **解锁位点不是演出**：覆盖/平移 Steam 内容（`replace`/`delete` 块、整段还原、接缝重建）时，必须把被覆盖段里的 `0b` 对与 `04 CG_ACHIEVEMENT` 保留到替代内容前端，否则画廊条目永久锁、全 CG 成就不可达。只有 A 会参与 CG 组解锁，B 参与画廊与计数成就。脚本级补搬：`script/seam/preserve_cg_unlocks.py`；回归闸 `script/checks/check_cg_unlock.py`。
+
+### `0xf0`：Steam 成就解锁调用
+
+```
+0xf0 <u8 achievement_id>
+```
+
+* 本作共 20 个成就，id **0x00..0x13**；**Steam 专属**（原版 2015 脚本里 **0 条**，Steam 侧 26 条）。
+* **语义已由本作 Steam 成就 schema 确认**（`D:/Steam/appcache/stats/UserGameStatsSchema_745960.bin`，20 条 `ASFS_ACHIEVEMENT_01..20` / token `NEW_ACHIEVEMENT_1_0..1_19`，与 `0xf0 0x00..0x13` 一一对应）：
+
+| id | 成就（schema） | 触发点（脚本） |
+|---|---|---|
+| `00` | Start the game | `com_000` |
+| `01` | Watch the first opening movie | `com_103b` |
+| `02` | Watch the second opening movie | `com_404d_a/_b` |
+| `03` | Watch the ending movie | `hika_110e` / `saya_108a` / `ori_130` / `koro_132_ep2` |
+| `04` | Open the gallery | 引擎/Lua，无脚本 `f0` |
+| `05` | Open the BGM gallery | 引擎/Lua，无脚本 `f0` |
+| `06` | Complete the first common route | `com_a_105` |
+| `07` | Complete the second common route | `com_b_103b_a/_b` |
+| `08` | Complete the game for the first time | 四条尾声 |
+| `09` | Complete the Hikari route | `hika_111_ep` |
+| `0a` | Complete the Saya route | `saya_109_ep` |
+| `0b` | Complete the Orihime route | `ori_131_ep` |
+| **`0c`** | **Complete the Korona route** | **`koro_132_ep2`** |
+| `0d` | Complete all routes | `TITLE` |
+| `0e..13` | 看 CG：首次 / 20% / 40% / 60% / 80% / 100% | `CG_ACHIEVEMENT` |
+
+* **不是演出特效**：参照反汇编器把它叫 `UnkScreen`，那是占位名（C+C 项目的 `ws2disasm.py` 同样如此，`wsc_handlers.json` 里是 default handler，其语料不依赖 `0xf0`）⇒ `present-ops.json` 的政策是 **`keep_steam`**；判据是本作成就 schema 的 20 个 token 与 20 个 id 一一对应。
+* **保留规则**：与 `0x0b` 解锁位点同类，`replace`/`delete` 块整块取原版时会连成就调用一起丢掉。脚本级兜底：`script/seam/preserve_achievements.py`；回归闸见 `script/checks/check_cg_unlock.py`。
+
 ### 命名规则
 
 格式：`XXX_{数字}{字母}_H_E.ws`
@@ -80,6 +124,7 @@ Steam 删减 H 场景时，把它前后的**邻居脚本**也一并改写成"没
 
 - 与演出相关 → 取**原版**（背景、图层透明度、立绘帧号、坐标、定时器秒数**整套**回原版，不做"原版画面 + Steam 参数"的混搭——这些参数常是 Steam 为配合它换掉的画面而**成组**调过的）
 - 与演出无关 → 取 **Steam**（不看它是 Steam 新增还是原版独有：跳过已读机制 `[0x1c GetMsgSkip, 0x01 Condition, 0x02 Jump2]`、`0x11 SetTimer` 的**编码形态**、`0x0b SetFlag`（承载画廊/成就 id）等。**同一条指令可按维度拆开**：`0x11 SetTimer` = 编码形态用 Steam、秒数取值用原版）
+  - ⚠️ `0x0b SetFlag` 的 `keep_steam` 只保证 `insert`/`equal` 块取 Steam；`replace`/`delete` 块整块取原版时，**块内的 `0b` 对与 `04 CG_ACHIEVEMENT` 必须另行从 Steam 侧保留**（解锁位点，见上文「CG 显示的固有 id 对」）
 - **凡不确定的演出处理必须主动询问，不得私自决定**（已知易错：背景被换、图层透明度被调、立绘帧号被改）
 
 **合并规则**（按「opcode + 操作数」对齐两侧指令序列，每个 block 只取一侧）：
@@ -87,6 +132,7 @@ Steam 删减 H 场景时，把它前后的**邻居脚本**也一并改写成"没
 - `equal` → 取 Steam 字节；`replace` / `delete` → 取原版；`insert`（Steam 独有）→ 只保留"与演出无关"的 opcode
 - **记录内顺序**：演出 → 语音（`0x2e`）→ 说话人前缀（`0x15`）→ 文本（`0x14`）；文本恒为记录末条
 - **机制组整体保留**：跳过已读机制 `[0x1c GetMsgSkip, 0x01 Condition, 0x02 Jump2]` 与其跳转**直接引用**的指令（`Condition.a/.b`、`Jump2.a` 的目标，通常是一到两条 `0x1f StopMusic`）**作为整体从 Steam 取得**——否则目标指令被丢弃后，绝对偏移无从重定位（会留下陈旧偏移）。Steam 的排布不固定（见过 `[1c][01][1f][02][1f]`），故不能只认"三重指令紧邻 StopMusic"这一种形态
+- **解锁位点整体保留**：被 `replace`/`delete` 掉的 Steam 块里若有 `[0b A 01 0b B 01][04 CG_ACHIEVEMENT]`（CG 画廊/成就），必须按**首次出现顺序去重后原样重放到还原段前端**；不得因为「该 B 在其它脚本也置位」而裁掉（会丢解锁时机与路线，`Cross_Channel` 的 `EVCC0100` 教训）。A/B 必须取自**被替换的 Steam 脚本字节**，不能拿原版编号冒充
 - **文本 id 重排为 `0..N-1`**（与记录顺序一致）；`.lng` 同名新建，共用句取 Steam `.lng` 对应条、差分句新译
 
 **「差分类文本记录」的判定**：除语音/句数通道外，还有一类 **同句数、无语音句的语义改写**（把性内容
@@ -104,8 +150,7 @@ Steam 删减 H 场景时，把它前后的**邻居脚本**也一并改写成"没
 
 **术语**：`アキ兄`→`晓哥哥`、`あっくん`→`晓君`、ころな 的**自称**→`人家`；注音标记（`{η:イータ}`）去掉
 
-**长度变化后必做**：`0x02 Jump2` / `0x01 Condition` / `EVRET` 的字段都是**文件内绝对偏移** → 重定位并
-回读；改动 `_H` 脚本长度后重跑 `script/tools/fix_evret_offsets.py`
+**长度变化后必做**：`0x02 Jump2` / `0x01 Condition` / `0x06 Jump` / `EVRET` 的字段都是**文件内绝对偏移** → 重定位并回读；改动 `_H` 脚本长度后重跑 `script/tools/fix_evret_offsets.py`。**解锁位点 / 成就调用补搬**：`script/seam/preserve_cg_unlocks.py` 重放 `0b A 01 0b B 01`，`script/seam/preserve_achievements.py` 重放被替换 Steam 脚本的 `0xf0 <id>`（均在替代脚本入口/末尾结算段，幂等）；回归闸 `script/checks/check_cg_unlock.py`。
 
 **立绘 / 事件 CG 引用**：只有**真冲突**（差异层会被 `0x39` 选中）的资源才改隔离名（`ORG_` 前缀 /
 9X 段位）；**误报**（差异不可见或属噪声级）、**本地化差异**（cut-in 内嵌译文）**直接用 Steam 裸名**。

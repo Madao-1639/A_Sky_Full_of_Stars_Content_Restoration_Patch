@@ -18,7 +18,8 @@ scenes = resources.load('scenes.json')['scenes']
 | `cg-conflicts.json` | 同名冲突**事件 CG** 的 `原版名 → 9X 补丁名`、逐变体实测状态、改动它的场景 | `script/final_verification.py`、同步到其他补丁变体的脚本 |
 | `resource-decisions.json` | 同名冲突的**最终取舍**（`真冲突`/`误报`/`采用Steam`/`本地化`/`待定`）与隔离名 | `script/seam/pin_translations.py`、`script/seam/apply_seam_resources.py --plan`、`script/seam/revert_isolation.py` |
 | `layer-repairs.json` | COM_04/05 的 `(steam_lid → miazora_lid)` 图层级修复映射 | `script/tools/replace_pna_layers.py` |
-| `present-ops.json` | 逐 opcode 的演出归属（`use_orig` / `keep_steam`）——差异处理的唯一判据 | `script/seam/build_seam.py`、`script/seam/gen_worklist.py` |
+| `image-censorship.json` | **Steam 改绘（和谐）图片清单**：逐条给出被改成员、承载改动的 layer_id、和谐/非和谐判定与依据、补丁当前部署状态，末尾 `residual_gaps` 是仍显示和谐版的工作清单 | 人工复查与后续修复排期（口径见 `doc/pna-resources.md`「图片和谐比对（图层帧池）」）；`script/probe/framepool.py` 复现判定、`script/probe/pair_sheet.py` 出对照图 |
+| `present-ops.json` | 逐 opcode 的演出归属（`use_orig` / `keep_steam`）——差异处理的唯一判据；`counts.orig == 0` 的 opcode **不得**标 `use_orig`（Steam 专属，取原版必整类丢失） | `script/seam/build_seam.py`、`script/seam/gen_worklist.py`、`script/checks/check_cg_unlock.py`（策略自洽闸） |
 | `steam-diffs.json` | **Steam 版的差分范围**：按插入点记录入口/出口的实测状态与一句话说明 | `doc/restoration-targets.md`（引用） |
 | `seam-diffs.json` | **差分接缝的差异数据**：按邻居脚本记录四来源差异（演出/文本记录级/无语音句语义/资源名） | `script/seam/gen_worklist.py`、`script/seam/build_seam_diffs.py`、`script/final_verification.py` |
 | `seam-handling.json` | **分脚本的处理记录**：每个接缝还原了哪些记录、整块区间、改的名、补的资源、注入的成就 | 复查与实机验证对照 |
@@ -51,6 +52,15 @@ scenes = resources.load('scenes.json')['scenes']
 
 **`layer-repairs.json`**：`source_archive`/`target_archive`、`full_canvas`（整层替换的 `layer_id`
 与成员）、`local_frames[]`（`member` + `layers` = `[steam_layer_id, miazora_layer_id]` 显式配对）
+
+**`image-censorship.json` → `items[]`**：一条 = 一处被 Steam 改绘（或确认未被改绘）的图片，
+`kind`（`event-cg` / `standing-sprite` / `ui-image`）、`archive`、`members`（逐成员列全，立绘按尺寸
+变体各算一处）、`layer_ids`（承载改动的**原版** layer_id）、`verdict`（`censored` / `not-censorship`
++ `reason`）、`what`（一句话说明改了什么）、`evidence`（帧池口径的实测依据）、`shipped`
+（补丁部署状态，取值见 `legend`）、`patch_names`（隔离部署后的新名）、`deleted_by_steam`
+（Steam 整份删掉的成员）、`scripts`（仍显示和谐版的场景）、`needs_decision`（缺口待裁定）。
+立绘条目另有 `variants`：按尺寸字母给 `member`、`org_copy`、`patch_bare_refs`（仍按裸名引用它的补丁场景）。
+顶层 `membership_changes[]` 记两侧成员名单差异（删除/改名重发），`residual_gaps` 汇总待修站点。
 
 **`steam-diffs.json` → `insertions[]`**：`id`、`route`、`entry`/`exit`（各含 `neighbor` = 该侧邻居
 脚本 stem，`null` 表示无此侧邻居；`status` = `pass`/`minor`/`hard`）、`note`（一句话）。

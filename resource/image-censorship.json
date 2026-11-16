@@ -1,0 +1,1482 @@
+{
+  "_comment": "Steam 版对 2015 原版的**图片级和谐**清单：Steam 没有整份删除、而是改绘了画面内容的资源。逐条给出成员、承载改动的原版 layer_id、判定与补丁当前是否已带未和谐像素。比对口径与判读规则见 `doc/pna-resources.md`「图片和谐比对（图层帧池）」；复现判定用 `script/probe/framepool.py`，裁定看图用 `script/probe/pair_sheet.py`。shipped 只描述 asset/ 现状，不代表已裁定要修。",
+  "legend": {
+    "kind": {
+      "event-cg": "事件 CG（剧情插图，常含逐层动画帧）",
+      "standing-sprite": "角色立绘（L/M/S/W/X 为同一立绘的不同尺寸/画幅变体，逐变体各算一处）",
+      "ui-image": "界面与插图素材（截图、图标、Logo、切入图）"
+    },
+    "verdict": {
+      "censored": "Steam 改绘删除了原有的性描写内容",
+      "not-censorship": "有差异但不涉及删内容（重编码、重打包、调色、本地化、配色、服装改绘）"
+    },
+    "shipped": {
+      "restored-9x": "原版内容以 9X 段位名另存部署，还原场景改指新名（见 `cg-conflicts.json`）",
+      "restored-org": "原版内容以 ORG_ 前缀另存部署，供还原场景引用",
+      "layer-repair": "裸名成员内部按图层覆盖回原版字节（见 `layer-repairs.json`）",
+      "not-covered": "补丁内仍是 Steam 的和谐版像素",
+      "n-a": "非和谐，无需还原"
+    },
+    "evidence": "一句话实测口径：`帧池 命中/原版层数`，未配对帧的差异比例与差异区尺寸",
+    "scripts": "仍会显示和谐版的场景（`Rio.arc` 成员 stem）；立绘类的引用站点按变体记在 `variants.*.patch_bare_refs`",
+    "variants": "仅立绘条目：按尺寸变体字母给出 `member`（裸名成员）、`org_copy`（补丁是否部署了 ORG_ 副本）、`patch_bare_refs`（补丁自己引入或改写的场景中仍按裸名引用该变体的，即会显示和谐版身体图层的站点）",
+    "residual_gaps": "两类遗留缺口：`censored_cg_still_shipped`（事件 CG / 界面图仍是和谐像素，站点见各条 `scripts`）与 `patch_scenes_on_censored_sprites`（场景 → 它仍引用的被和谐立绘变体）"
+  },
+  "items": [
+    {
+      "id": "COM_05",
+      "kind": "event-cg",
+      "archive": "Chip3.arc",
+      "members": [
+        "COM_05L.pna",
+        "COM_05S.pna"
+      ],
+      "layer_ids": [
+        1,
+        4,
+        5,
+        6,
+        7
+      ],
+      "verdict": "censored",
+      "what": "温泉场景两名角色的乳头/乳晕被擦除，整幅水面的雾气和亮度另做重绘",
+      "evidence": "帧池 0/5 命中；差异集中在胸部图层（峰值 41..75），整幅背景层为全局调色",
+      "shipped": "layer-repair",
+      "scripts": [
+        "yozora_com_303c_E"
+      ],
+      "cross_refs": [
+        "layer-repairs.json:full_canvas+local_frames",
+        "resource-decisions.json"
+      ]
+    },
+    {
+      "id": "COM_04",
+      "kind": "event-cg",
+      "archive": "Chip3.arc",
+      "members": [
+        "COM_04L.pna",
+        "COM_04S.pna"
+      ],
+      "layer_ids": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "verdict": "not-censorship",
+      "reason": "Steam 把 25 层重切成 38 层并整体后移 layer_id，同时重编码全部帧、重绘水面的雾与亮度；逐帧目视内容一致，没有删去的性描写",
+      "evidence": "帧池 0/25 命中但差异为整层低幅偏色（角色帧 差>8 约 1.7%..3.9%、峰值 ≤32），背景层为全局调色",
+      "shipped": "layer-repair",
+      "ship_note": "layer-repairs.json 覆盖 COM_04 属同批图层对齐处理，不是和谐修复",
+      "scripts": [
+        "yozora_hika_103f",
+        "yozora_hika_103g_H"
+      ],
+      "cross_refs": [
+        "layer-repairs.json",
+        "cg-conflicts.json:COM_04",
+        "resource-decisions.json"
+      ]
+    },
+    {
+      "id": "HIK_09",
+      "kind": "event-cg",
+      "archive": "Chip3.arc",
+      "members": [
+        "HIK_09L.pna",
+        "HIK_09S.pna"
+      ],
+      "layer_ids": [
+        2
+      ],
+      "verdict": "censored",
+      "what": "动画序列里其中一帧改为手臂横过胸前遮挡，其余帧原样保留",
+      "evidence": "帧池 5/6 命中，仅 1 帧被改绘（差>8 12%、峰值 216、差异区覆盖大半个画幅）",
+      "shipped": "restored-9x",
+      "patch_names": [
+        "HIK_90L.pna",
+        "HIK_90S.pna"
+      ],
+      "scripts": [
+        "yozora_hika_103d_H"
+      ],
+      "cross_refs": [
+        "cg-conflicts.json:HIK_09"
+      ]
+    },
+    {
+      "id": "HIK_12",
+      "kind": "event-cg",
+      "archive": "Chip3.arc",
+      "members": [
+        "HIK_12L.pna",
+        "HIK_12S.pna"
+      ],
+      "layer_ids": [
+        1,
+        4,
+        5,
+        6,
+        7
+      ],
+      "verdict": "censored",
+      "what": "衬衫改为扣合并压低裙摆、另加腰带，人物图层四帧动画被合并成同一帧",
+      "evidence": "帧池 0/5 命中；四个动画帧在两侧 id 相同但像素被改绘（差>8 16%、峰值 223）",
+      "shipped": "restored-9x",
+      "patch_names": [
+        "HIK_91L.pna",
+        "HIK_91S.pna"
+      ],
+      "scripts": [
+        "yozora_hika_110b"
+      ],
+      "cross_refs": [
+        "cg-conflicts.json:HIK_12"
+      ]
+    },
+    {
+      "id": "KOR_04",
+      "kind": "event-cg",
+      "archive": "Chip3A.arc",
+      "members": [
+        "KOR_04L.pna",
+        "KOR_04S.pna"
+      ],
+      "layer_ids": [
+        1
+      ],
+      "verdict": "censored",
+      "what": "乳晕被逐点擦除：改动只有约 20×24 像素，且浅粉覆盖浅肤，缩略图与 1× 目视都看不出",
+      "evidence": "帧池 8/9 命中，唯一差异帧 差>8 仅 0.0097%、峰值 27、差异区 (43,513)-(63,537)；整幅 α 掩膜口径下同一层为 0.0131% / 峰值 37 / 外接框 57×57（复核报告给的是后者，人工在全图尺寸下按它目测会漏判）",
+      "shipped": "not-covered",
+      "needs_decision": true,
+      "scripts": [
+        "yozora_koro_103a_E",
+        "yozora_koro_104_E",
+        "yozora_koro_105_E",
+        "yozora_koro_120"
+      ],
+      "cross_refs": [
+        "resource-decisions.json:KOR_04L.pna"
+      ]
+    },
+    {
+      "id": "ORI_11",
+      "kind": "event-cg",
+      "archive": "Chip3A.arc",
+      "members": [
+        "ORI_11S.pna"
+      ],
+      "deleted_by_steam": [
+        "ORI_11L.pna",
+        "ORI_11L.MOS"
+      ],
+      "layer_ids": [
+        1
+      ],
+      "verdict": "censored",
+      "what": "玻璃桌面改为不透明木桌，并重新取景使裙底视角消失；承载裙底与桌面透视的 13 个图层被整批删除",
+      "evidence": "帧池 0/14 命中；原版 13 层在 Steam 侧连同尺寸帧都没有，底图 差>8 91.7%、峰值 254",
+      "shipped": "restored-9x",
+      "patch_names": [
+        "ORI_90L.pna",
+        "ORI_90S.pna"
+      ],
+      "scripts": [
+        "yozora_ori_115_H"
+      ],
+      "cross_refs": [
+        "cg-conflicts.json:ORI_11"
+      ]
+    },
+    {
+      "id": "ORI_12",
+      "kind": "event-cg",
+      "archive": "Chip3A.arc",
+      "members": [
+        "ORI_12L.pna",
+        "ORI_12S.pna"
+      ],
+      "layer_ids": [
+        1,
+        5,
+        6,
+        7
+      ],
+      "verdict": "censored",
+      "what": "人物三帧动画被压成一帧并改绘为遮蔽姿态",
+      "evidence": "帧池 7/10 命中；原版 lid 5/6/7 三帧在 Steam 侧只剩一帧可比（差>8 27%、峰值 242）",
+      "shipped": "restored-9x",
+      "patch_names": [
+        "ORI_91L.pna",
+        "ORI_91S.pna"
+      ],
+      "scripts": [
+        "yozora_ori_118_H"
+      ],
+      "cross_refs": [
+        "cg-conflicts.json:ORI_12"
+      ]
+    },
+    {
+      "id": "SAY_10",
+      "kind": "event-cg",
+      "archive": "Chip3B.arc",
+      "members": [
+        "SAY_10L.pna",
+        "SAY_10S.pna"
+      ],
+      "layer_ids": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "verdict": "censored",
+      "what": "透明桌面改为实心桌（桌下视角被抹掉），人物与背景整体改绘并重新调色",
+      "evidence": "帧池 0/7 命中；六个人物帧全部重绘（差>8 64%、峰值 203），底图 差>8 86%",
+      "shipped": "not-covered",
+      "needs_decision": true,
+      "scripts": [
+        "yozora_saya_105d_E"
+      ],
+      "cross_refs": []
+    },
+    {
+      "id": "SAY_15",
+      "kind": "event-cg",
+      "archive": "Chip3B.arc",
+      "members": [
+        "SAY_15L.pna",
+        "SAY_15S.pna"
+      ],
+      "layer_ids": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "verdict": "censored",
+      "what": "四帧动作序列被压成一帧，删去暴露的中间帧",
+      "evidence": "帧池 6/10 命中；原版 lid 5/6/7 三帧只剩 Steam lid=8 可比（差>8 13.9%..58%、峰值 241..251）",
+      "shipped": "restored-9x",
+      "patch_names": [
+        "SAY_90L.pna",
+        "SAY_90S.pna"
+      ],
+      "scripts": [
+        "yozora_saya_101j_H"
+      ],
+      "cross_refs": [
+        "cg-conflicts.json:SAY_15"
+      ]
+    },
+    {
+      "id": "SDEV_02",
+      "kind": "event-cg",
+      "archive": "Chip4.arc",
+      "members": [
+        "SDEV_02L.pna"
+      ],
+      "deleted_by_steam": [
+        "SDEV_02S.pna",
+        "SDEV_02S.MOS"
+      ],
+      "layer_ids": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "verdict": "censored",
+      "what": "正面全裸的打码 Q 版人物改为背面视角，构图重排；原版承载人物的 6 个图层被整批替换",
+      "evidence": "帧池 0/7 命中；原版 6 层在 Steam 侧无同尺寸帧，底图 差>8 90%、峰值 255",
+      "shipped": "not-covered",
+      "ship_note": "补丁未部署 Chip4.arc，本条在 asset 里根本没有对应成员",
+      "needs_decision": true,
+      "scripts": [
+        "yozora_com_303c_E"
+      ],
+      "cross_refs": []
+    },
+    {
+      "id": "SDEV_07",
+      "kind": "event-cg",
+      "archive": "Chip4.arc",
+      "members": [
+        "SDEV_07L.pna",
+        "SDEV_07S.pna"
+      ],
+      "layer_ids": [
+        1,
+        6,
+        7,
+        8,
+        9,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21
+      ],
+      "verdict": "not-censorship",
+      "reason": "Steam 把车辆与路人的动画层烘进整幅背景，画面内容仍在，未删任何性描写",
+      "evidence": "帧池 10/15 命中；4 个动画层无同尺寸对应帧，其余差异为 0.5%..3% 的重编码噪声",
+      "shipped": "n-a",
+      "scripts": [],
+      "cross_refs": []
+    },
+    {
+      "id": "Aひかり_01",
+      "kind": "standing-sprite",
+      "archive": "Graphic.arc",
+      "members": [
+        "Aひかり_01L.pna",
+        "Aひかり_01M.pna",
+        "Aひかり_01S.pna",
+        "Aひかり_01W.pna",
+        "Aひかり_01X.pna"
+      ],
+      "layer_ids": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "censored",
+      "what": "裸身立绘的乳头/乳晕图层被擦除，同一处改动落在该立绘的每个尺寸变体上",
+      "evidence": "帧池 48/51 命中（各变体一致）；仅 3 个身体图层被改，差异区约 200×80 像素",
+      "needs_decision": true,
+      "cross_refs": [],
+      "variants": {
+        "L": {
+          "member": "Aひかり_01L.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_hika_103e",
+            "yozora_hika_108f",
+            "yozora_hika_108h",
+            "yozora_hika_110d"
+          ]
+        },
+        "M": {
+          "member": "Aひかり_01M.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_hika_103c",
+            "yozora_hika_103f",
+            "yozora_hika_108f"
+          ]
+        },
+        "S": {
+          "member": "Aひかり_01S.pna",
+          "org_copy": false,
+          "patch_bare_refs": []
+        },
+        "W": {
+          "member": "Aひかり_01W.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_hika_108f"
+          ]
+        },
+        "X": {
+          "member": "Aひかり_01X.pna",
+          "org_copy": false,
+          "patch_bare_refs": []
+        }
+      },
+      "shipped": "not-covered"
+    },
+    {
+      "id": "Aひかり_02",
+      "kind": "standing-sprite",
+      "archive": "Graphic.arc",
+      "members": [
+        "Aひかり_02L.pna",
+        "Aひかり_02M.pna",
+        "Aひかり_02S.pna",
+        "Aひかり_02W.pna",
+        "Aひかり_02X.pna"
+      ],
+      "layer_ids": [
+        2,
+        3
+      ],
+      "verdict": "censored",
+      "what": "裸身立绘的乳头/乳晕图层被擦除，逐尺寸变体各一处",
+      "evidence": "帧池 59/61 命中；2 个身体图层被改，差异区约 215×82 像素",
+      "cross_refs": [],
+      "variants": {
+        "L": {
+          "member": "Aひかり_02L.pna",
+          "org_copy": true,
+          "patch_bare_refs": []
+        },
+        "M": {
+          "member": "Aひかり_02M.pna",
+          "org_copy": true,
+          "patch_bare_refs": []
+        },
+        "S": {
+          "member": "Aひかり_02S.pna",
+          "org_copy": false,
+          "patch_bare_refs": []
+        },
+        "W": {
+          "member": "Aひかり_02W.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_hika_108f",
+            "yozora_saya_102"
+          ]
+        },
+        "X": {
+          "member": "Aひかり_02X.pna",
+          "org_copy": false,
+          "patch_bare_refs": []
+        }
+      },
+      "shipped": "restored-org"
+    },
+    {
+      "id": "Aひかり_03",
+      "kind": "standing-sprite",
+      "archive": "Graphic.arc",
+      "members": [
+        "Aひかり_03L.pna",
+        "Aひかり_03M.pna",
+        "Aひかり_03S.pna",
+        "Aひかり_03W.pna",
+        "Aひかり_03X.pna"
+      ],
+      "layer_ids": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "censored",
+      "what": "裸身立绘的乳头/乳晕图层被擦除；X 变体另多出若干 Steam 新增的眼型图层",
+      "evidence": "帧池 49/52 命中；3 个身体图层被改，X 变体 Steam 侧多出 36 层",
+      "cross_refs": [],
+      "variants": {
+        "L": {
+          "member": "Aひかり_03L.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_hika_103c",
+            "yozora_hika_103e",
+            "yozora_hika_103h",
+            "yozora_hika_108f",
+            "yozora_hika_108g_H",
+            "yozora_hika_108h",
+            "yozora_hika_110d"
+          ]
+        },
+        "M": {
+          "member": "Aひかり_03M.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_hika_103c",
+            "yozora_hika_103h",
+            "yozora_hika_110d"
+          ]
+        },
+        "S": {
+          "member": "Aひかり_03S.pna",
+          "org_copy": false,
+          "patch_bare_refs": []
+        },
+        "W": {
+          "member": "Aひかり_03W.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_hika_103f",
+            "yozora_hika_108f",
+            "yozora_hika_108h"
+          ]
+        },
+        "X": {
+          "member": "Aひかり_03X.pna",
+          "org_copy": true,
+          "patch_bare_refs": []
+        }
+      },
+      "shipped": "restored-org"
+    },
+    {
+      "id": "B沙夜_01",
+      "kind": "standing-sprite",
+      "archive": "Graphic.arc",
+      "members": [
+        "B沙夜_01L.pna",
+        "B沙夜_01M.pna",
+        "B沙夜_01S.pna",
+        "B沙夜_01W.pna",
+        "B沙夜_01X.pna"
+      ],
+      "layer_ids": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "censored",
+      "what": "裸身立绘的乳头/乳晕图层被擦除，逐尺寸变体各一处",
+      "evidence": "帧池 81/84 命中；3 个身体图层被改",
+      "cross_refs": [],
+      "variants": {
+        "L": {
+          "member": "B沙夜_01L.pna",
+          "org_copy": true,
+          "patch_bare_refs": []
+        },
+        "M": {
+          "member": "B沙夜_01M.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_ori_128c",
+            "yozora_ori_130",
+            "yozora_saya_101i",
+            "yozora_saya_102",
+            "yozora_saya_102b",
+            "yozora_saya_102d",
+            "yozora_saya_107e"
+          ]
+        },
+        "S": {
+          "member": "B沙夜_01S.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_ori_130"
+          ]
+        },
+        "W": {
+          "member": "B沙夜_01W.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_ori_130",
+            "yozora_saya_101i",
+            "yozora_saya_102"
+          ]
+        },
+        "X": {
+          "member": "B沙夜_01X.pna",
+          "org_copy": false,
+          "patch_bare_refs": []
+        }
+      },
+      "shipped": "restored-org"
+    },
+    {
+      "id": "B沙夜_02",
+      "kind": "standing-sprite",
+      "archive": "Graphic.arc",
+      "members": [
+        "B沙夜_02L.pna",
+        "B沙夜_02M.pna",
+        "B沙夜_02S.pna",
+        "B沙夜_02W.pna",
+        "B沙夜_02X.pna"
+      ],
+      "layer_ids": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "censored",
+      "what": "裸身立绘的乳头/乳晕图层被擦除，逐尺寸变体各一处",
+      "evidence": "帧池 55/58 命中；3 个身体图层被改",
+      "cross_refs": [],
+      "variants": {
+        "L": {
+          "member": "B沙夜_02L.pna",
+          "org_copy": true,
+          "patch_bare_refs": []
+        },
+        "M": {
+          "member": "B沙夜_02M.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_koro_114b",
+            "yozora_saya_107e"
+          ]
+        },
+        "S": {
+          "member": "B沙夜_02S.pna",
+          "org_copy": false,
+          "patch_bare_refs": []
+        },
+        "W": {
+          "member": "B沙夜_02W.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_saya_101i"
+          ]
+        },
+        "X": {
+          "member": "B沙夜_02X.pna",
+          "org_copy": false,
+          "patch_bare_refs": []
+        }
+      },
+      "shipped": "restored-org"
+    },
+    {
+      "id": "B沙夜_03",
+      "kind": "standing-sprite",
+      "archive": "Graphic.arc",
+      "members": [
+        "B沙夜_03L.pna",
+        "B沙夜_03M.pna",
+        "B沙夜_03S.pna",
+        "B沙夜_03W.pna"
+      ],
+      "layer_ids": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "censored",
+      "what": "裸身立绘的乳头/乳晕图层被擦除，逐尺寸变体各一处",
+      "evidence": "帧池 54/57 命中；3 个身体图层被改",
+      "cross_refs": [],
+      "variants": {
+        "L": {
+          "member": "B沙夜_03L.pna",
+          "org_copy": true,
+          "patch_bare_refs": []
+        },
+        "M": {
+          "member": "B沙夜_03M.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_koro_114b",
+            "yozora_saya_101i",
+            "yozora_saya_102",
+            "yozora_saya_102b",
+            "yozora_saya_102d"
+          ]
+        },
+        "S": {
+          "member": "B沙夜_03S.pna",
+          "org_copy": false,
+          "patch_bare_refs": []
+        },
+        "W": {
+          "member": "B沙夜_03W.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_ori_130",
+            "yozora_saya_101i",
+            "yozora_saya_107e"
+          ]
+        }
+      },
+      "shipped": "restored-org"
+    },
+    {
+      "id": "C織姫_01",
+      "kind": "standing-sprite",
+      "archive": "Graphic.arc",
+      "members": [
+        "C織姫_01L.pna",
+        "C織姫_01M.pna",
+        "C織姫_01S.pna",
+        "C織姫_01W.pna",
+        "C織姫_01X.pna"
+      ],
+      "layer_ids": [
+        2,
+        3
+      ],
+      "verdict": "censored",
+      "what": "裸身立绘的乳头/乳晕图层被擦除，逐尺寸变体各一处",
+      "evidence": "帧池 49/51 命中；2 个身体图层被改",
+      "cross_refs": [],
+      "variants": {
+        "L": {
+          "member": "C織姫_01L.pna",
+          "org_copy": true,
+          "patch_bare_refs": [
+            "yozora_ori_117b"
+          ]
+        },
+        "M": {
+          "member": "C織姫_01M.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_ori_116",
+            "yozora_ori_117a",
+            "yozora_ori_117b",
+            "yozora_ori_124"
+          ]
+        },
+        "S": {
+          "member": "C織姫_01S.pna",
+          "org_copy": false,
+          "patch_bare_refs": []
+        },
+        "W": {
+          "member": "C織姫_01W.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_ori_114b",
+            "yozora_ori_123_H",
+            "yozora_ori_129_H",
+            "yozora_ori_130"
+          ]
+        },
+        "X": {
+          "member": "C織姫_01X.pna",
+          "org_copy": true,
+          "patch_bare_refs": []
+        }
+      },
+      "shipped": "restored-org"
+    },
+    {
+      "id": "C織姫_02",
+      "kind": "standing-sprite",
+      "archive": "Graphic.arc",
+      "members": [
+        "C織姫_02L.pna",
+        "C織姫_02M.pna",
+        "C織姫_02S.pna",
+        "C織姫_02W.pna"
+      ],
+      "layer_ids": [
+        2,
+        3
+      ],
+      "verdict": "censored",
+      "what": "裸身立绘的乳头/乳晕图层被擦除，逐尺寸变体各一处",
+      "evidence": "帧池 45/47 命中；2 个身体图层被改",
+      "needs_decision": true,
+      "cross_refs": [],
+      "variants": {
+        "L": {
+          "member": "C織姫_02L.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_ori_116",
+            "yozora_ori_117a",
+            "yozora_ori_117b",
+            "yozora_ori_122b",
+            "yozora_ori_124",
+            "yozora_ori_128c",
+            "yozora_ori_130"
+          ]
+        },
+        "M": {
+          "member": "C織姫_02M.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_koro_130_ep1",
+            "yozora_ori_117a",
+            "yozora_ori_117b",
+            "yozora_ori_124",
+            "yozora_ori_128c"
+          ]
+        },
+        "S": {
+          "member": "C織姫_02S.pna",
+          "org_copy": false,
+          "patch_bare_refs": []
+        },
+        "W": {
+          "member": "C織姫_02W.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_ori_129_H"
+          ]
+        }
+      },
+      "shipped": "not-covered"
+    },
+    {
+      "id": "C織姫_03",
+      "kind": "standing-sprite",
+      "archive": "Graphic.arc",
+      "members": [
+        "C織姫_03L.pna",
+        "C織姫_03M.pna",
+        "C織姫_03S.pna",
+        "C織姫_03W.pna",
+        "C織姫_03X.pna"
+      ],
+      "layer_ids": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "censored",
+      "what": "裸身立绘的乳头/乳晕图层被擦除，逐尺寸变体各一处",
+      "evidence": "帧池 65/68 命中；3 个身体图层被改",
+      "cross_refs": [],
+      "variants": {
+        "L": {
+          "member": "C織姫_03L.pna",
+          "org_copy": true,
+          "patch_bare_refs": [
+            "yozora_ori_117b"
+          ]
+        },
+        "M": {
+          "member": "C織姫_03M.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_koro_130_ep1",
+            "yozora_ori_117a",
+            "yozora_ori_117b",
+            "yozora_ori_122b",
+            "yozora_ori_130"
+          ]
+        },
+        "S": {
+          "member": "C織姫_03S.pna",
+          "org_copy": false,
+          "patch_bare_refs": []
+        },
+        "W": {
+          "member": "C織姫_03W.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_ori_123_H",
+            "yozora_ori_130"
+          ]
+        },
+        "X": {
+          "member": "C織姫_03X.pna",
+          "org_copy": true,
+          "patch_bare_refs": []
+        }
+      },
+      "shipped": "restored-org"
+    },
+    {
+      "id": "Dころな_01",
+      "kind": "standing-sprite",
+      "archive": "Graphic.arc",
+      "members": [
+        "Dころな_01L.pna",
+        "Dころな_01M.pna",
+        "Dころな_01S.pna",
+        "Dころな_01W.pna",
+        "Dころな_01X.pna"
+      ],
+      "layer_ids": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "verdict": "censored",
+      "what": "裸身立绘的乳头/乳晕图层被擦除，逐尺寸变体各一处",
+      "evidence": "帧池 77/81 命中；4 个身体图层被改",
+      "cross_refs": [],
+      "variants": {
+        "L": {
+          "member": "Dころな_01L.pna",
+          "org_copy": true,
+          "patch_bare_refs": []
+        },
+        "M": {
+          "member": "Dころな_01M.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_koro_114b",
+            "yozora_koro_120",
+            "yozora_koro_122",
+            "yozora_koro_123a",
+            "yozora_koro_125",
+            "yozora_koro_125b",
+            "yozora_koro_128",
+            "yozora_koro_130_ep1",
+            "yozora_ori_124",
+            "yozora_saya_102"
+          ]
+        },
+        "S": {
+          "member": "Dころな_01S.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_koro_114b"
+          ]
+        },
+        "W": {
+          "member": "Dころな_01W.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_koro_128",
+            "yozora_koro_130_ep1",
+            "yozora_saya_102"
+          ]
+        },
+        "X": {
+          "member": "Dころな_01X.pna",
+          "org_copy": true,
+          "patch_bare_refs": []
+        }
+      },
+      "shipped": "restored-org"
+    },
+    {
+      "id": "Dころな_02",
+      "kind": "standing-sprite",
+      "archive": "Graphic.arc",
+      "members": [
+        "Dころな_02L.pna",
+        "Dころな_02M.pna",
+        "Dころな_02S.pna",
+        "Dころな_02W.pna",
+        "Dころな_02X.pna"
+      ],
+      "layer_ids": [
+        2,
+        3
+      ],
+      "verdict": "censored",
+      "what": "裸身立绘的乳头/乳晕图层被擦除，逐尺寸变体各一处",
+      "evidence": "帧池 41/43 命中；2 个身体图层被改",
+      "cross_refs": [],
+      "variants": {
+        "L": {
+          "member": "Dころな_02L.pna",
+          "org_copy": true,
+          "patch_bare_refs": []
+        },
+        "M": {
+          "member": "Dころな_02M.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_koro_120",
+            "yozora_koro_125",
+            "yozora_koro_125b",
+            "yozora_koro_130_ep1"
+          ]
+        },
+        "S": {
+          "member": "Dころな_02S.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_koro_114b"
+          ]
+        },
+        "W": {
+          "member": "Dころな_02W.pna",
+          "org_copy": false,
+          "patch_bare_refs": []
+        },
+        "X": {
+          "member": "Dころな_02X.pna",
+          "org_copy": true,
+          "patch_bare_refs": []
+        }
+      },
+      "shipped": "restored-org"
+    },
+    {
+      "id": "Dころな_03",
+      "kind": "standing-sprite",
+      "archive": "Graphic.arc",
+      "members": [
+        "Dころな_03L.pna",
+        "Dころな_03M.pna",
+        "Dころな_03S.pna",
+        "Dころな_03W.pna",
+        "Dころな_03X.pna"
+      ],
+      "layer_ids": [
+        2,
+        3
+      ],
+      "verdict": "censored",
+      "what": "裸身立绘的乳头/乳晕图层被擦除，逐尺寸变体各一处",
+      "evidence": "帧池 40/42 命中；2 个身体图层被改",
+      "cross_refs": [],
+      "variants": {
+        "L": {
+          "member": "Dころな_03L.pna",
+          "org_copy": true,
+          "patch_bare_refs": []
+        },
+        "M": {
+          "member": "Dころな_03M.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_koro_114b",
+            "yozora_koro_116",
+            "yozora_koro_120",
+            "yozora_koro_122",
+            "yozora_koro_123a",
+            "yozora_koro_125",
+            "yozora_koro_125b",
+            "yozora_koro_128",
+            "yozora_koro_130_ep1",
+            "yozora_ori_124"
+          ]
+        },
+        "S": {
+          "member": "Dころな_03S.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_koro_114b"
+          ]
+        },
+        "W": {
+          "member": "Dころな_03W.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_koro_116",
+            "yozora_koro_120",
+            "yozora_koro_128",
+            "yozora_koro_130_ep1"
+          ]
+        },
+        "X": {
+          "member": "Dころな_03X.pna",
+          "org_copy": true,
+          "patch_bare_refs": []
+        }
+      },
+      "shipped": "restored-org"
+    },
+    {
+      "id": "J田尻_01",
+      "kind": "standing-sprite",
+      "archive": "Graphic.arc",
+      "members": [
+        "J田尻_01L.pna",
+        "J田尻_01M.pna",
+        "J田尻_01S.pna",
+        "J田尻_01W.pna"
+      ],
+      "layer_ids": [
+        5,
+        6
+      ],
+      "verdict": "not-censorship",
+      "reason": "原版每一帧在 Steam 侧都逐像素保留，Steam 只额外叠加了 2 个服装图层；属改绘而非删内容，用户已裁定沿用 Steam 版",
+      "evidence": "帧池 34/34 全命中、未配对 0、Steam 侧多出 2 帧",
+      "shipped": "n-a",
+      "cross_refs": [
+        "resource-decisions.json"
+      ],
+      "variants": {
+        "L": {
+          "member": "J田尻_01L.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_koro_128",
+            "yozora_koro_130_ep1"
+          ]
+        },
+        "M": {
+          "member": "J田尻_01M.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_koro_128"
+          ]
+        },
+        "S": {
+          "member": "J田尻_01S.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_koro_128"
+          ]
+        },
+        "W": {
+          "member": "J田尻_01W.pna",
+          "org_copy": false,
+          "patch_bare_refs": [
+            "yozora_koro_128"
+          ]
+        }
+      }
+    },
+    {
+      "id": "APPLI_ORI121a",
+      "kind": "ui-image",
+      "archive": "Chip2.arc",
+      "members": [
+        "APPLI_ORI121a_A.png"
+      ],
+      "layer_ids": [],
+      "verdict": "censored",
+      "what": "剧情里的聊天截图：原版末句的露骨发言被换成中性鼓励话，同归档其余 92 个 APPLI_ 截图逐字节一致",
+      "evidence": "PNG 整图比对，仅文字区不同；脚本不按名引用（运行时合成），无场景名可列",
+      "shipped": "not-covered",
+      "needs_decision": true,
+      "scripts": [],
+      "script_note": "由 yozora_ori_121 系场景运行时组合显示，按名搜 Rio.arc 搜不到",
+      "cross_refs": []
+    },
+    {
+      "id": "Cutin_20D_L",
+      "kind": "ui-image",
+      "archive": "Chip2.arc",
+      "members": [
+        "Cutin_20D_L.png"
+      ],
+      "layer_ids": [],
+      "verdict": "not-censorship",
+      "reason": "切入特写的美瞳配色不同，Steam 另发了配套的 _S 变体",
+      "evidence": "PNG 整图比对，差异限于虹膜颜色",
+      "shipped": "n-a",
+      "scripts": [],
+      "cross_refs": []
+    },
+    {
+      "id": "Cutin_20F_L",
+      "kind": "ui-image",
+      "archive": "Chip2.arc",
+      "members": [
+        "Cutin_20F_L.png"
+      ],
+      "layer_ids": [],
+      "verdict": "not-censorship",
+      "reason": "切入特写的美瞳配色不同，Steam 另发了配套的 _S 变体",
+      "evidence": "PNG 整图比对，差异限于虹膜颜色",
+      "shipped": "n-a",
+      "scripts": [],
+      "cross_refs": []
+    },
+    {
+      "id": "Cutin_98B_01A",
+      "kind": "ui-image",
+      "archive": "Chip2.arc",
+      "members": [
+        "Cutin_98B_01A.png"
+      ],
+      "layer_ids": [],
+      "verdict": "not-censorship",
+      "reason": "表盘/界面文字本地化改写，Steam 另发了 _sc 变体",
+      "evidence": "PNG 整图比对，差异限于图内文字",
+      "shipped": "n-a",
+      "scripts": [],
+      "cross_refs": [
+        "resource-decisions.json:Cutin_98B_01A.png"
+      ]
+    },
+    {
+      "id": "brand",
+      "kind": "ui-image",
+      "archive": "Graphic.arc",
+      "members": [
+        "brand.png"
+      ],
+      "layer_ids": [],
+      "verdict": "not-censorship",
+      "reason": "发行商标识由 PULLTOP 换成 MoeNovel",
+      "evidence": "PNG 整图比对，仅 Logo 不同",
+      "shipped": "n-a",
+      "scripts": [],
+      "cross_refs": []
+    }
+  ],
+  "membership_changes": [
+    {
+      "archive": "Graphic.arc",
+      "jp_only": [
+        "B沙夜Y_01S.pna",
+        "DころなY_01S.pna",
+        "E美晴Y_01S.pna",
+        "F武一Y_01S.pna",
+        "attention.png",
+        "EFMSK_36.png",
+        "EFMSK_40.png",
+        "EFMSK_59.png",
+        "LAYERMASK_1060.png",
+        "LAYERMASK_1066.png"
+      ],
+      "steam_only": [
+        "EFMSK_89.png",
+        "LAYERMASK_2119.png"
+      ],
+      "note": "四名侧角色的裸身立绘随其演出段落一并删除，遮罩与特效 PNG 属同批清理；不是改绘，属删内容，走脚本还原路线"
+    },
+    {
+      "archive": "Chip2.arc",
+      "jp_only": [
+        "Cutin_01A.png",
+        "Cutin_01B.png",
+        "Cutin_01C.png",
+        "Cutin_01D.png",
+        "Cutin_01E.png",
+        "Cutin_01F.png",
+        "Cutin_01G.png",
+        "Cutin_01H.png",
+        "Cutin_01I.png",
+        "Cutin_01K.png",
+        "Cutin_01L.png",
+        "Cutin_01M.png",
+        "Cutin_01P.png",
+        "Cutin_01S.png",
+        "Cutin_29E.png",
+        "Cutin_46A.png",
+        "EST_1033.png",
+        "EST_1069.png",
+        "EST_1071.png",
+        "EST_1077.png",
+        "HOSHI_COM202d_AS.png",
+        "HOSHI_COM404b_AS.png",
+        "HOSHI_SP04_AS.png",
+        "HOSHI_SP06_AS.png",
+        "HOSHI_SP07_AS.png"
+      ],
+      "steam_only": [
+        "Cutin_01A_EN.png",
+        "Cutin_01A_sc.png",
+        "Cutin_01B_EN.png",
+        "Cutin_01B_sc.png",
+        "Cutin_01C_EN.png",
+        "Cutin_01C_sc.png",
+        "Cutin_01D_EN.png",
+        "Cutin_01D_sc.png",
+        "Cutin_01E_EN.png",
+        "Cutin_01E_sc.png",
+        "Cutin_01F_EN.png",
+        "Cutin_01F_sc.png",
+        "Cutin_01G_EN.png",
+        "Cutin_01G_sc.png",
+        "Cutin_01H_EN.png",
+        "Cutin_01H_sc.png",
+        "Cutin_01I_EN.png",
+        "Cutin_01I_sc.png",
+        "Cutin_01K_EN.png",
+        "Cutin_01K_sc.png",
+        "Cutin_01L_EN.png",
+        "Cutin_01L_sc.png",
+        "Cutin_01M_EN.png",
+        "Cutin_01M_sc.png",
+        "Cutin_01P_EN.png",
+        "Cutin_01P_sc.png",
+        "Cutin_20D_S.png",
+        "Cutin_20E_S.png",
+        "Cutin_20F_S.png",
+        "Cutin_22E_L.png",
+        "Cutin_42A_S.png",
+        "Cutin_47_L.png",
+        "Cutin_47_S.png",
+        "Cutin_48_L.png",
+        "Cutin_98B_01A_sc.png",
+        "Cutin_98B_03A_sc.png"
+      ],
+      "note": "切入图按本地化改名重发（_EN/_sc 与新增尺寸变体），不是改绘和谐"
+    }
+  ],
+  "residual_gaps": {
+    "censored_cg_still_shipped": [
+      "KOR_04",
+      "SAY_10",
+      "SDEV_02",
+      "APPLI_ORI121a"
+    ],
+    "patch_scenes_on_censored_sprites": {
+      "yozora_hika_103c": [
+        "Aひかり_01M.pna",
+        "Aひかり_03L.pna",
+        "Aひかり_03M.pna"
+      ],
+      "yozora_hika_103e": [
+        "Aひかり_01L.pna",
+        "Aひかり_03L.pna"
+      ],
+      "yozora_hika_103f": [
+        "Aひかり_01M.pna",
+        "Aひかり_03W.pna"
+      ],
+      "yozora_hika_103h": [
+        "Aひかり_03L.pna",
+        "Aひかり_03M.pna"
+      ],
+      "yozora_hika_108f": [
+        "Aひかり_01L.pna",
+        "Aひかり_01M.pna",
+        "Aひかり_01W.pna",
+        "Aひかり_02W.pna",
+        "Aひかり_03L.pna",
+        "Aひかり_03W.pna"
+      ],
+      "yozora_hika_108g_H": [
+        "Aひかり_03L.pna"
+      ],
+      "yozora_hika_108h": [
+        "Aひかり_01L.pna",
+        "Aひかり_03L.pna",
+        "Aひかり_03W.pna"
+      ],
+      "yozora_hika_110d": [
+        "Aひかり_01L.pna",
+        "Aひかり_03L.pna",
+        "Aひかり_03M.pna"
+      ],
+      "yozora_koro_114b": [
+        "B沙夜_02M.pna",
+        "B沙夜_03M.pna",
+        "Dころな_01M.pna",
+        "Dころな_01S.pna",
+        "Dころな_02S.pna",
+        "Dころな_03M.pna",
+        "Dころな_03S.pna"
+      ],
+      "yozora_koro_116": [
+        "Dころな_03M.pna",
+        "Dころな_03W.pna"
+      ],
+      "yozora_koro_120": [
+        "Dころな_01M.pna",
+        "Dころな_02M.pna",
+        "Dころな_03M.pna",
+        "Dころな_03W.pna"
+      ],
+      "yozora_koro_122": [
+        "Dころな_01M.pna",
+        "Dころな_03M.pna"
+      ],
+      "yozora_koro_123a": [
+        "Dころな_01M.pna",
+        "Dころな_03M.pna"
+      ],
+      "yozora_koro_125": [
+        "Dころな_01M.pna",
+        "Dころな_02M.pna",
+        "Dころな_03M.pna"
+      ],
+      "yozora_koro_125b": [
+        "Dころな_01M.pna",
+        "Dころな_02M.pna",
+        "Dころな_03M.pna"
+      ],
+      "yozora_koro_128": [
+        "Dころな_01M.pna",
+        "Dころな_01W.pna",
+        "Dころな_03M.pna",
+        "Dころな_03W.pna"
+      ],
+      "yozora_koro_130_ep1": [
+        "C織姫_02M.pna",
+        "C織姫_03M.pna",
+        "Dころな_01M.pna",
+        "Dころな_01W.pna",
+        "Dころな_02M.pna",
+        "Dころな_03M.pna",
+        "Dころな_03W.pna"
+      ],
+      "yozora_ori_114b": [
+        "C織姫_01W.pna"
+      ],
+      "yozora_ori_116": [
+        "C織姫_01M.pna",
+        "C織姫_02L.pna"
+      ],
+      "yozora_ori_117a": [
+        "C織姫_01M.pna",
+        "C織姫_02L.pna",
+        "C織姫_02M.pna",
+        "C織姫_03M.pna"
+      ],
+      "yozora_ori_117b": [
+        "C織姫_01L.pna",
+        "C織姫_01M.pna",
+        "C織姫_02L.pna",
+        "C織姫_02M.pna",
+        "C織姫_03L.pna",
+        "C織姫_03M.pna"
+      ],
+      "yozora_ori_122b": [
+        "C織姫_02L.pna",
+        "C織姫_03M.pna"
+      ],
+      "yozora_ori_123_H": [
+        "C織姫_01W.pna",
+        "C織姫_03W.pna"
+      ],
+      "yozora_ori_124": [
+        "C織姫_01M.pna",
+        "C織姫_02L.pna",
+        "C織姫_02M.pna",
+        "Dころな_01M.pna",
+        "Dころな_03M.pna"
+      ],
+      "yozora_ori_128c": [
+        "B沙夜_01M.pna",
+        "C織姫_02L.pna",
+        "C織姫_02M.pna"
+      ],
+      "yozora_ori_129_H": [
+        "C織姫_01W.pna",
+        "C織姫_02W.pna"
+      ],
+      "yozora_ori_130": [
+        "B沙夜_01M.pna",
+        "B沙夜_01S.pna",
+        "B沙夜_01W.pna",
+        "B沙夜_03W.pna",
+        "C織姫_01W.pna",
+        "C織姫_02L.pna",
+        "C織姫_03M.pna",
+        "C織姫_03W.pna"
+      ],
+      "yozora_saya_101i": [
+        "B沙夜_01M.pna",
+        "B沙夜_01W.pna",
+        "B沙夜_02W.pna",
+        "B沙夜_03M.pna",
+        "B沙夜_03W.pna"
+      ],
+      "yozora_saya_102": [
+        "Aひかり_02W.pna",
+        "B沙夜_01M.pna",
+        "B沙夜_01W.pna",
+        "B沙夜_03M.pna",
+        "Dころな_01M.pna",
+        "Dころな_01W.pna"
+      ],
+      "yozora_saya_102b": [
+        "B沙夜_01M.pna",
+        "B沙夜_03M.pna"
+      ],
+      "yozora_saya_102d": [
+        "B沙夜_01M.pna",
+        "B沙夜_03M.pna"
+      ],
+      "yozora_saya_107e": [
+        "B沙夜_01M.pna",
+        "B沙夜_02M.pna",
+        "B沙夜_03W.pna"
+      ]
+    },
+    "note": "censored_cg_still_shipped 指补丁内仍是 Steam 和谐像素的事件 CG / 界面图（逐条见 items 的 scripts）；patch_scenes_on_censored_sprites 指补丁自己引入或改写的场景仍按裸名引用被和谐立绘，即还原场景里显示的是和谐版身体图层——与是否部署 ORG_ 副本无关，是脚本改名遗漏"
+  }
+}

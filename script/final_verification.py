@@ -9,6 +9,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+import json
 import re
 from collections import Counter
 from tool import arcbuild, resources, ws2
@@ -281,6 +282,31 @@ for conflict in CONFLICTS:
         print(f'    [{status}] {scene_id} 引用 {conflict["patch"]}: {hits if hits else "未引用"}')
         if not hits:
             all_ok = False
+
+print('\n' + '=' * 84)
+print('【检查 6】resource/ 映射表可解析')
+print('=' * 84)
+# 表是手工维护的权威记录，语法错误只能在下游脚本崩溃时才暴露，这里先整目录过一遍。
+for path in sorted(resources.RESOURCE_DIR.glob('*.json')):
+    try:
+        json.loads(path.read_text('utf-8'))
+        print(f'  [OK]   {path.name}')
+    except Exception as exc:  # noqa: BLE001
+        all_ok = False
+        print(f'  [FAIL] {path.name} :: {type(exc).__name__} line {getattr(exc, "lineno", "?")}'
+              f' col {getattr(exc, "colno", "?")}')
+
+print('\n' + '=' * 84)
+print('【检查 7】CG 画廊 / 成就解锁位点守恒')
+print('=' * 84)
+import subprocess
+_gate = Path(__file__).resolve().parent / 'checks' / 'check_cg_unlock.py'
+_rc = subprocess.call([sys.executable, str(_gate)])
+if _rc:
+    all_ok = False
+    print('  [FAIL] check_cg_unlock.py 返回 %d' % _rc)
+else:
+    print('  [OK] check_cg_unlock.py 通过')
 
 print('\n' + '=' * 84)
 print('【最终结论】')

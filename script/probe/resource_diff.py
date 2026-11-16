@@ -750,6 +750,9 @@ def check_isolation(rec, ref, asset_side):
 #   可见像素差占比 = 0 且峰值 = 0                    -> 误报（画面等价，此前只因
 #                                                     透明区 RGB 垃圾值/编码差异命中）
 #   占比 < 0.5% 且峰值 <= 32                        -> 误报（重编码/亚像素噪声级）
+#                                                     **例外**：差异外接框只占可见面积极小
+#                                                     一块时降级为待定——定点擦除（和谐）
+#                                                     同样落在噪声级的占比/峰值区间
 #   PNA：差异层与全部引用脚本 0x39 选中的层无交集    -> 误报（差异层从不显示）
 #   其余                                             -> 真冲突
 # 一律待定（上报，不猜）：
@@ -767,6 +770,7 @@ def check_isolation(rec, ref, asset_side):
 REJUDGE_LABEL = {'REAL': '真冲突', 'FALSE': '误报', 'UNDECIDED': '待定'}
 NOISE_RATIO = 0.5        # 可见像素差占比低于此值……
 NOISE_PEAK = 32          # ……且峰值不超过此值 -> 视作噪声级
+PINPOINT_BBOX = 5.0      # 但差异外接框占可见面积低于此值（%）时不认噪声，转待定
 GRADE_RESIDUAL = 0.5     # 线性校正后残差低于此值 -> 差异是整体调色/亮度
 REJUDGE = False          # 由 --rejudge 打开
 _DISPLAY_CACHE = {}
@@ -803,6 +807,28 @@ def _alpha_stats(ia, ib, over=8):
     bbox = mx.point(lambda v: 255 if v else 0).getbbox() if r_over else None
     return {'visible': visible, 'alpha_ratio': 100.0 * a_over / visible,
             'rgb_ratio': 100.0 * r_over / visible, 'peak': peak, 'bbox': bbox}
+
+
+def _bbox_share(st):
+    """差异外接框面积占可见掩膜面积的百分比；无 bbox 返回 None。
+
+    重编码噪声铺满整层（接近 100%），定点擦除只留一小块，两者占比/峰值可能同档，
+    只能靠差异**分布形态**区分。
+    """
+    bb = st['bbox']
+    if not bb or not st['visible']:
+        return None
+    return 100.0 * (bb[2] - bb[0]) * (bb[3] - bb[1]) / st['visible']
+
+
+def _noise_rule(st):
+    """噪声级判定；返回 ('FALSE'|'UNDECIDED', 占比%)。紧凑差异不当噪声。"""
+    if not (st['rgb_ratio'] < NOISE_RATIO and st['peak'] <= NOISE_PEAK):
+        return None, None
+    share = _bbox_share(st)
+    if share is not None and share <= PINPOINT_BBOX:
+        return 'UNDECIDED', share
+    return 'FALSE', share
 
 
 def _set_side(ia, ib):
@@ -954,6 +980,12 @@ def _rejudge_png(name, da, db):
                    '或 PNG 编码差异）')
         return out, 'FALSE'
     if st['rgb_ratio'] < NOISE_RATIO and st['peak'] <= NOISE_PEAK:
+        kind, share = _noise_rule(st)
+        if kind == 'UNDECIDED':
+            out.append('  → **待定**：差异 %.4f%% / 峰值 %d 虽在噪声级，但外接框只占可见面积 '
+                       '%.3f%%（bbox %s）—— 重编码噪声会铺满整层，这种紧凑分布更像定点擦除，'
+                       '须放大目视后再定' % (st['rgb_ratio'], st['peak'], share, st['bbox']))
+            return out, 'UNDECIDED'
         out.append('  → **误报**：差异 %.4f%% / 峰值 %d 属重编码噪声级'
                    % (st['rgb_ratio'], st['peak']))
         return out, 'FALSE'
@@ -992,19 +1024,31 @@ def _rejudge_pna(name, da, db):
             return out, 'UNDECIDED'
         st = _alpha_stats(ia, ib)
         if st['peak'] > 8:
-            diffs.append(i)
+            diffs.append((i, st))
             if worst is None or st['rgb_ratio'] > worst['rgb_ratio']:
                 worst = st
+    didx = [i for i, _ in diffs]
     out.append('  实质差异层（掩膜后通道差 >8）%d / %d 层：%s'
-               % (len(diffs), n, _abbrev(diffs)))
-    if worst:
-        out.append('  最大差层：可见像素差 >8 占比 %.4f%%，峰值 %d，bbox %s'
-                   % (worst['rgb_ratio'], worst['peak'], worst['bbox']))
+               % (len(didx), n, _abbrev(didx)))
+    # 逐层都要列：只看最大差层会漏判——定点擦除往往不是占比最高的那一层，
+    # 人工只会去核被列出来的那层，于是擦除点躲过复核（见 doc/lessons-learned.md 第 12 节）
+    for i, st in sorted(diffs, key=lambda x: -x[1]['rgb_ratio'])[:8]:
+        out.append('    层 %-3d（lid=%s）差 >8 %8.4f%% 峰值 %3d bbox %s'
+                   % (i, pa['entries'][i][1], st['rgb_ratio'], st['peak'], st['bbox']))
+    if len(diffs) > 8:
+        out.append('    …其余 %d 层省略' % (len(diffs) - 8))
     if not diffs:
         out.append('  → **误报**：α 掩膜下逐层画面一致（此前命中只因透明区 RGB 垃圾值'
                    '或 PNG 编码差异）')
         return out, 'FALSE'
     if worst['rgb_ratio'] < NOISE_RATIO and worst['peak'] <= NOISE_PEAK:
+        if any(_noise_rule(st)[0] == 'UNDECIDED' for _, st in diffs):
+            i, st = next((i, st) for i, st in diffs if _noise_rule(st)[0] == 'UNDECIDED')
+            out.append('  → **待定**：占比 %.4f%% / 峰值 %d 虽在噪声级，但层 %d 的差异只占可见面积 '
+                       '%.3f%%（bbox %s）—— 重编码噪声会铺满整层，这种紧凑分布更像定点擦除，'
+                       '须放大目视后再定'
+                       % (worst['rgb_ratio'], worst['peak'], i, _bbox_share(st), st['bbox']))
+            return out, 'UNDECIDED'
         out.append('  → **误报**：差异 %.4f%% / 峰值 %d 属重编码噪声级'
                    % (worst['rgb_ratio'], worst['peak']))
         return out, 'FALSE'
@@ -1016,14 +1060,14 @@ def _rejudge_pna(name, da, db):
     if disp is None:
         out.append('  → **待定**：asset/ 里没有可读的脚本语料，可见性无从判断')
         return out, 'UNDECIDED'
-    shown = [i for i in diffs if i in disp]
+    shown = [i for i in didx if i in disp]
     out.append('  引用该资源（含 ORG_ 隔离名）的脚本共选中 %d 个图层下标；'
                '与差异层相交：%s' % (len(disp), _abbrev(shown) or '无'))
     if not shown:
         if not disp and _is_bound(name):
             out.append('  → **真冲突**：该资源**没有任何 `0x39` 选帧**（事件 CG 一类），'
                        '**整份图层都会显示** —— 差异层 %s 必然可见，保留原版那份（隔离名），'
-                       '不可替换' % _abbrev(diffs))
+                       '不可替换' % _abbrev(didx))
             return out, 'REAL'
         out.append('  → **误报**：差异层在所有引用脚本的 `0x39` 帧中都不出现，且该资源**不是**'
                    '「无帧选择、整份显示」的类型 —— 该差异在演出中不可见，直接用 Steam 那份'
@@ -1069,7 +1113,8 @@ def render_rejudge_md(records):
             '',
             '- **真冲突**：差异会被显示（或超噪声级）→ 必须保留原版那份（隔离名）',
             '- **误报**：差异不可见或属噪声级 → 直接用 Steam 裸名，省一份部署',
-            '- **待定**：尺寸/结构不一致或语料缺失，判不了 → 人工核',
+            '- **待定**：尺寸/结构不一致或语料缺失，判不了 → 人工核；'
+            '噪声级但外接框紧凑（像定点擦除）也归此档',
             '']
     counts = {k: sum(1 for r in rows if r['rejudge'] == k) for k in REJUDGE_LABEL}
     head += ['| 结论 | 项数 |', '|---|---|']

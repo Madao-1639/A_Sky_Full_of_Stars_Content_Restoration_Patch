@@ -63,13 +63,13 @@
   "verdict": "真冲突",
   "isolation_name": "HIK_91L.PNA",
   "archive": "Chip3.arc",
-  "note": "用户 2026-09-17 裁定维持真冲突（复核：5/9 层、19.3%、峰值 242）。隔离名 **HIK_91L**，依据用户定的顺序规则（9X 按脚本顺序编号）：HIK_09 首引用于 103d_H(103)→HIK_90；HIK_12 首引用于 110b(110)→**HIK_91**，顺序在后、无需重编号。**已部署**（asset/Chip3.arc 的 HIK_91L.pna）。"
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 真冲突，已按隔离名部署原版那一份（判定与站点见 `image-censorship.json` 条目 HIK_12）"
  },
  "HIK_12S.pna": {
   "verdict": "真冲突",
   "isolation_name": "HIK_91S.PNA",
   "archive": "Chip3.arc",
-  "note": "同 HIK_12L。隔离名 HIK_91S，**已部署**（asset/Chip3.arc 的 HIK_91S.pna）。"
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 真冲突，已按隔离名部署原版那一份（判定与站点见 `image-censorship.json` 条目 HIK_12）"
  },
  "ORI_12S.pna": {
   "verdict": "真冲突",
@@ -78,358 +78,358 @@
   "note": ""
  },
  "Aひかり_01L.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Aひかり_01L.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Aひかり_01）"
  },
  "Aひかり_01M.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Aひかり_01M.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Aひかり_01）"
  },
  "Aひかり_01S.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Aひかり_01S.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Aひかり_01）"
  },
  "Aひかり_01W.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Aひかり_01W.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Aひかり_01）"
  },
  "Aひかり_02S.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Aひかり_02S.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Aひかり_02）"
  },
  "Aひかり_02W.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Aひかり_02W.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Aひかり_02）"
  },
  "Aひかり_03L.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Aひかり_03L.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Aひかり_03）"
  },
  "Aひかり_03M.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Aひかり_03M.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Aひかり_03）"
  },
  "Aひかり_03S.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Aひかり_03S.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Aひかり_03）"
  },
  "Aひかり_03W.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Aひかり_03W.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Aひかり_03）"
  },
  "B沙夜_01M.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_B沙夜_01M.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 B沙夜_01）"
  },
  "B沙夜_01S.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_B沙夜_01S.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 B沙夜_01）"
  },
  "B沙夜_01W.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_B沙夜_01W.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 B沙夜_01）"
  },
  "B沙夜_02M.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_B沙夜_02M.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 B沙夜_02）"
  },
  "B沙夜_02S.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_B沙夜_02S.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 B沙夜_02）"
  },
  "B沙夜_02W.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_B沙夜_02W.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 B沙夜_02）"
  },
  "B沙夜_03M.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_B沙夜_03M.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 B沙夜_03）"
  },
  "B沙夜_03S.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_B沙夜_03S.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 B沙夜_03）"
  },
  "B沙夜_03W.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_B沙夜_03W.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 B沙夜_03）"
  },
  "C織姫_01M.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_C織姫_01M.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 C織姫_01）"
  },
  "C織姫_01S.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_C織姫_01S.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 C織姫_01）"
  },
  "C織姫_01W.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_C織姫_01W.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 C織姫_01）"
  },
  "C織姫_02L.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_C織姫_02L.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 C織姫_02）"
  },
  "C織姫_02M.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_C織姫_02M.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 C織姫_02）"
  },
  "C織姫_02S.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_C織姫_02S.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 C織姫_02）"
  },
  "C織姫_02W.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_C織姫_02W.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 C織姫_02）"
  },
  "C織姫_03M.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_C織姫_03M.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 C織姫_03）"
  },
  "C織姫_03S.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_C織姫_03S.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 C織姫_03）"
  },
  "C織姫_03W.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_C織姫_03W.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 C織姫_03）"
  },
  "Dころな_01M.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Dころな_01M.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Dころな_01）"
  },
  "Dころな_01S.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Dころな_01S.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Dころな_01）"
  },
  "Dころな_01W.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Dころな_01W.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Dころな_01）"
  },
  "Dころな_02M.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Dころな_02M.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Dころな_02）"
  },
  "Dころな_02S.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Dころな_02S.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Dころな_02）"
  },
  "Dころな_02W.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Dころな_02W.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Dころな_02）"
  },
  "Dころな_03M.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Dころな_03M.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Dころな_03）"
  },
  "Dころな_03S.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Dころな_03S.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Dころな_03）"
  },
  "Dころな_03W.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": "ORG_Dころな_03W.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Dころな_03）"
  },
  "HIK_09L.pna": {
   "verdict": "真冲突",
   "isolation_name": "HIK_90L.pna",
   "archive": "Chip3.arc；字节",
-  "note": "**真冲突**（2026-09-17 更正）：此前重判按**裸名**统计 `0x39` 帧得\"0 个选中\"→ 误判为误报；实际脚本引用的是**隔离名**（`HIK_90L.pna`），别名解析后差异层会被 `0x39` 选中。隔离副本已部署且被 `_H` 场景引用，**无需改动**；错的是表。"
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 真冲突，已按隔离名部署原版那一份（判定与站点见 `image-censorship.json` 条目 HIK_09）"
  },
  "HIK_09S.pna": {
   "verdict": "真冲突",
   "isolation_name": "HIK_90S.pna",
   "archive": "Chip3.arc；字节",
-  "note": "**真冲突**（2026-09-17 更正）：此前重判按**裸名**统计 `0x39` 帧得\"0 个选中\"→ 误判为误报；实际脚本引用的是**隔离名**（`HIK_90S.pna`），别名解析后差异层会被 `0x39` 选中。隔离副本已部署且被 `_H` 场景引用，**无需改动**；错的是表。"
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 真冲突，已按隔离名部署原版那一份（判定与站点见 `image-censorship.json` 条目 HIK_09）"
  },
  "ORI_12L.pna": {
   "verdict": "真冲突",
   "isolation_name": "ORI_91L.PNA",
   "archive": "Chip3A.arc；字节",
-  "note": "**真冲突**（2026-09-17 更正）：此前重判按**裸名**统计 `0x39` 帧得\"0 个选中\"→ 误判为误报；实际脚本引用的是**隔离名**（`ORI_91L.PNA`），别名解析后差异层会被 `0x39` 选中。隔离副本已部署且被 `_H` 场景引用，**无需改动**；错的是表。"
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 真冲突，已按隔离名部署原版那一份（判定与站点见 `image-censorship.json` 条目 ORI_12）"
  },
  "SAY_15L.pna": {
   "verdict": "真冲突",
   "isolation_name": "SAY_90L.pna",
   "archive": "Chip3B.arc；字节",
-  "note": "**真冲突**（2026-09-17 更正）：此前重判按**裸名**统计 `0x39` 帧得\"0 个选中\"→ 误判为误报；实际脚本引用的是**隔离名**（`SAY_90L.pna`），别名解析后差异层会被 `0x39` 选中。隔离副本已部署且被 `_H` 场景引用，**无需改动**；错的是表。"
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 真冲突，已按隔离名部署原版那一份（判定与站点见 `image-censorship.json` 条目 SAY_15）"
  },
  "SAY_15S.pna": {
   "verdict": "真冲突",
   "isolation_name": "SAY_90S.pna",
   "archive": "Chip3B.arc；字节",
-  "note": "**真冲突**（2026-09-17 更正）：此前重判按**裸名**统计 `0x39` 帧得\"0 个选中\"→ 误判为误报；实际脚本引用的是**隔离名**（`SAY_90S.pna`），别名解析后差异层会被 `0x39` 选中。隔离副本已部署且被 `_H` 场景引用，**无需改动**；错的是表。"
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 真冲突，已按隔离名部署原版那一份（判定与站点见 `image-censorship.json` 条目 SAY_15）"
  },
  "Aひかり_01X.pna": {
   "verdict": "待定",
   "isolation_name": "ORG_Aひかり_01X.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Aひかり_01）"
  },
  "Aひかり_02X.pna": {
   "verdict": "待定",
   "isolation_name": "ORG_Aひかり_02X.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 Aひかり_02）"
  },
  "Aひかり_03X.pna": {
   "verdict": "真冲突",
   "isolation_name": "ORG_Aひかり_03X.PNA",
   "archive": "Graphic.arc",
-  "note": "逐层配对不可靠（原版 35 层大图 ⇄ Steam 68 层碎片，Steam 重打包）→ 改用**合成画布**比较（`script/probe/compose_diff.py`）：差 0.36%、峰值 167。读图比对：**原版有乳头、Steam 已抹除** → 确属打码真冲突 → 引入原版 + 隔离名 ORG_。"
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 真冲突，已按隔离名部署原版那一份（判定与站点见 `image-censorship.json` 条目 Aひかり_03）"
  },
  "B沙夜_01X.pna": {
   "verdict": "待定",
   "isolation_name": "ORG_B沙夜_01X.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 B沙夜_01）"
  },
  "B沙夜_02X.pna": {
   "verdict": "待定",
   "isolation_name": "ORG_B沙夜_02X.pna",
   "archive": "Graphic.arc；字节",
-  "note": ""
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 B沙夜_02）"
  },
  "COM_04L.pna": {
   "verdict": "误报",
   "isolation_name": null,
   "archive": "Chip3.arc",
-  "note": "重判判「待定」（层 29⇄42 结构不一致），但**合成画布完全一致**（差 0.0000%、峰值 0）→ 差异纯属 Steam 重打包（少数大层 ⇄ 许多小层），画面相同 → **误报，零改动**。（该资源的原版内容已由 resource/layer-repairs.json 的图层级修复处理，无需隔离名。）"
+  "note": "帧池比对：Steam 把 25 层重切成 38 层并整体后移 layer_id，同时重编码全部帧、重绘水面的雾与亮度；逐帧目视内容一致，没有删去的性描写（判定与站点见 `image-censorship.json` 条目 COM_04）"
  },
  "COM_04S.pna": {
   "verdict": "误报",
   "isolation_name": null,
   "archive": "Chip3.arc",
-  "note": "同 COM_04L：合成比较差 0.0092%、峰值 11（噪声级）→ 误报，零改动。"
+  "note": "帧池比对：Steam 把 25 层重切成 38 层并整体后移 layer_id，同时重编码全部帧、重绘水面的雾与亮度；逐帧目视内容一致，没有删去的性描写（判定与站点见 `image-censorship.json` 条目 COM_04）"
  },
  "C織姫_01X.pna": {
   "verdict": "真冲突",
   "isolation_name": "ORG_C織姫_01X.PNA",
   "archive": "Graphic.arc",
-  "note": "同 Aひかり_03X：合成比较差 0.35%、峰值 97（层 33⇄69，Steam 重打包）→ 真冲突，隔离名 ORG_。"
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 真冲突，已按隔离名部署原版那一份（判定与站点见 `image-censorship.json` 条目 C織姫_01）"
  },
  "C織姫_03X.pna": {
   "verdict": "真冲突",
   "isolation_name": "ORG_C織姫_03X.PNA",
   "archive": "Graphic.arc",
-  "note": "同 Aひかり_03X：合成比较差 0.29%、峰值 149（层 40⇄86）→ 真冲突，隔离名 ORG_。"
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 真冲突，已按隔离名部署原版那一份（判定与站点见 `image-censorship.json` 条目 C織姫_03）"
  },
  "Dころな_01X.pna": {
   "verdict": "真冲突",
   "isolation_name": "ORG_Dころな_01X.PNA",
   "archive": "Graphic.arc",
-  "note": "同 Aひかり_03X：合成比较差 0.22%、峰值 121（层 53⇄101）→ 真冲突，隔离名 ORG_。"
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 真冲突，已按隔离名部署原版那一份（判定与站点见 `image-censorship.json` 条目 Dころな_01）"
  },
  "Dころな_02X.pna": {
   "verdict": "真冲突",
   "isolation_name": "ORG_Dころな_02X.PNA",
   "archive": "Graphic.arc",
-  "note": "同 Aひかり_03X：合成比较差 0.21%、峰值 118（层 37⇄63）→ 真冲突，隔离名 ORG_。"
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 真冲突，已按隔离名部署原版那一份（判定与站点见 `image-censorship.json` 条目 Dころな_02）"
  },
  "Dころな_03X.pna": {
   "verdict": "真冲突",
   "isolation_name": "ORG_Dころな_03X.PNA",
   "archive": "Graphic.arc",
-  "note": "同 Aひかり_03X：合成比较差 0.23%、峰值 77（层 37⇄62）→ 真冲突，隔离名 ORG_。"
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 真冲突，已按隔离名部署原版那一份（判定与站点见 `image-censorship.json` 条目 Dころな_03）"
  },
  "J田尻_01L.pna": {
   "verdict": "采用Steam",
   "isolation_name": null,
   "archive": "Graphic.arc",
-  "note": "合成比较差 0.0151%、峰值 120。**方向反常**：读图显示 **Steam 版有露骨内容（阴茎），日文原版反而没有**。**用户 2026-09-17 裁定：用 Steam 版**（不引入隔离副本、零改动）——保留完整内容，符合还原初衷。"
+  "note": "帧池比对：原版每一帧在 Steam 侧都逐像素保留，Steam 只额外叠加了 2 个服装图层；属改绘而非删内容，用户已裁定沿用 Steam 版（判定与站点见 `image-censorship.json` 条目 J田尻_01）"
  },
  "J田尻_01M.pna": {
   "verdict": "采用Steam",
   "isolation_name": null,
   "archive": "Graphic.arc",
-  "note": "同 J田尻_01L（合成差 0.0112%、峰值 121）。**用户裁定：用 Steam 版**，零改动。"
+  "note": "帧池比对：原版每一帧在 Steam 侧都逐像素保留，Steam 只额外叠加了 2 个服装图层；属改绘而非删内容，用户已裁定沿用 Steam 版（判定与站点见 `image-censorship.json` 条目 J田尻_01）"
  },
  "J田尻_01S.pna": {
   "verdict": "采用Steam",
   "isolation_name": null,
   "archive": "Graphic.arc",
-  "note": "同 J田尻_01L（合成差 0.0110%、峰值 120）。**用户裁定：用 Steam 版**，零改动。"
+  "note": "帧池比对：原版每一帧在 Steam 侧都逐像素保留，Steam 只额外叠加了 2 个服装图层；属改绘而非删内容，用户已裁定沿用 Steam 版（判定与站点见 `image-censorship.json` 条目 J田尻_01）"
  },
  "J田尻_01W.pna": {
   "verdict": "采用Steam",
   "isolation_name": null,
   "archive": "Graphic.arc",
-  "note": "同 J田尻_01L（合成差 0.1274%、峰值 32，层结构 43⇄49）。**用户裁定：用 Steam 版**，零改动。"
+  "note": "帧池比对：原版每一帧在 Steam 侧都逐像素保留，Steam 只额外叠加了 2 个服装图层；属改绘而非删内容，用户已裁定沿用 Steam 版（判定与站点见 `image-censorship.json` 条目 J田尻_01）"
  },
  "ORI_11S.pna": {
   "verdict": "真冲突",
@@ -441,13 +441,13 @@
   "verdict": "本地化",
   "isolation_name": null,
   "archive": "Chip2.arc",
-  "note": "用户 2026-09-17 实检 + 对照图确认：差异是**内嵌文字的本地化**（原版 `AGO/CURRENT/PAST` → Steam `Middle/Now/elem.`），非打码/改绘。→ **用 Steam 版（有中文）**；脚本本就引用裸名，零改动。对照图为 358×58 的文字带。"
+  "note": "帧池比对：表盘/界面文字本地化改写，Steam 另发了 _sc 变体（判定与站点见 `image-censorship.json` 条目 Cutin_98B_01A）"
  },
  "KOR_04L.pna": {
-  "verdict": "误报",
+  "verdict": "待定",
   "isolation_name": null,
   "archive": "Chip3A.arc",
-  "note": "重判原判「真冲突」，但对照图显示差异只在左上角 56x57 空背景区、峰值 27~37、无可辨内容改动。**用户 2026-09-17 目测无差异 → 暂不引入隔离副本**（零改动）。"
+  "note": "帧池比对确认 Steam 改绘了画面内容，且该资源的图层整份都会显示 → 需裁定是否补隔离副本并改写仍按裸名引用它的场景（判定与站点见 `image-censorship.json` 条目 KOR_04）"
  },
- "_comment": " **本表为权威记录、不可再生成**（生成器的输入已在清理 `tmp/` 时删除）；直接编辑即可。2026-09-17 修正 5 条事件 CG 的误判（别名解析缺失所致，见各条 note）。"
+ "_comment": "本表为权威记录、不可再生成；直接编辑即可。逐条只裁定「同名资源要不要保留原版那一份（隔离副本）」：真冲突=保留并部署隔离名，误报=直接用 Steam 裸名，采用Steam/本地化=按裁定维持 Steam 侧，待定=需人工裁定。Steam 改绘画面内容（图片级和谐）的判定、证据与引用站点统一记在 `image-censorship.json`，本表不重复其结论，只在 note 指回条目。"
 }

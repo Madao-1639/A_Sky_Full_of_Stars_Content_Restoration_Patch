@@ -120,7 +120,7 @@ def units(records):
     different such lines look identical to this method. Anchoring on voiced 台词
     and comparing the unvoiced COUNT in between is the most the voice track can
     support; a same-count rewrite of an unvoiced line stays invisible (see the
-    caveat in doc/pending-issues.md 问题 2)."""
+    caveat in doc/pending-issues.md 问题 1)."""
     out, pending = [], 0
     for i, r in enumerate(records):
         vs = voices(r)
